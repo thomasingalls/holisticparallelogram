@@ -2,7 +2,12 @@
   "name": "holisticparallelogram",
   "version": "1.0.0",
   "description": "Get a list of local view spots near you",
-  "contributors": ["Andrew Ho","Joel Aguero","Laura Curley","Reina Mei"],
+  "contributors": [
+    "Andrew Ho",
+    "Joel Aguero",
+    "Laura Curley",
+    "Reina Mei"
+  ],
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,13 +26,15 @@
   },
   "homepage": "https://github.com/holisticparallelogram/holisticparallelogram#readme",
   "dependencies": {
+    "bluebird": "1.0.8",
+    "body-parser": "^1.4.3",
+    "eslint": "^2.7.0",
+    "eslint-config-hackreactor": "github:hackreactor-labs/eslint-config-hackreactor",
+    "express": "^4.4.5",
+    "nodemon": "^1.2.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
-    "express": "^4.4.5",
     "request": "^2.36.0",
-    "body-parser": "^1.4.3",
-    "nodemon": "^1.2.1",
-    "bluebird": "1.0.8",
     "webpack": "^1.12.14"
   },
   "devDependencies": {
