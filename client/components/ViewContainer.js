@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ViewEntry from './ViewEntry';
 
-class ViewContainer extends React.Component {
-  render() {
-    return (
-      <h1>This is a view container.</h1>
-    )
-  }
-}
+var ViewContainer = (props) => (
+    <div>
+    {props.viewEntries.map((viewEntry => (
+      <ViewEntry viewName={viewEntry}></ViewEntry>
+    )))}
+    </div>
+  );
 
 export default ViewContainer;

@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class ViewEntry extends React.Component {
-  render() {
-    return (
-      <h2>This is a view</h2>
-    )
-  }
-}
+var ViewEntry = (props) => (
+  <h2>{props.viewName}</h2>
+);
 
 export default ViewEntry;
