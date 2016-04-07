@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Search extends React.Component {
-  render() {
-    return (
-      <form>
-        <input type="text" placeholder="Zip code"/>
-        <button type="submit">Search</button>
-      </form>
-    )
-  }
-}
+var Search = () => (
+  <form>
+    <input type="text" placeholder="Zip code"/>
+    <button type="submit">Search</button>
+  </form>
+);
 
 export default Search;
