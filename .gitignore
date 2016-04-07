@@ -15,6 +15,7 @@ Icon
 .Trashes
 db/
 client/lib
+client/bundle.js
 
 # Floobits
 .floo
