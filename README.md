@@ -10,36 +10,51 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Overview](#overview)
+2. [Usage](#usage)
+3. [Requirements](#requirements)
+4. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+5. [Team](#team)
+6. [Contributing](#contributing)
+
+## Overview
+
+### Webpack
+Webpack bundles dependencies into one file, so that all dependencies can be loaded into the DOM with a single `<script>` tag.  Webpack starts with an entry file (`App.js`) and traverses the project’s dependencies based on the `import` and `export` statements in the code. It uses a `webpack.config.js` file in the root directory to define which loaders are required for compilation and the destination of the output file.
 
 ## Usage
 
-> Some usage instructions
+Make sure you have all [dependencies](#installing-dependencies) installed. Then, from within the root directory:
+```
+npm install
+webpack
+node server.js
+```
+
+Visit `localhost:4568` in the browser.
 
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Webpack 1.12.14
 
 ## Development
+
+To compile client-side code and start the server, run:
+```
+webpack
+node server.js
+```
+
+If you are developing on the client only, type `webpack-dev-server` into the CLI to start the server and visit `localhost:8080/client/` in the browser. This will watch the client-side JS files and reload the browser if any of them change, and will not compile a bundle.js file.
 
 ### Installing Dependencies
 
 From within the root directory:
 
-```sh
-sudo npm install -g bower
-npm install
-bower install
+```
+npm install -g webpack-dev-server webpack
 ```
 
 ### Roadmap
