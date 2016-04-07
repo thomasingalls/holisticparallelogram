@@ -8,8 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewEntries: ['View 1','View 2','View 3']
-    }
+      viewEntries: ['View 1', 'View 2', 'View 3']
+    };
   }
   render() {
     return (
