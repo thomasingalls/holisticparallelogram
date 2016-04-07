@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+class ViewContainer extends React.Component {
+  render() {
+    return (
+      <h1>This is a view container.</h1>
+    )
+  }
+}
 
-ReactDOM.render(
-  <h1>Hello world!</h1>,
-  document.getElementById('view-container')
-);
+export default ViewContainer;
