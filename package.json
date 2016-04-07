@@ -1,28 +1,42 @@
 {
   "name": "holisticparallelogram",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Get a list of local view spots near you",
+  "contributors": ["Andrew Ho","Joel Aguero","Laura Curley","Reina Mei"],
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/holisticparallelogram/holisticparallelogram.git"
   },
-  "author": "",
+  "author": "See Contributors",
+  "private": true,
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/holisticparallelogram/holisticparallelogram/issues"
   },
   "homepage": "https://github.com/holisticparallelogram/holisticparallelogram#readme",
   "dependencies": {
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "express": "^4.4.5",
+    "request": "^2.36.0",
+    "body-parser": "^1.4.3",
+    "nodemon": "^1.2.1",
+    "bluebird": "1.0.8"
+  },
+  "devDependencies": {
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
     "webpack": "^1.12.14"
   }
 }
+
+
+
