@@ -4,24 +4,18 @@
 
 var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
 var request = require('request');
-// var bodyParser = require('body-parser');
 
 var urlParser = require('url');
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-//TODO: require body-parser in server.js
-
 
 //Make a get call to Google Places nearbysearch, get back 20 results;
 //Make a get call to Google Places details for each of the 20 results, match their reviews against a regex, send filtered and simplified results back to client;
 //Use a counter to make sure the results are only sent to client after all the initial results have been examined;
 //Callback depths are labeled by layers;
-module.exports.getAll = function(req, res) { //only returns 20 results per call, needs to pass in pagetoken returned from previous call in order to get the next 20 results
+module.exports.getAll = function(req, res) { //only return 20 results per call, need to pass in pagetoken returned from previous call in order to get the next 20 results
 
   // var next_page_token;
-  var searchString = urlParser.parse(req.url).search; //includes leading question mark
+  var searchString = urlParser.parse(req.url).search; //include leading question mark
   var regex = new RegExp(/(good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking) view/);
-  console.log(searchString);
 
   request.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json' + searchString + '&key=' + GOOGLE_PLACES_API_KEY)
     .on('response', function(response) { //layer 1 on 'response'
