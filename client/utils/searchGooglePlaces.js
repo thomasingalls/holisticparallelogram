@@ -1,4 +1,4 @@
-searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
+var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
   
   radius = radius || 50000;
   type = type || 'restaurant';
