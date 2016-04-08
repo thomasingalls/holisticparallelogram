@@ -19,7 +19,6 @@ class Search extends Component {
           <p>Press the button to find scenic views near your location.</p>
         </div>
         <button
-          name='find-views'
           onClick={ this.handleClick.bind(this) }
           type="submit">Find Views
         </button>

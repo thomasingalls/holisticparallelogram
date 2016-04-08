@@ -1,9 +1,8 @@
-export default function zip(state = 10000, action) {
-  switch (action.type) {
+import { combineReducers } from 'redux';
+import views from './views.js';
 
-  case 'UPDATE_ZIP':
-    return state = action.code;
-  default:
-    return state;
-  }
-}
+const rootReducer = combineReducers({
+  views
+});
+
+export default rootReducer;
