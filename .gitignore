@@ -55,3 +55,6 @@ dist/
 node_modules/
 bower_components/
 
+# API keys
+server/config/googleplaces.js
+
