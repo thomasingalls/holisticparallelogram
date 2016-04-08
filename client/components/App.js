@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import Search from './Search';
 import ViewContainer from './ViewContainer';
@@ -15,13 +14,10 @@ class App extends React.Component {
     return (
       <div>
         <Search/>
-        <ViewContainer viewEntries={this.state.viewEntries}/>
+        <ViewContainer viewEntries={this.state.viewEntries} />
       </div>
     );
   }
-}
+};
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('app')
-);
+export default App;

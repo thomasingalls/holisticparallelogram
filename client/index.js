@@ -6,7 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createStore } from 'redux';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import zip from './reducers';
 
 import App from './components/App.js';
@@ -15,7 +15,7 @@ import App from './components/App.js';
 // createStore accepts a single reducer or a collection of reducers
 const store = createStore(zip);
 
-function render() {
+var render = function() {
   ReactDOM.render(
     <Provider store={store}>
       <App />
