@@ -1,6 +1,5 @@
-// this is the main entry point fo the app
-// it renders the App component after wrapping it in the Provider
-// the Provider ensures
+// this is the main entry point for the app
+// it renders the App component after wrapping it in the Provider from Redux
 
 import React from 'react';
 import ReactDOM from 'react-dom';
