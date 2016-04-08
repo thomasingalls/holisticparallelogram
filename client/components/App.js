@@ -7,10 +7,10 @@ import ViewContainer from './ViewContainer';
 
 class App extends React.Component {
   render() {
-    const { views, onEnter } = this.props;
+    const { views, onClick } = this.props;
     return (
       <div>
-        <Search onEnter={ (loc) => onEnter(loc) } />
+        <Search onClick={ (loc) => onClick(loc) } />
         <ViewContainer viewEntries={views} />
       </div>
     );
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onEnter: (loc) => {
+    onClick: (loc) => {
       dispatch(updateViews(loc));
     }
   };
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 
 App.propTypes = {
   views: PropTypes.array.isRequired,
-  onEnter: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default connect(
