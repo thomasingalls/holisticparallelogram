@@ -1,9 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var urlParser = require('url');
+
 var app = express();
 var port = process.env.PORT || 4568;
-var router = require('./server/routers/routes');
-
+var router = require('./server/routers/routes.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

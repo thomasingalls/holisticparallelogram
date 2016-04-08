@@ -10,7 +10,7 @@ mainRouter.route('/')
   .get(mainController.default);
 
 // get all view locations when a user inputs a zip code
-mainRouter.route('/getAll')
+mainRouter.route('/views')
   .get(apiController.getAll);
 
 module.exports = mainRouter;
