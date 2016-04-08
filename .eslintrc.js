@@ -1,3 +1,4 @@
+<<<<<<< 690da52687f82d262d434b5f2d41bcc486f8d096
 /**
  * These rules enforce the Hack Reactor Style Guide:
  *   http://bookstrap.hackreactor.com/wiki/Style-Guide
@@ -16,3 +17,5 @@ module.exports = {
         }
   }
 }
+
+>>>>>>> Eslint file from previous rebase
