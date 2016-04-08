@@ -10,6 +10,8 @@ import zip from './reducers';
 
 import App from './components/App.js';
 
+import $ from 'jquery';
+
 // the store manages the state of our app
 // createStore accepts a single reducer or a collection of reducers
 const store = createStore(zip);
