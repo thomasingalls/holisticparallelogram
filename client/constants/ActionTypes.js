@@ -1,1 +1,1 @@
-export const UPDATE_ZIP = 'UPDATE_ZIP';
+export const UPDATE_VIEWS = 'UPDATE_VIEWS';
