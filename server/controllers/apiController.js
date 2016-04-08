@@ -21,7 +21,6 @@ module.exports.getAll = function(req, res) { //only returns 20 results per call,
       console.log(response.body.results);
       var filteredBody = {};
       filteredBody.places = [];
-      //do the filtering here, 20 synchronous calls to get business details and filter for reviews
       var places = response.body.results;
       var counter = 0; //ensures server only sends back filteredBody if all places have been processed
       for (var i = 0; i < places.length; i++) {
@@ -43,15 +42,18 @@ module.exports.getAll = function(req, res) { //only returns 20 results per call,
               }
             }
             counter++;
+            if (counter === places.length) {
+              res.json(filteredBody); //also needs to pass page token back to client for further requests
+            } //TODO: move it inside callback above
           })
           .on('error', function(error) {
             //TODO: handle error
             counter++;
+            if (counter === places.length) {
+              res.json(filteredBody); //also needs to pass page token back to client for further requests
+            } 
           })
 
-      if (counter === places.length) {
-        res.json(filteredBody); //also needs to pass page token back to client for further requests
-      }
     })
     .on('error', function(error) {
       //TODO: handle error
