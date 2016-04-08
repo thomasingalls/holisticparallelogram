@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 
-class Search extends React.Component {
+class Search extends Component {
 
   handleClick() {
     var loc = {

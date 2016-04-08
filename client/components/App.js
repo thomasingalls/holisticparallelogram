@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import updateViews from '../actions';
 
 import Search from './Search';
 import ViewContainer from './ViewContainer';
 
-class App extends React.Component {
+class App extends Component {
   render() {
     const { views, onClick } = this.props;
     return (
