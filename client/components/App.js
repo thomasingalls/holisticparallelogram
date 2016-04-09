@@ -26,7 +26,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (loc) => {
-      dispatch(updateViews(loc));
+      dispatch(
+      /* This is a known bug, and isn't working properly yet.
+         Dispatch should receive the updateViews action as it's
+         parameter. When the button is clicked, an error will be
+         logged because we aren't passing in an action to the dispatcher.
+      */
+    );
     }
   };
 };
