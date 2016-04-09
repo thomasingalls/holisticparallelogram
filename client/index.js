@@ -4,9 +4,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import zip from './reducers';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
 
 import App from './components/App.js';
 
@@ -14,7 +14,7 @@ import $ from 'jquery';
 
 // the store manages the state of our app
 // createStore accepts a single reducer or a collection of reducers
-const store = createStore(zip);
+const store = createStore(rootReducer);
 
 var render = function() {
   ReactDOM.render(

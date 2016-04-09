@@ -1,7 +1,5 @@
 import * as types from '../constants/ActionTypes.js';
 
-var updateZip = function(code) {
-  return { type: types.UPDATE_ZIP, code };
+export var updateViews = function(location) {
+  return { type: types.UPDATE_VIEWS, location };
 };
-
-module.exports = updateZip;
