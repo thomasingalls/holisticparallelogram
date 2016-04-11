@@ -1,11 +1,13 @@
+import $ from 'jquery';
+
 var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
-  
+
   radius = radius || 50000;
   type = type || 'restaurant';
 
   var makeAjaxRequest = function() {
     $.ajax({         //only returns 20 results per call, needs to pass in pagetoke returned from previous call in order to get the next 20 results
-      url: '/views',
+      url: '/api/places',
       method: 'GET',
       data: {
         location: latitude + ',' + longitude,
@@ -14,8 +16,8 @@ var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
         keyword: 'view'
       },
       success: function(filteredBody) {
-        // callback(filteredBody);
-        console.log(filteredBody);
+        callback(filteredBody);
+        // console.log(filteredBody);
       }
     });
   };
@@ -32,4 +34,4 @@ var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
   }
 };
 
-// export default searchGooglePlaces;
+export default searchGooglePlaces;

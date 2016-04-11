@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 class Search extends Component {
 
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
     var loc = {
       latitude: 37.774929, // Replace hardcoded loc with browser loc
       longitude: -122.419416

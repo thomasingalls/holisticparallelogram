@@ -1,17 +1,18 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import updateViews from '../actions';
+import actions from '../actions/index.js';
 
 import Search from './Search';
-import ViewContainer from './ViewContainer';
+import PlaceContainer from './PlaceContainer';
+import searchGooglePlaces from '../utils/searchGooglePlaces.js';
 
 class App extends Component {
   render() {
-    const { views, onClick } = this.props;
+    const { places, onClick } = this.props;
     return (
       <div>
         <Search onClick={ (loc) => onClick(loc) } />
-        <ViewContainer viewEntries={views} />
+        <PlaceContainer placeEntries={places} />
       </div>
     );
   }
@@ -19,26 +20,22 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    views: state.views
+    places: state.places
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (loc) => {
-      dispatch(
-      /* This is a known bug, and isn't working properly yet.
-         Dispatch should receive the updateViews action as it's
-         parameter. When the button is clicked, an error will be
-         logged because we aren't passing in an action to the dispatcher.
-      */
-    );
+      searchGooglePlaces(function(data) {
+        dispatch(actions.updatePlaces(data.places));
+      });
     }
   };
 };
 
 App.propTypes = {
-  views: PropTypes.array.isRequired,
+  places: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired
 };
 
