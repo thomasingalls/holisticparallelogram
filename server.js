@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var urlParser = require('url');
 
+require(__dirname + '/server/db/index.js')();
+
 var app = express();
 
 var port = process.env.PORT || 4568;
