@@ -3,22 +3,14 @@ var bodyParser = require('body-parser');
 var urlParser = require('url');
 
 var app = express();
+
 var port = process.env.PORT || 4568;
-var router = require('./server/routers/routes.js');
+var router = require(__dirname + '/server/router/routes.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Use the below to test initial server, comment once using index.html
-// app.get('/', function(req, res) {
-//   res.json({message: 'Example response message on get /'});
-// });
-
-// serve up static files
-app.use( express.static(__dirname + '/client') ); 
-console.log('Static files served up from', __dirname + '/client');
-
-app.use('/', router);
+router(app, express);
 
 app.listen(port, function(err) {
   if (err) {

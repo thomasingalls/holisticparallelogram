@@ -1,6 +1,6 @@
 // Example data only
 
-/*var User = sequelize.define('user', {
+var User = sequelize.define('user', {
   firstName: {
     type: Sequelize.STRING,
     field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
@@ -18,6 +18,6 @@ User.sync({force: true}).then(function () {
     firstName: 'John',
     lastName: 'Hancock'
   });
-});*/
+});
 
-//module.exports = User;
+module.exports = User;
