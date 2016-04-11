@@ -1,6 +1,4 @@
-var
-
-var View = sequelize.define('view', {
+var Place = sequelize.define('Place', {
   name: {
     type: Sequelize.STRING,
     field: 'name' // this attribute sets the name in the database
@@ -14,12 +12,12 @@ var View = sequelize.define('view', {
 });
 
 
-// this is an example of how to add a new View
+// this is an example of how to add a new Place
 // to be used in apiController eventually
-View.sync({force: true}).then(function () {
+Place.sync({force: true}).then(function () {
   // Table created
-  return View.create({
-    view_name: 'Rooftop Garden Near You',
+  return Place.create({
+    place_name: 'Rooftop Garden Near You',
     address: '123 Market Street, Avalon, USA'
   });
 });
@@ -28,4 +26,4 @@ User.findOne().then(function (user) {
     console.log(user.name);
 });
 
-module.exports = View;
+module.exports = Place;

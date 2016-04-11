@@ -1,17 +1,18 @@
-// This is the API Controller for doing external api requests
-// such as to Google Places API, and filtering the results to prepare
-// formatted data for use on the client side.
-
+var Place = require(__dirname + '/placeModel.js');
 var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
 var request = require('request');
-
 var urlParser = require('url');
 
-//Make a get call to Google Places nearbysearch, get back 20 results;
-//Make a get call to Google Places details for each of the 20 results, match their reviews against a regex, send filtered and simplified results back to client;
-//Use a counter to make sure the results are only sent to client after all the initial results have been examined;
-//Callback depths are labeled by layers;
-module.exports.getAll = function(req, res) { //only return 20 results per call, need to pass in pagetoken returned from previous call in order to get the next 20 results
+
+module.exports.getAll = function(req, res) {
+
+};
+
+module.exports.saveOne = function(req, res) {
+
+};
+
+module.exports.searchGoogle = function(req, res) { //only return 20 results per call, need to pass in pagetoken returned from previous call in order to get the next 20 results
 
   var searchString = urlParser.parse(req.url).search; //include leading question mark
   var regex = new RegExp(/(good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking) view/);
@@ -77,5 +78,31 @@ module.exports.getAll = function(req, res) { //only return 20 results per call, 
     }); //end of layer 1 on 'error'
 };
 
+var seedData = require(__dirname.slice(0, -19) + '/db/config.js');
 
+// Implement once database is integrated
+// var views = require('../models/views.js');
+
+exports.default = function(req, res) {
+  res.sendfile('./client/index.html');
+};
+
+exports.getAll = function(req, res) {
+  // until we implement this endpoint, just default to serving the index file
+  res.sendfile('./client/index.html');  
+};
+
+var seedDatabase = function(data) {
+  data.forEach(function(item) {
+    View.create(item, function(err, newView){
+      if (err) {
+        return console.log(err);
+      }
+      console.log(newView);
+      // res.json(newCharacters);
+    });
+  });
+};
+
+seedDatabase(seedData);
 
