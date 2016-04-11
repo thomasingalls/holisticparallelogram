@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 var ViewEntry = (props) => (
-  <h2>{props.viewName}</h2>
+  <div>
+    <h3>{props.place.name}</h3>
+    <p>{props.place.address}</p>
+  </div>
 );
 
 export default ViewEntry;

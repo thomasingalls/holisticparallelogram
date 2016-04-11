@@ -4,8 +4,10 @@ import ViewEntry from './ViewEntry';
 
 var ViewContainer = (props) => (
     <div>
-    {props.viewEntries.map((viewEntry => (
-      <ViewEntry viewName={viewEntry}></ViewEntry>
+    { props.viewEntries.map((place => (
+      <div>
+        <ViewEntry place={place}></ViewEntry>
+      </div>
     )))}
     </div>
   );
