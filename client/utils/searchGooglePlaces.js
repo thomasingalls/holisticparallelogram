@@ -7,7 +7,7 @@ var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
 
   var makeAjaxRequest = function() {
     $.ajax({         //only returns 20 results per call, needs to pass in pagetoke returned from previous call in order to get the next 20 results
-      url: '/views',
+      url: '/api/places',
       method: 'GET',
       data: {
         location: latitude + ',' + longitude,
