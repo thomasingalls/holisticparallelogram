@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-var placeEntryClassNames = classNames('grid', 'place-entry');
+var placeEntryClasses = classNames('place-entry', 'animated', 'fadeInUp');
 
 var PlaceEntry = (props) => (
-  <div className={placeEntryClassNames}>
-    <div className='col-2-8'>
-      <span className="icon-heart" aria-hidden="true"></span>
-    </div>
-    <div className='col-6-8'>
-      <h3>{ props.place.name }</h3>
+  <div className={placeEntryClasses}>
+    <div className='place-info' >
+      <h4>{ props.place.name }</h4>
       <p>{ props.place.address }</p>
+    </div>
+    <div className='place-entry-favorite'>
+      <span className='icon-heart' aria-hidden='true'></span>
     </div>
   </div>
 );

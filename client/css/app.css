@@ -1,17 +1,51 @@
-@font-face {
-  font-family: 'SimpleLineIcons';
-  src: url('./fonts/Simple-Line-Icons.eot'); /* IE9 Compat Modes */
-  src: url('./fonts/Simple-Line-Icons.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./fonts/Simple-Line-Icons.woff2') format('woff2'), /* Super Modern Browsers */
-       url('./fonts/Simple-Line-Icons.woff') format('woff'), /* Pretty Modern Browsers */
-       url('./fonts/Simple-Line-Icons.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('./fonts/Simple-Line-Icons.svg#svgFontName') format('svg'); /* Legacy iOS */
-}
-
 body {
   font-family: 'Open Sans', Fallback, sans-serif;
+  background-color: #FAFAFA;
 }
 
-.icon {
-  font-family: 'SimpleLineIcons';
+.place-entry {
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 4px 12px 4px 20px;
+  margin: 24px 0px;
+  max-width: 600px;
+  position: relative;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.place-entry:hover {
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+.place-info {
+  width: 75%;
+}
+
+.place-info h4 {
+  margin-bottom: 0px;
+}
+
+.place-info p {
+  margin-top: 8px;
+}
+
+.place-entry-favorite {
+  width: 25%;
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  justify-content: center;
+}
+
+.icon-heart {
+  align-self: center;
+  color: black;
+  font-size: 1.8em;
+  color: rgba(0,0,0,0.45);
+}
+
+.icon-heart:hover {
+  color: red;
 }
