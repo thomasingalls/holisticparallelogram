@@ -78,31 +78,19 @@ module.exports.searchGoogle = function(req, res) { //only return 20 results per 
     }); //end of layer 1 on 'error'
 };
 
-var seedData = require(__dirname.slice(0, -19) + '/db/config.js');
+// var seedData = require(__dirname.slice(0, -19) + '/db/config.js');
 
-// Implement once database is integrated
-// var views = require('../models/views.js');
+// var seedDatabase = function(data) {
+//   data.forEach(function(item) {
+//     View.create(item, function(err, newView){
+//       if (err) {
+//         return console.log(err);
+//       }
+//       console.log(newView);
+//       // res.json(newCharacters);
+//     });
+//   });
+// };
 
-exports.default = function(req, res) {
-  res.sendfile('./client/index.html');
-};
-
-exports.getAll = function(req, res) {
-  // until we implement this endpoint, just default to serving the index file
-  res.sendfile('./client/index.html');  
-};
-
-var seedDatabase = function(data) {
-  data.forEach(function(item) {
-    View.create(item, function(err, newView){
-      if (err) {
-        return console.log(err);
-      }
-      console.log(newView);
-      // res.json(newCharacters);
-    });
-  });
-};
-
-seedDatabase(seedData);
+// seedDatabase(seedData);
 
