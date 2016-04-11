@@ -1,4 +1,4 @@
-
+var
 
 var View = sequelize.define('view', {
   name: {
