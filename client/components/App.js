@@ -4,6 +4,7 @@ import actions from '../actions/index.js';
 
 import Search from './Search';
 import PlaceContainer from './PlaceContainer';
+import searchGooglePlaces from '../utils/searchGooglePlaces.js';
 
 class App extends Component {
   render() {
@@ -26,7 +27,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (loc) => {
-      dispatch(actions.updatePlaces(loc));
+      searchGooglePlaces(function(data) {
+        dispatch(actions.updatePlaces(data.places));
+      });
     }
   };
 };

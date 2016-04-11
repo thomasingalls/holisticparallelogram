@@ -1,19 +1,12 @@
 import * as types from '../constants/ActionTypes.js';
-import searchGooglePlaces from '../utils/searchGooglePlaces.js';
 
-const initialState = [{
-  name: 'The Bridges Golf Club',
-  address: '9000 S Gale Ridge Rd, San Ramon, CA 94582, United States'
-}];
+const initialState = [];
 
 export default function places (state = initialState, action) {
   switch (action.type) {
 
   case types.UPDATE_PLACES:
-    searchGooglePlaces(function(data) {
-      console.log(data);
-    });
-    return state;
+    return state.concat(action.places);
   default:
     return state;
   }
