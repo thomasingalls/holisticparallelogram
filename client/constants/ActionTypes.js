@@ -1,1 +1,1 @@
-export const UPDATE_VIEWS = 'UPDATE_VIEWS';
+export const UPDATE_PLACES = 'UPDATE_PLACES';

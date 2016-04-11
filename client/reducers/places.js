@@ -6,14 +6,14 @@ const initialState = [{
   address: '9000 S Gale Ridge Rd, San Ramon, CA 94582, United States'
 }];
 
-export default function views (state = initialState, action) {
+export default function places (state = initialState, action) {
   switch (action.type) {
 
-  case types.UPDATE_VIEWS:
+  case types.UPDATE_PLACES:
     searchGooglePlaces(function(data) {
       console.log(data);
-      return state;
     });
+    return state;
   default:
     return state;
   }

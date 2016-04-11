@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 
 import Search from './Search';
-import ViewContainer from './ViewContainer';
+import PlaceContainer from './PlaceContainer';
 
 class App extends Component {
   render() {
-    const { views, onClick } = this.props;
+    const { places, onClick } = this.props;
     return (
       <div>
         <Search onClick={ (loc) => onClick(loc) } />
-        <ViewContainer viewEntries={views} />
+        <PlaceContainer placeEntries={places} />
       </div>
     );
   }
@@ -19,20 +19,20 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    views: state.views
+    places: state.places
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (loc) => {
-      dispatch(actions.updateViews(loc));
+      dispatch(actions.updatePlaces(loc));
     }
   };
 };
 
 App.propTypes = {
-  views: PropTypes.array.isRequired,
+  places: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired
 };
 

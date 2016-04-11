@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import views from './views.js';
+import places from './places.js';
 
 const rootReducer = combineReducers({
-  views
+  places
 });
 
 export default rootReducer;
