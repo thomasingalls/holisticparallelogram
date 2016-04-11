@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import updateViews from '../actions';
+import actions from '../actions/index.js';
 
 import Search from './Search';
 import ViewContainer from './ViewContainer';
@@ -26,13 +26,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (loc) => {
-      dispatch(
-      /* This is a known bug, and isn't working properly yet.
-         Dispatch should receive the updateViews action as it's
-         parameter. When the button is clicked, an error will be
-         logged because we aren't passing in an action to the dispatcher.
-      */
-    );
+      dispatch(actions.updateViews(loc));
     }
   };
 };
