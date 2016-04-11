@@ -37,6 +37,7 @@
     "nodemon": "^1.2.1",
     "passport": "^0.3.2",
     "passport-google-auth": "^1.0.1",
+    "passport-google-oauth": "^1.0.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.1",

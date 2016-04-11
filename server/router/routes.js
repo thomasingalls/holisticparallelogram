@@ -31,10 +31,10 @@ module.exports = function(app, express) {
   app.use(passport.session());
 
   passport.use(new GoogleStrategy({
-    consumerKey: googleKeys.CLIENT_ID,
-    consumerSecret: googleKeys.CLIENT_SECRET,
+    clientID: googleKeys.CLIENT_ID,
+    clientSecret: googleKeys.CLIENT_SECRET,
     callbackURL: '/auth/google/callback'
-  }, function(token, tokenSecret, profile, done) {
+  }, function(accessToken, refreshToken, profile, done) {
       // Create a user if it is a new user
 
       // User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -54,7 +54,7 @@ module.exports = function(app, express) {
   });
 
   app.get('/auth/google',
-    passport.authenticate('google', { scope: 'https://www.google.com/m8/feeds' }));
+    passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
   app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/auth/login' }),
