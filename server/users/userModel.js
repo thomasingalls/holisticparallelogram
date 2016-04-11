@@ -1,11 +1,11 @@
 var Sequelize = require('sequelize');
-var db = require(__dirname + '/../db/index.js');
+var db = require(__dirname + '/../db/db.js');
 
 var User = db.define('User',
   {
     id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV1,
       primaryKey: true
     },
     googleUserId: {
@@ -26,8 +26,5 @@ var User = db.define('User',
   }
 );
 
-User.sync({force: true}).then(function () { //drops table if exists
-  // Table created
-});
 
 module.exports = User;
