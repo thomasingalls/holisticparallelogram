@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
 
+// app.set('view engine', 'html');
+
 router(app, express);
 
 app.listen(port, function(err) {
