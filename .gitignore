@@ -13,7 +13,7 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-db/
+
 client/lib
 client/bundle.js
 

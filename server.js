@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   res.json({message: 'Example response message on get /'});
 // });
 
-
 // serve up static files
 app.use( express.static(__dirname + '/client') ); 
 console.log('Static files served up from', __dirname + '/client');
