@@ -19,15 +19,15 @@ app.listen(port, function(err) {
     return console.log('Listen error: ', err);
   }
   console.log('Hollistic Parallelogram Listening on Port ' + port);
-});  
+});
 
 module.exports = app;
 
 
 // TODO: check if below are useful for this project
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-//app.use(methodOverride('X-HTTP-Method-Override')); 
-              
+//app.use(methodOverride('X-HTTP-Method-Override'));
+
 // ============= Optional Mongoose/Mongo Setup ===========
 /*
 // Mongoose/Mongo setup. Uncomment if using Mongoose.
@@ -39,5 +39,3 @@ mongoose.connect(dbUri, function(err, res) {
   }
 });
 */
-
-
