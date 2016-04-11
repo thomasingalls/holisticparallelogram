@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'SimpleLineIcons';
+  src: url('./fonts/Simple-Line-Icons.eot'); /* IE9 Compat Modes */
+  src: url('./fonts/Simple-Line-Icons.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/Simple-Line-Icons.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/Simple-Line-Icons.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./fonts/Simple-Line-Icons.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/Simple-Line-Icons.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body {
+  font-family: 'Open Sans', Fallback, sans-serif;
+}
+
+.icon {
+  font-family: 'SimpleLineIcons';
+}
