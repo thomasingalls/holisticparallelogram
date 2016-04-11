@@ -29,7 +29,7 @@ var checkAuth = function (req, res, next) {
 
 module.exports = function(app, express) {
 
-  // app.use(express.static(__dirname + '/../../client'));
+  app.use(express.static(__dirname + '/../../client'));
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -46,9 +46,6 @@ module.exports = function(app, express) {
       // });
   }));
 
-  app.get('/', checkAuth, function(req, res) {
-    res.sendFile(path.resolve(__dirname + '/../../client/index.html'))
-  });
 
   app.get('/api/places', placeController.searchGoogle);
 
