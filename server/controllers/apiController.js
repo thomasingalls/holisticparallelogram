@@ -13,7 +13,6 @@ var urlParser = require('url');
 //Callback depths are labeled by layers;
 module.exports.getAll = function(req, res) { //only return 20 results per call, need to pass in pagetoken returned from previous call in order to get the next 20 results
 
-  // var next_page_token;
   var searchString = urlParser.parse(req.url).search; //include leading question mark
   var regex = new RegExp(/(good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking) view/);
 
@@ -27,6 +26,7 @@ module.exports.getAll = function(req, res) { //only return 20 results per call, 
       }).on('end', function() { //layer 2 on 'end'
         body = JSON.parse(Buffer.concat(body).toString());
         var filteredBody = {};
+        filteredBody['next_page_token'] = body['next_page_token']; //pass next_page_token back to client in case it needs to fetch the next 20 results
         filteredBody.places = [];
         var places = body.results;
         var counter = 0; //ensure server only sends back filteredBody if all places have been processed
@@ -49,7 +49,8 @@ module.exports.getAll = function(req, res) { //only return 20 results per call, 
                     if (review.text.match(regex)) { //TODO: improve regex matching
                       filteredBody.places.push({
                         name: placeDetails.name,
-                        address: placeDetails['formatted_address']
+                        address: placeDetails['formatted_address'],
+                        placeid: placeid
                       });
                       break;
                     }
