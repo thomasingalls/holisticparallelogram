@@ -1,16 +1,19 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var urlParser = require('url');
 
-require(__dirname + '/server/db/index.js')();
-
+var session = require('express-session');
 var app = express();
+require(__dirname + '/server/db/index.js')();
 
 var port = process.env.PORT || 4568;
 var router = require(__dirname + '/server/router/routes.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser('viewFinder'));
+app.use(session());
 
 router(app, express);
 
