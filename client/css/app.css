@@ -7,6 +7,35 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Signika', sans-serif;
 }
 
+header {
+  background-color: #FF5A3B;
+  padding: 40px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 20px solid #E55136;
+}
+
+button {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  box-shadow: none;
+  border-radius: 2px;
+  padding: 8px 12px;
+  margin-right: 8px;
+  font-size: 1em;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #E55136;
+}
+
+button:focus {
+  outline: none;
+}
+
 .place-entry {
   border: 1px solid rgba(0,0,0,0.06);
   padding: 4px 12px 4px 20px;
@@ -66,5 +95,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .icon-heart:hover {
-  color: red;
+  color: #FF5A3B;
 }
