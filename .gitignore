@@ -57,4 +57,4 @@ bower_components/
 
 # API keys
 server/config/googleplaces.js
-
+server/config/googleplus.js
