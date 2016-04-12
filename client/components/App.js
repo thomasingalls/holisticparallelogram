@@ -4,15 +4,17 @@ import actions from '../actions/index.js';
 
 import Search from './Search';
 import PlaceContainer from './PlaceContainer';
+import SavedPlaceContainer from './SavedPlaceContainer';
 import searchGooglePlaces from '../utils/searchGooglePlaces.js';
 
 class App extends Component {
   render() {
-    const { places, onClick } = this.props;
+    const { places, savedPlaces, onFindClick, onSaveClick } = this.props;
     return (
       <div>
-        <Search onClick={ (loc) => onClick(loc) } />
-        <PlaceContainer placeEntries={places} />
+        <Search onClick={ (loc) => onFindClick(loc) } />
+        <PlaceContainer placeEntries={places}/>
+        <SavedPlaceContainer savedPlaces={savedPlaces}/>
       </div>
     );
   }
@@ -20,23 +22,29 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    places: state.places
+    places: state.places,
+    savedPlaces: state.savedPlaces
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: (loc) => {
+    onFindClick: () => {
       searchGooglePlaces(function(data) {
         dispatch(actions.updatePlaces(data.places));
       });
+    },
+    onSaveClick: (place) => {
+      dispatch(actions.savePlace(place));
     }
   };
 };
 
 App.propTypes = {
   places: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired
+  savedPlaces: PropTypes.array.isRequired,
+  onFindClick: PropTypes.func.isRequired,
+  onSaveClick: PropTypes.func.isRequired
 };
 
 export default connect(

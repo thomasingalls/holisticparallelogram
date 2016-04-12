@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PlaceEntry from './PlaceEntry';
 
 var PlaceContainer = (props) => (
-    <div>
+    <div className='col-8-12'>
     { props.placeEntries.map((place) => (
       <div>
         <PlaceEntry place={ place }></PlaceEntry>
