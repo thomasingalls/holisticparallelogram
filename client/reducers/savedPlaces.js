@@ -1,9 +1,6 @@
 import * as types from '../constants/ActionTypes.js';
 
-const initialState = [{
-  'name': 'Hack Reactor',
-  'address': '8, 944 Market St, San Francisco, CA 94102'
-}];
+const initialState = [];
 
 // =====
 // SEED DATA FOR TESTING
@@ -27,7 +24,7 @@ export default function places (state = initialState, action) {
   switch (action.type) {
 
   case types.SAVE_PLACE:
-    return state;
+    return state.concat(action.place);
   default:
     return state;
   }

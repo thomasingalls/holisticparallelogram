@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div>
         <Search onClick={ (loc) => onFindClick(loc) } />
-        <PlaceContainer placeEntries={places}/>
+        <PlaceContainer onClick={(place) => onSaveClick(place)} placeEntries={places}/>
         <SavedPlaceContainer savedPlaces={savedPlaces}/>
       </div>
     );

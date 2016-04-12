@@ -6,7 +6,7 @@ var PlaceContainer = (props) => (
     <div className='col-8-12'>
     { props.placeEntries.map((place) => (
       <div>
-        <PlaceEntry place={ place }></PlaceEntry>
+        <PlaceEntry onClick={props.onClick} place={ place }></PlaceEntry>
       </div>
     ))}
     </div>

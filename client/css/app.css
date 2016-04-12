@@ -3,10 +3,14 @@ body {
   background-color: #FAFAFA;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Signika', sans-serif;
+}
+
 .place-entry {
   border: 1px solid rgba(0,0,0,0.06);
   padding: 4px 12px 4px 20px;
-  margin: 24px 0px;
+  margin: 20px 0px;
   max-width: 600px;
   position: relative;
   background-color: white;
@@ -15,6 +19,21 @@ body {
 
 .place-entry:hover {
   border: 1px solid rgba(0,0,0,0.12);
+}
+
+.saved-place-entry {
+  margin: 0px;
+  font-size: .8em;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  padding: 12px 8px;
+}
+
+.saved-place-entry p {
+  margin: 0px;
+}
+
+.saved-place-name {
+  font-weight: 900;
 }
 
 .place-info {
