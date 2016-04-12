@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var urlParser = require('url');
+var morgan = require('morgan');
 
 var session = require('express-session');
 var app = express();
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
-
+app.use(morgan('dev'));
 // app.set('view engine', 'html');
 
 router(app, express);
