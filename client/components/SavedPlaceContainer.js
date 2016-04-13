@@ -3,7 +3,7 @@ import SavedPlaceEntry from './SavedPlaceEntry.js';
 
 var SavedPlaceContainer = (props) => (
   <div className='col-4-12'>
-    <h2>Your Saved Places</h2>
+    <h3>Your Saved Places</h3>
     { props.savedPlaces.map((savedPlace) => (
       <div>
         <SavedPlaceEntry savedPlace={savedPlace} />

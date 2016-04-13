@@ -24,6 +24,10 @@ header .ninja {
   max-height: 150px;
 }
 
+a {
+  padding: 8px 12px;
+}
+
 header .logout {
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
@@ -37,7 +41,7 @@ button {
   border: 1px solid white;
   background-color: transparent;
   color: white;
-  box-shadow: none;a
+  box-shadow: none;
   border-radius: 2px;
   padding: 8px 12px;
   margin-right: 8px;
