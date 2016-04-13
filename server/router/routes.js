@@ -18,8 +18,6 @@ passport.deserializeUser(function(user, done) {
 });
 
 var checkAuth = function (req, res, next) {
-  console.log('CHECK AUTH');
-  console.log(req.session);
   if (req.session.passport ? req.session.passport.user : false) {
     next();
   } else {
@@ -70,6 +68,17 @@ module.exports = function(app, express) {
     return done(null, profile);
   }));
 
+  app.get('/', function(req, res) {
+    if (!req.session.passport) { // user is not logged in
+      res.render('index');
+    } else {
+      res.render('index',
+        { firstName: req.session.passport.user.name.givenName || '',
+          lastName: req.session.passport.user.name.familyName || '',
+          avatarUrl: req.session.passport.user.photos[0].value || null,
+        });
+    }
+  });
 
   app.get('/api/places', placeController.searchGoogle);
 

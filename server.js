@@ -16,7 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
 app.use(morgan('dev'));
-// app.set('view engine', 'html');
+app.set('views', __dirname + '/server/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
 
 router(app, express);
 
@@ -24,7 +26,7 @@ app.listen(port, function(err) {
   if (err) {
     return console.log('Listen error: ', err);
   }
-  console.log('Hollistic Parallelogram Listening on Port ' + port);
+  console.log('Holistic Parallelogram Listening on Port ' + port);
 });
 
 module.exports = app;
