@@ -4,6 +4,10 @@ module.exports = {
 
   updatePlaces: function(places) {
     return { type: types.UPDATE_PLACES, places };
+  },
+
+  savePlace: function(place) {
+    return { type: types.SAVE_PLACE, place };
   }
 
 };

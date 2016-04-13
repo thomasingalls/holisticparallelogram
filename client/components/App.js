@@ -2,17 +2,22 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 
-import Search from './Search';
+import Header from './Header';
 import PlaceContainer from './PlaceContainer';
+import SavedPlaceContainer from './SavedPlaceContainer';
 import searchGooglePlaces from '../utils/searchGooglePlaces.js';
+import $ from 'jquery';
 
 class App extends Component {
   render() {
-    const { places, onClick } = this.props;
+    const { places, savedPlaces, onFindClick, onSaveClick } = this.props;
     return (
       <div>
-        <Search onClick={ (loc) => onClick(loc) } />
-        <PlaceContainer placeEntries={places} />
+        <Header onClick={ (loc) => onFindClick(loc) } />
+        <div className='grid'>
+          <PlaceContainer onClick={(place) => onSaveClick(place)} placeEntries={places}/>
+          <SavedPlaceContainer savedPlaces={savedPlaces}/>
+        </div>
       </div>
     );
   }
@@ -20,23 +25,35 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    places: state.places
+    places: state.places,
+    savedPlaces: state.savedPlaces
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: (loc) => {
+    onFindClick: () => {
       searchGooglePlaces(function(data) {
+        console.log(data);
         dispatch(actions.updatePlaces(data.places));
       });
+    },
+    onSaveClick: (place) => {
+      $.ajax({
+        url: '/api/places/saved',
+        dataType: 'json',
+        data: JSON.stringify(place) // this doesn't really render yet...
+      });
+      dispatch(actions.savePlace(place));
     }
   };
 };
 
 App.propTypes = {
   places: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired
+  savedPlaces: PropTypes.array.isRequired,
+  onFindClick: PropTypes.func.isRequired,
+  onSaveClick: PropTypes.func.isRequired
 };
 
 export default connect(

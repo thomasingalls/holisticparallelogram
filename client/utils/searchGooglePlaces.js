@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
 
-  radius = radius || 50000;
+  radius = radius || 10000;
   type = type || 'restaurant';
 
   var makeAjaxRequest = function() {
