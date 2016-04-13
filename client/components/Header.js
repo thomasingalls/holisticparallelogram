@@ -18,7 +18,7 @@ class Header extends Component {
           </div>
           <div className='col-10-12'>
             <h1>SCENIC<span className='black'>.NINJA</span></h1>
-            <p>Press the button to find scenic views near your location.</p>
+            <p className='description'>After years spent scouring Google Places, Scenic Ninja is ready to share his wisdom with you.</p>
             <button
             onClick={ this.handleClick.bind(this) }
             type="submit">Find Views

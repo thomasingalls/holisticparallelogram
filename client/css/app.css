@@ -1,6 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #FAFAFA;
+  color: rgba(0,0,0,0.8);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -16,12 +17,17 @@ header {
   color: white;
 }
 
+header .description {
+  max-width: 450px;
+  color: rgba(255, 255, 255, 0.6);
+}
 header .black {
-  color: black;
+  color: rgba(0,0,0,0.8);
 }
 
 header .ninja {
   max-height: 150px;
+  opacity: .8;
 }
 
 a {
@@ -30,11 +36,10 @@ a {
 
 header .logout {
   color: rgba(255, 255, 255, 0.6);
-  text-decoration: none;
 }
 
 header .logout:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 1);
 }
 
 button {
