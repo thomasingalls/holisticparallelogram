@@ -13,13 +13,31 @@ header {
   margin-bottom: 20px;
   width: 100%;
   border-bottom: 20px solid #E55136;
+  color: white;
+}
+
+header .black {
+  color: black;
+}
+
+header .ninja {
+  max-height: 150px;
+}
+
+header .logout {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+}
+
+header .logout:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 button {
   border: 1px solid white;
   background-color: transparent;
   color: white;
-  box-shadow: none;
+  box-shadow: none;a
   border-radius: 2px;
   padding: 8px 12px;
   margin-right: 8px;

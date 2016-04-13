@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 class Header extends Component {
 
@@ -12,13 +13,18 @@ class Header extends Component {
     return (
       <header>
         <div className='grid'>
-          <h1>SCENIC.NINJA</h1>
-          <p>Press the button to find scenic views near your location.</p>
-          <button
-          onClick={ this.handleClick.bind(this) }
-          type="submit">Find Views
-          </button>
-          <button type="submit">Log Out</button>
+          <div className='col-2-12'>
+            <object type='image/svg+xml' className='ninja' data='./../assets/ninja.svg' />
+          </div>
+          <div className='col-10-12'>
+            <h1>SCENIC<span className='black'>.NINJA</span></h1>
+            <p>Press the button to find scenic views near your location.</p>
+            <button
+            onClick={ this.handleClick.bind(this) }
+            type="submit">Find Views
+            </button>
+            <a className='logout' href='/auth/logout'>Logout</a>
+          </div>
         </div>
       </header>
     );
