@@ -24,7 +24,6 @@ var checkAuth = function (req, res, next) {
     req.session.error = 'Bad credentials.';
     res.redirect('/auth/login');
   }
-  // res.send('hello');
 };
 
 module.exports = function(app, express) {
