@@ -1,20 +1,29 @@
 import $ from 'jquery';
 
-var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
+var searchGooglePlaces = function(callback, nextPageToken, radius, type, latitude, longitude) {
 
   radius = radius || 10000;
   type = type || 'restaurant';
 
-  var makeAjaxRequest = function() {
+  var data = {
+    radius: radius,
+    type: type,      //only 1 type can be passed in, default to restaurant for now
+    keyword: 'view'
+  };
+
+  if (nextPageToken) {
+    data['next_page_token'] = nextPageToken;
+  }
+
+
+  var makeAjaxRequest = function(longitude, latitude) {
+    if (longitude && latitude) {
+      data.location = latitude + ',' + longitude;
+    }
     $.ajax({         //only returns 20 results per call, needs to pass in pagetoke returned from previous call in order to get the next 20 results
       url: '/api/places',
       method: 'GET',
-      data: {
-        location: latitude + ',' + longitude,
-        radius: radius,
-        type: type,      //only 1 type can be passed in, default to restaurant for now
-        keyword: 'view'
-      },
+      data: data,
       success: function(filteredBody) {
         callback(filteredBody);
         // console.log(filteredBody);
@@ -27,10 +36,11 @@ var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
       //TODO: add logic for when browser fails to retrieve current location
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
-      makeAjaxRequest();
+      makeAjaxRequest(latitude, longitude);
+      console.log('here');
     });
   } else {
-    makeAjaxRequest();
+    makeAjaxRequest(latitude, longitude);
   }
 };
 
