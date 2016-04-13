@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFindClick: () => {
       var results = [];
-      console.log('results (should be array)', results);
       var nextPageToken;
       var minResultCount = 10;
       searchGooglePlaces(function(data) {
