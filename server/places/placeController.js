@@ -1,15 +1,42 @@
+var Sequelize = require('sequelize');
 var Place = require(__dirname + '/placeModel.js');
+var User = require(__dirname + '/../users/userModel.js');
 var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
 var request = require('request');
 var urlParser = require('url');
 
 
-module.exports.getAll = function(req, res) {
-
+module.exports.getAllSaved = function(req, res) {
+  var user = req.body.user;
+  return User.findOne({where: user})
+    .then(function(foundUser) {
+      return foundUser.getPlaces();
+    })
+    .then(function(foundPlaces) {
+      res.json(foundPlaces);
+    });
+  // User.findOne(user, function(foundUser) {
+  //   foundUser.getPlaces(function(foundPlaces) {
+  //     res.json(foundPlaces);
+  //   });
+  // });
 };
 
 module.exports.saveOne = function(req, res) {
-
+  var user = req.body.user;
+  var place = req.body.place;
+  return User.findOne({where: user})
+    .then(function(foundUser) {
+      return foundUser.addPlace(place);
+    })
+    .then(function(createdPlace) {
+      res.json(createdPlace);
+    });
+  // User.findOne(user, function(foundUser) {
+  //   foundUser.addPlace(place, function(createdPlace) {
+  //     res.json(createdPlace);
+  //   });
+  // });
 };
 
 module.exports.searchGoogle = function(req, res) { //only return 20 results per call, need to pass in pagetoken returned from previous call in order to get the next 20 results

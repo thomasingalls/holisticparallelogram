@@ -49,8 +49,8 @@ module.exports = function(app, express) {
 
   app.get('/api/places', placeController.searchGoogle);
 
-  app.post('/api/places/saved', checkAuth, placeController.saveOne);
-  app.get('/api/places/saved', checkAuth, placeController.getAll);
+  app.post('/api/places/saved', placeController.saveOne);
+  app.get('/api/places/saved', checkAuth, placeController.getAllSaved);
 
   app.post('/api/users', userController.saveOne);
 
