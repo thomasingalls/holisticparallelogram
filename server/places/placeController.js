@@ -7,21 +7,15 @@ var urlParser = require('url');
 
 
 module.exports.getAllSaved = function(req, res) {
-  var user = req.body.user; // so far this is undefined
+  var user = req.body.user;
 
-  console.log('In placeController getAllSaved this is the req.body.user:', user);
-  // TODO: We need to get the user id or google user id field passed
-  // through from the client. Instead of using lastName to lookup a user, 
-  // ideally we'd use the below line of code:
-  // User.findOne({where: {googleUserId: user.googleUserId} }) 
   User.findOne({
-    where: {lastName: user.lastName}
+    where: user
   })
   .then(function(foundUser) {
-    foundUser.getPlaces();
+    return foundUser.getPlaces();
   })
   .then(function(foundPlaces) {
-    console.log('In placeController.js in getAllSaved, the foundPlaces returned are: ', foundPlaces);
     res.json(foundPlaces);
   });
 };
@@ -44,7 +38,7 @@ module.exports.saveOne = function(req, res) {
   });
 };
 
-module.exports.deleteOnePlace = function(req, res) {
+module.exports.deleteOne = function(req, res) {
   var user = req.body.user;
 
   // the client will pass in a place obj w/ googlePlaceId, name, address
