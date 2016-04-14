@@ -10,12 +10,19 @@ class Header extends Component {
   }
 
   render() {
+    // Create the navigation element here. If there is a user logged in, then display the
+    // logout and my saved places button. Otherwise, display a login button.
+    var nav;
+    if ($.isEmptyObject(this.props.user)) {
+      nav = <ul><li><a className='login' href='/auth/login'>Login</a></li></ul>;
+    } else {
+      nav = <ul><li><a className='logout' href='/auth/logout'>Logout</a></li></ul>;
+    }
+
     return (
       <header>
         <nav className='col-12-12'>
-          <ul>
-            <li><a className='logout' href='/auth/logout'>Logout</a></li>
-          </ul>
+          {nav}
         </nav>
         <div className='grid'>
           <div className='col-2-12'>
