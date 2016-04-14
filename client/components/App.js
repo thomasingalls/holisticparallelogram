@@ -41,12 +41,10 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     onSaveClick: (place, user) => {
-      // var user = .user;
       $.ajax({
         url: '/api/places/saved',
         method: 'POST',
-        // dataType: 'json',
-        data: {user: user, place: place}// this doesn't really render yet...
+        data: {user: user, place: place}
       });
       dispatch(actions.savePlace(place));
     }
