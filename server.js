@@ -1,22 +1,28 @@
-import express from 'express'
-
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-import urlParser from 'url'
-import morgan from 'morgan'
-import session from 'express-session'
+var express = require('express');
+var passport = require('passport');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var urlParser = require('url');
+var morgan = require('morgan');
+var session = require('express-session');
 
 var app = express();
 require(__dirname + '/server/db/index.js')();
 
 var port = process.env.PORT || 4568;
-var router = require(__dirname + '/server/router/routes.js');
+var router = require(__dirname + '/server/router/routes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
 app.use(morgan('dev'));
+
+// http://passportjs.org/docs/google
+app.use(passport.initialize());
+
+// This must be declared after the Express session is declared
+app.use(passport.session());
 
 router(app, express);
 
