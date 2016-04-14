@@ -31,16 +31,16 @@ module.exports.saveOne = function(req, res) {
   var place = req.body.place;
 
   User.findOne({
-    where: {title: 'aProject'}
+    where: user
   })
   .then(function(foundUser) {
-    foundUser.addPlace(place);
-  })
-  .then(function(createdPlace) {
-    // TODO: We need to verify that the createdPlace is returned from the addPlace method
-    // it's not shown in the docs what the return value is
-    console.log('In placeController.js in saveOne, the place returned is: ', createdPlace);
-    res.json(createdPlace);
+    Place.findOrCreate({where: place})
+    .spread(function(createdPlace) {
+      foundUser.addPlace(createdPlace)
+      .then(function() {
+        res.json(createdPlace);
+      });
+    });
   });
 };
 
@@ -110,7 +110,7 @@ module.exports.searchGoogle = function(req, res) {
                         filteredBody.places.push({
                           name: placeDetails.name,
                           address: placeDetails['formatted_address'],
-                          placeid: placeid
+                          googlePlaceId: placeid
                         });
                         break;
                       }
