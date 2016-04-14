@@ -1,9 +1,10 @@
 import * as types from '../constants/ActionTypes.js';
 
 const initialState = {
+  googleUserId: null,
   firstName: null,
-  lastName: null,
-  avatarUrl: null
+  lastName: null
+  // avatarUrl: null
 };
 
 export default function user (state = initialState, action) {

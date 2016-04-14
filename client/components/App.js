@@ -17,7 +17,7 @@ class App extends Component {
           user={user}
           onFindClick={ (loc) => onFindClick(loc) } />
         <div className='grid'>
-          <PlaceContainer onSaveClick={(place) => onSaveClick(place)} placeEntries={places}/>
+          <PlaceContainer onSaveClick={(place, user) => onSaveClick(place, user)} placeEntries={places}/>
           <SavedPlaceContainer savedPlaces={savedPlaces}/>
         </div>
       </div>
@@ -41,6 +41,7 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     onSaveClick: (place, user) => {
+      console.log(user);
       $.ajax({
         url: '/api/places/saved',
         method: 'POST',
