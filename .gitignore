@@ -13,7 +13,7 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-db/
+
 client/lib
 client/bundle.js
 
@@ -55,3 +55,6 @@ dist/
 node_modules/
 bower_components/
 
+# API keys
+server/config/googleplaces.js
+server/config/googleplus.js
