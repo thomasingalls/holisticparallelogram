@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import $ from 'jquery';
+import _ from 'underscore';
 
 class Header extends Component {
   handleClick(e) {
@@ -14,7 +15,7 @@ class Header extends Component {
     // Create the navigation element here. If there is no user logged in, then display a
     // login button. Otherwise, display the logout and saved places buttons.
     var nav;
-    if ($.isEmptyObject(this.props.user)) {
+    if (_.isEmpty(this.props.user)) {
       nav =
         <ul><li><a className='link' href='/auth/login'>Login</a></li></ul>;
     } else {
