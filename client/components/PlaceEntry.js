@@ -13,11 +13,11 @@ class PlaceEntry extends Component {
 
   handleClick(e) {
     e.preventDefault;
-    this.props.onClick(this.props.place);
+    this.props.onSaveClick(this.props.place);
   }
 
   render() {
-    return(
+    return (
       <div className={placeEntryClasses}>
         <div className='place-info' >
           <h4>{ this.props.place.name }</h4>

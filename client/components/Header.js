@@ -6,7 +6,7 @@ class Header extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.props.onClick();
+    this.props.onFindClick();
   }
 
   render() {
@@ -32,7 +32,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onFindClick: PropTypes.func.isRequired
 };
 
 export default Header;

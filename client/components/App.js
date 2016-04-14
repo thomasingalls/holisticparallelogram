@@ -13,9 +13,9 @@ class App extends Component {
     const { places, savedPlaces, onFindClick, onSaveClick } = this.props;
     return (
       <div>
-        <Header onClick={ (loc) => onFindClick(loc) } />
+        <Header onFindClick={ (loc) => onFindClick(loc) } />
         <div className='grid'>
-          <PlaceContainer onClick={(place) => onSaveClick(place)} placeEntries={places}/>
+          <PlaceContainer onSaveClick={(place) => onSaveClick(place)} placeEntries={places}/>
           <SavedPlaceContainer savedPlaces={savedPlaces}/>
         </div>
       </div>
