@@ -7,12 +7,13 @@ var urlParser = require('url');
 
 
 module.exports.getAllSaved = function(req, res) {
-  var user = req.body.user;
-  
-  // TODO: We need to get the user id or a unique username field passed
-  // through from the client. Instead of using User.findOne, 
+  var user = req.body.user; // so far this is undefined
+
+  console.log('In placeController getAllSaved this is the req.body.user:', user);
+  // TODO: We need to get the user id or google user id field passed
+  // through from the client. Instead of using lastName to lookup a user, 
   // ideally we'd use the below line of code:
-  // User.findById(user.id) 
+  // User.findOne({where: {googleUserId: user.googleUserId} }) 
   User.findOne({
     where: {lastName: user.lastName}
   })
