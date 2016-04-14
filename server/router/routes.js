@@ -15,14 +15,24 @@ import renderFullPage from '../views/index';
 
 import User from '../users/userModel';
 
+/*
+serializeUser and deserializeUser are two required Passport methods that are
+called when using sessions with Passport.
+
+http://toon.io/understanding-passportjs-authentication-flow/
+*/
+
+// Determines what user data should be stored in the session
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
+// Determines what user data should be retrieved from the session
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+// Middleware for checking whether the user is logged in
 var checkAuth = function (req, res, next) {
   if (req.session.passport ? req.session.passport.user : false) {
     next();
@@ -32,9 +42,11 @@ var checkAuth = function (req, res, next) {
   }
 };
 
+// Handler for rendering the index page with user data, if available
+// http://redux.js.org/docs/recipes/ServerRendering.html
 var renderIndex = function(req, res) {
+  // Initialize user state if user is logged in
   var user = {};
-
   if (req.session.passport && req.session.passport.user) {
     user = {
       googleId: req.session.passport.user.id,
@@ -61,14 +73,20 @@ var renderIndex = function(req, res) {
   // Grab the initial state from our Redux store
   const initialState = store.getState();
 
-  // Send the rendered page back to the client
+  // Send the rendered page back to the client as a String
   res.send(renderFullPage(html, initialState));
 }
 
 
 module.exports = function(app, express) {
   app.use(express.static(__dirname + '/../../client'));
+
+
+  // http://passportjs.org/docs/google
   app.use(passport.initialize());
+
+  // This must be declared after the Express session is declared since passport
+  // sessions piggyback off of Express sessions
   app.use(passport.session());
 
   passport.use(new GoogleStrategy.OAuth2Strategy({
@@ -76,7 +94,7 @@ module.exports = function(app, express) {
     clientSecret: googleKeys.CLIENT_SECRET,
     callbackURL: '/auth/google/callback'
   }, function(accessToken, refreshToken, profile, done) {
-    // Create a user if it is a new user
+    // Create a user if it is a new user, otherwise just get the user from the DB
     User
       .findOrCreate({
         where: {
@@ -109,7 +127,6 @@ module.exports = function(app, express) {
   app.get('/', renderIndex);
 
   app.get('/api/places', placeController.searchGoogle);
-
   app.post('/api/places/saved', placeController.saveOne);
   app.get('/api/places/saved', checkAuth, placeController.getAllSaved);
   app.get('/api/places/deleted', checkAuth, placeController.deleteOnePlace);
