@@ -4,6 +4,7 @@ var placeController = require(__dirname + '/../places/placeController');
 var userController = require(__dirname + '/../users/userController');
 var renderIndex = require(__dirname + '/indexHandler');
 
+
 module.exports = function(app, express) {
   app.use(express.static(__dirname + '/../../client'));
   app.get('/', renderIndex);
