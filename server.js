@@ -1,10 +1,11 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var urlParser = require('url');
-var morgan = require('morgan');
+import express from 'express'
 
-var session = require('express-session');
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import urlParser from 'url'
+import morgan from 'morgan'
+import session from 'express-session'
+
 var app = express();
 require(__dirname + '/server/db/index.js')();
 
@@ -16,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
 app.use(morgan('dev'));
-// app.set('view engine', 'html');
 
 router(app, express);
 
@@ -24,10 +24,8 @@ app.listen(port, function(err) {
   if (err) {
     return console.log('Listen error: ', err);
   }
-  console.log('Hollistic Parallelogram Listening on Port ' + port);
+  console.log('Holistic Parallelogram Listening on Port ' + port);
 });
-
-module.exports = app;
 
 
 // TODO: check if below are useful for this project
