@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import $ from 'jquery';
 
 class Header extends Component {
-
   handleClick(e) {
     e.preventDefault();
     this.props.onFindClick();
@@ -12,6 +12,11 @@ class Header extends Component {
   render() {
     return (
       <header>
+        <nav className='col-12-12'>
+          <ul>
+            <li><a className='logout' href='/auth/logout'>Logout</a></li>
+          </ul>
+        </nav>
         <div className='grid'>
           <div className='col-2-12'>
             <object type='image/svg+xml' className='ninja' data='./../assets/ninja.svg' />
@@ -23,7 +28,6 @@ class Header extends Component {
             onClick={ this.handleClick.bind(this) }
             type="submit">Find Views
             </button>
-            <a className='logout' href='/auth/logout'>Logout</a>
           </div>
         </div>
       </header>
