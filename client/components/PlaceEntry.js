@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-
-var placeEntryClasses = classNames('place-entry', 'animated', 'fadeInUp');
-
 
 class PlaceEntry extends Component {
   constructor(props) {
@@ -18,7 +14,7 @@ class PlaceEntry extends Component {
 
   render() {
     return (
-      <div className={placeEntryClasses}>
+      <div className='place-entry animated fadeInUp'>
         <div className='place-info' >
           <h4>{ this.props.place.name }</h4>
           <p>{ this.props.place.address }</p>
