@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFindClick: () => {
       searchGooglePlaces(function(data) {
-        console.log(data);
         dispatch(actions.updatePlaces(data.places));
       });
     },

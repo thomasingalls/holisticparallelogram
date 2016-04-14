@@ -39,12 +39,17 @@ module.exports.saveOne = function(req, res) {
   // });
 };
 
-module.exports.searchGoogle = function(req, res) { //only return 20 results per call, need to pass in pagetoken returned from previous call in order to get the next 20 results
+
+//Make a get call to Google Places radarsearch endpoint, get back 200 results;
+//Make a get call to Google Places details endpoint for each of the 200 results, match their reviews against regexes, send filtered and simplified results back to client;
+//Use a counter to make sure the results are only sent to client after all the initial results have been examined.
+module.exports.searchGoogle = function(req, res) {
 
   var searchString = urlParser.parse(req.url).search; //include leading question mark
-  var regex = new RegExp(/(good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking) view/);
+  var regex1 = new RegExp(/(good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking|scenic|panoramic|stunning) view/);
+  var regex2 = new RegExp(/view (is|was) (good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking|scenic|panoramic|stunning)/);
 
-  request.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json' + searchString + '&key=' + GOOGLE_PLACES_API_KEY)
+  request.get('https://maps.googleapis.com/maps/api/place/radarsearch/json' + searchString + '&key=' + GOOGLE_PLACES_API_KEY)
     .on('response', function(response) { //layer 1 on 'response'
 
       var body = [];
@@ -54,49 +59,54 @@ module.exports.searchGoogle = function(req, res) { //only return 20 results per 
       }).on('end', function() { //layer 2 on 'end'
         body = JSON.parse(Buffer.concat(body).toString());
         var filteredBody = {};
-        filteredBody['next_page_token'] = body['next_page_token']; //pass next_page_token back to client in case it needs to fetch the next 20 results
         filteredBody.places = [];
-        var places = body.results;
-        var counter = 0; //ensure server only sends back filteredBody if all places have been processed
-        for (var i = 0; i < places.length; i++) {
-          var place = places[i];
-          var placeid = place['place_id'];
+        if (body.results && body.results.length > 0) {
 
-          request.get('https://maps.googleapis.com/maps/api/place/details/json?' + 'key=' + GOOGLE_PLACES_API_KEY + '&placeid=' + placeid)
-            .on('response', function(response) { //layer 3 on 'response'
-              var body = [];
-              response.on('data', function(chunk) { //layer 4 on 'data'
-                body.push(chunk);
-              }).on('end', function() { //layer 4 on 'end'
-                body = JSON.parse(Buffer.concat(body).toString());
-                var placeDetails = body.result;
-                var reviews = placeDetails.reviews;
-                if (reviews) {
-                  for (var j = 0; j < reviews.length; j++) {
-                    var review = reviews[j];
-                    if (review.text.match(regex)) { //TODO: improve regex matching
-                      filteredBody.places.push({
-                        name: placeDetails.name,
-                        address: placeDetails['formatted_address'],
-                        placeid: placeid
-                      });
-                      break;
+          var places = body.results;
+          var counter = 0; //ensure server only sends back filteredBody if all places have been processed
+          for (var i = 0; i < places.length; i++) {
+            var place = places[i];
+            var placeid = place['place_id'];
+
+            request.get('https://maps.googleapis.com/maps/api/place/details/json?' + 'key=' + GOOGLE_PLACES_API_KEY + '&placeid=' + placeid)
+              .on('response', function(response) { //layer 3 on 'response'
+                var body = [];
+                response.on('data', function(chunk) { //layer 4 on 'data'
+                  body.push(chunk);
+                }).on('end', function() { //layer 4 on 'end'
+                  body = JSON.parse(Buffer.concat(body).toString());
+                  var placeDetails = body.result;
+                  var reviews = placeDetails.reviews;
+                  if (reviews) {
+                    for (var j = 0; j < reviews.length; j++) {
+                      var review = reviews[j];
+                      if (review.text.match(regex1) || review.text.match(regex2)) { //TODO: improve regex matching
+                        filteredBody.places.push({
+                          name: placeDetails.name,
+                          address: placeDetails['formatted_address'],
+                          placeid: placeid
+                        });
+                        break;
+                      }
                     }
                   }
-                }
+                  counter++;
+                  if (counter === places.length) {
+                    res.json(filteredBody);
+                  }
+                }); //end of layer 4 on 'end'
+              }) //end of layer 3 on 'response'
+              .on('error', function(error) { //layer 3 on 'error'
+                //TODO: handle error
                 counter++;
                 if (counter === places.length) {
-                  res.json(filteredBody); //also needs to pass page token back to client for further requests
-                }
-              }); //end of layer 4 on 'end'
-            }) //end of layer 3 on 'response'
-            .on('error', function(error) { //layer 3 on 'error'
-              //TODO: handle error
-              counter++;
-              if (counter === places.length) {
-                res.json(filteredBody); //also needs to pass page token back to client for further requests
-              } 
-            }) //end of layer 3 on 'error'
+                  res.json(filteredBody);
+                } 
+              }) //end of layer 3 on 'error'
+          }
+          
+        } else {
+          res.json(filteredBody);
         }
       }); //end of layer 2 on 'end'
     }) //end of layer 1 on 'response'
