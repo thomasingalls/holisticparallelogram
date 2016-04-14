@@ -1,6 +1,6 @@
-# Holistic Parallelogram
+# ScenicNinja
 
-> Views Near You
+> Made by HolisticParallelogram
 
 ## Team
 
