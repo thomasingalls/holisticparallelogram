@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
+var searchGooglePlaces = function(callback, radius, latitude, longitude) {
 
   radius = radius || 10000;
 
@@ -10,11 +10,6 @@ var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
     keyword: 'view',
     rankby: 'distance'
   };
-
-  if (nextPageToken) {
-    data.pagetoken = nextPageToken;
-  }
-
 
   var makeAjaxRequest = function(latitude, longitude) {
     data.location = latitude + ',' + longitude;
