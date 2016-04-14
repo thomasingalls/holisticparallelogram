@@ -52,7 +52,7 @@ header .link {
   padding-right: 0px;
 }
 
-header .logout:hover {
+header .link:hover {
   color: rgba(255, 255, 255, 1);
 }
 
