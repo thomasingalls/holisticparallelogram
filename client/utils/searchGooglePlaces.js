@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-var searchGooglePlaces = function(callback, nextPageToken, radius, type, latitude, longitude) {
+var searchGooglePlaces = function(callback, radius, type, latitude, longitude) {
 
   radius = radius || 10000;
 
