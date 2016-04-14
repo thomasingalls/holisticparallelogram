@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
 app.use(morgan('dev'));
-app.set('views', __dirname + '/server/views');
-app.set('view engine', 'js');
-app.engine('js', require('express-react-views').createEngine());
+// app.set('views', __dirname + '/server/views');
+// app.set('view engine', 'js');
+// app.engine('js', require('express-react-views').createEngine());
 
 router(app, express);
 

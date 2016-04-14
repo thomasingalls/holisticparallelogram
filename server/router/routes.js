@@ -1,14 +1,19 @@
-import path from 'path'
-import googleKeys from '../config/googleplus.js'
-import placeController from '../places/placeController.js'
-import userController from '../users/userController.js'
-import passport from 'passport'
-import GoogleStrategy from 'passport-google-oauth'
+import path from 'path';
+import googleKeys from '../config/googleplus.js';
+import placeController from '../places/placeController.js';
+import userController from '../users/userController.js';
+import passport from 'passport';
+import GoogleStrategy from 'passport-google-oauth';
 
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import scenicApp from '../../client/reducers/index'
-import App from '../../client/components/App'
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from '../../client/reducers/index';
+import App from '../../client/components/App';
+import renderFullPage from '../views/index';
+
+import User from '../users/userModel';
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -27,14 +32,33 @@ var checkAuth = function (req, res, next) {
   }
 };
 
-var handleRender = function(req, res) {
+var renderIndex = function(req, res) {
 
+  // Create a new Redux store instance
+  const store = createStore(rootReducer);
+
+  // Render the component to a string
+  const html = renderToString(
+    <Provider store={store}>
+    <App />
+    </Provider>
+  );
+
+  // Grab the initial state from our Redux store
+  const initialState = store.getState();
+
+  // Send the rendered page back to the client
+  res.send(renderFullPage(html, initialState));
+
+  // { firstName: req.session.passport.user.name.givenName || '',
+  //   lastName: req.session.passport.user.name.familyName || '',
+  //   avatarUrl: req.session.passport.user.photos[0].value || null,
+  // }
 }
 
 
 module.exports = function(app, express) {
 
-  app.use(handleRender);
 
   app.use(express.static(__dirname + '/../../client'));
   app.use(passport.initialize());
@@ -75,17 +99,20 @@ module.exports = function(app, express) {
     return done(null, profile);
   }));
 
-  app.get('/', function(req, res) {
-    if (!req.session.passport) { // user is not logged in
-      res.render('index');
-    } else {
-      res.render('index',
-        { firstName: req.session.passport.user.name.givenName || '',
-          lastName: req.session.passport.user.name.familyName || '',
-          avatarUrl: req.session.passport.user.photos[0].value || null,
-        });
-    }
-  });
+  // app.get('/', function(req, res) {
+  //   if (!req.session.passport) { // user is not logged in
+  //     res.render('index');
+  //   } else {
+  //     res.render('index',
+  //       { firstName: req.session.passport.user.name.givenName || '',
+  //         lastName: req.session.passport.user.name.familyName || '',
+  //         avatarUrl: req.session.passport.user.photos[0].value || null,
+  //       });
+  //   }
+  // });
+
+  // app.use(renderIndex);
+  app.get('/', renderIndex);
 
   app.get('/api/places', placeController.searchGoogle);
 
