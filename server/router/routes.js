@@ -1,15 +1,3 @@
-<<<<<<< Updated upstream
-var path = require('path');
-var googleKeys = require(__dirname + '/../config/googleplus.js')
-
-var placeController = require(__dirname + '/../places/placeController.js');
-var userController = require(__dirname + '/../users/userController.js');
-
-var User = require(__dirname + '/../users/userModel.js');
-
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-=======
 import path from 'path'
 import googleKeys from '../config/googleplus.js'
 import placeController from '../places/placeController.js'
@@ -21,7 +9,6 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import scenicApp from '../../client/reducers/index'
 import App from '../../client/components/App'
->>>>>>> Stashed changes
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -41,7 +28,7 @@ var checkAuth = function (req, res, next) {
 };
 
 var handleRender = function(req, res) {
-  
+
 }
 
 
@@ -60,16 +47,16 @@ module.exports = function(app, express) {
   }, function(accessToken, refreshToken, profile, done) {
     // Create a user if it is a new user
     User
-      .findOrCreate({ 
+      .findOrCreate({
         where: {
           googleUserId: profile.id
-        }, 
+        },
         defaults: {
           firstName: profile.name.givenName,
           lastName: profile.name.familyName
         }
       })
-      // Spread is used for functions that return multiple success values 
+      // Spread is used for functions that return multiple success values
       // e.g. findOrCreate returns a user and a boolean wasCreated
       .spread(function(user, created) {
         console.log('User data returned from User.findOrCreate: ', user.get({
