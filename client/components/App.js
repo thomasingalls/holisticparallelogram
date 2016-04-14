@@ -33,7 +33,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFindClick: () => {
-      var minResultCount = 10;
       searchGooglePlaces(function(data) {
         dispatch(actions.updatePlaces(data.places));
       });
