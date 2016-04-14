@@ -33,9 +33,22 @@ var checkAuth = function (req, res, next) {
 };
 
 var renderIndex = function(req, res) {
+  var user = {};
+
+  if (req.session.passport && req.session.passport.user) {
+    user = {
+      firstName: req.session.passport.user.name.givenName || null,
+      lastName: req.session.passport.user.name.familyName || null,
+      avatarUrl: req.session.passport.user.photos[0].value || null,
+    }
+  }
 
   // Create a new Redux store instance
-  const store = createStore(rootReducer);
+  const store = createStore(rootReducer, {
+    places: [],
+    savedPlaces: [],
+    user: user
+  });
 
   // Render the component to a string
   const html = renderToString(
