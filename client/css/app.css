@@ -43,7 +43,11 @@ nav ul {
   list-style: none;
 }
 
-header .logout {
+nav ul li {
+  display: inline;
+}
+
+header .link {
   color: rgba(255, 255, 255, 0.6);
   padding-right: 0px;
 }
