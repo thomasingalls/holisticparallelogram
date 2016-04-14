@@ -1,6 +1,6 @@
-# Holistic Parallelogram
+# ScenicNinja
 
-> Views Near You
+> Made by HolisticParallelogram
 
 ## Team
 
@@ -33,12 +33,12 @@ Webpack bundles dependencies into one file, so that all dependencies can be load
 (http://i.imgur.com/lag3WRs.png)
 
 ## Usage
-
+You'll need API keys for [Google Places](https://developers.google.com/places/web-service/get-api-key) and for [Google Plus](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key). Add these to the config files in /server/config, following the format of the example files, and remove `.example` from the filename.
 Make sure you have all [dependencies](#installing-dependencies) installed. Then, from within the root directory:
 ```
 npm install
 webpack
-node server.js
+npm start
 ```
 
 Visit `localhost:4568` in the browser.
@@ -50,13 +50,19 @@ Visit `localhost:4568` in the browser.
 
 ## Development
 
-To compile client-side code and start the server, run:
+To compile client-side code, run:
 ```
-webpack
-node server.js
+webpack --watch
+```
+`webpack --watch` will recompile a `bundle.js` file when any client-side JS files have changed.
+
+In a separate shell, start the server by running:
+```
+npm install
+npm run dev
 ```
 
-If you are developing on the client only, type `webpack-dev-server` into the CLI to start the server and visit `localhost:8080/client/` in the browser. This will watch the client-side JS files and reload the browser if any of them change, and will not compile a bundle.js file.
+Visit `localhost:4568` in the browser.
 
 ### Installing Dependencies
 

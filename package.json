@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/holisticparallelogram/holisticparallelogram#readme",
   "dependencies": {
+    "babel-register": "^6.7.2",
     "bluebird": "1.0.8",
     "body-parser": "^1.4.3",
     "cookie-parser": "^1.4.1",
