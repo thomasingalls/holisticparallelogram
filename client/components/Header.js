@@ -20,8 +20,8 @@ class Header extends Component {
     } else {
       nav =
         <ul>
-          <li><a className='link' href='/auth/logout'>Logout</a></li>
           <li><a className='link'>My Saved Places</a></li>
+          <li><a className='link' href='/auth/logout'>Logout</a></li>
         </ul>;
     }
 
