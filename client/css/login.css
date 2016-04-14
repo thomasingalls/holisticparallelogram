@@ -1,0 +1,49 @@
+body {
+  background-color: #FF5A3B;
+  color: white;
+  font-size: 1.2em;
+}
+
+#container {
+  padding-top: 40px;
+  width: 100%;
+}
+
+div {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+#google-signin {
+  background-image: url('./../assets/btn_google_signin_light_normal_web@2x.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 191px;
+  padding-top: 46px;
+}
+
+#google-signin:hover {
+  background-image: url('./../assets/btn_google_signin_light_pressed_web@2x.png');
+  cursor: pointer;
+}
+
+.ninja {
+  opacity: .8;
+  max-height: 100px;
+}
+
+h1, p {
+  margin: 4px 0px;
+}
+
+#footer {
+  font-size: .5em;
+  color: rgba(255, 255, 255, 0.6);
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
