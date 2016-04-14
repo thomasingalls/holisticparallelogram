@@ -8,7 +8,7 @@ var PlaceContainer = (props) => (
       <div className='col-6-12'>
         { props.placeEntries.map((place) => (
           <div>
-            <PlaceEntry onClick={props.onClick} place={ place }></PlaceEntry>
+            <PlaceEntry onSaveClick={props.onSaveClick} place={ place }></PlaceEntry>
           </div>
         ))}
       </div>

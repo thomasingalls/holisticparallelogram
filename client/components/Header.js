@@ -1,17 +1,35 @@
 import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import _ from 'underscore';
 
 class Header extends Component {
-
   handleClick(e) {
     e.preventDefault();
-    this.props.onClick();
+    this.props.onFindClick();
   }
 
   render() {
+
+    // Create the navigation element here. If there is no user logged in, then display a
+    // login button. Otherwise, display the logout and saved places buttons.
+    var nav;
+    if (_.isEmpty(this.props.user)) {
+      nav =
+        <ul><li><a className='link' href='/auth/login'>Login</a></li></ul>;
+    } else {
+      nav =
+        <ul>
+          <li><a className='link'>My Saved Places</a></li>
+          <li><a className='link' href='/auth/logout'>Logout</a></li>
+        </ul>;
+    }
+
     return (
       <header>
+        <nav className='col-12-12'>
+          {nav}
+        </nav>
         <div className='grid'>
           <div className='col-2-12'>
             <object type='image/svg+xml' className='ninja' data='./../assets/ninja.svg' />
@@ -23,7 +41,6 @@ class Header extends Component {
             onClick={ this.handleClick.bind(this) }
             type="submit">Find Views
             </button>
-            <a className='logout' href='/auth/logout'>Logout</a>
           </div>
         </div>
       </header>
@@ -32,7 +49,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onFindClick: PropTypes.func.isRequired
 };
 
 export default Header;
