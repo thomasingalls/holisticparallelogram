@@ -25,7 +25,7 @@ Webpack bundles dependencies into one file, so that all dependencies can be load
 
 ### Schema
 ![Schema design]
-(http://i.imgur.com/mmOmuvo.png)
+(http://i.imgur.com/lag3WRs.png)
 
 ## Usage
 
