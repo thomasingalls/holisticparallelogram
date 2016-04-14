@@ -1,9 +1,4 @@
 import express from 'express'
-import React from 'react'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-// import counterApp from './reducers'
-// import App from './containers/App'
 
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
@@ -22,9 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('viewFinder'));
 app.use(session());
 app.use(morgan('dev'));
-// app.set('views', __dirname + '/server/views');
-// app.set('view engine', 'js');
-// app.engine('js', require('express-react-views').createEngine());
 
 router(app, express);
 
@@ -34,8 +26,6 @@ app.listen(port, function(err) {
   }
   console.log('Holistic Parallelogram Listening on Port ' + port);
 });
-
-// module.exports = app;
 
 
 // TODO: check if below are useful for this project

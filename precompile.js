@@ -1,2 +1,2 @@
 require('babel-register');
-var app = require('./server.js');
+var scenicApp = require('./server.js');

@@ -62,17 +62,10 @@ var renderIndex = function(req, res) {
 
   // Send the rendered page back to the client
   res.send(renderFullPage(html, initialState));
-
-  // { firstName: req.session.passport.user.name.givenName || '',
-  //   lastName: req.session.passport.user.name.familyName || '',
-  //   avatarUrl: req.session.passport.user.photos[0].value || null,
-  // }
 }
 
 
 module.exports = function(app, express) {
-
-
   app.use(express.static(__dirname + '/../../client'));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -112,19 +105,6 @@ module.exports = function(app, express) {
     return done(null, profile);
   }));
 
-  // app.get('/', function(req, res) {
-  //   if (!req.session.passport) { // user is not logged in
-  //     res.render('index');
-  //   } else {
-  //     res.render('index',
-  //       { firstName: req.session.passport.user.name.givenName || '',
-  //         lastName: req.session.passport.user.name.familyName || '',
-  //         avatarUrl: req.session.passport.user.photos[0].value || null,
-  //       });
-  //   }
-  // });
-
-  // app.use(renderIndex);
   app.get('/', renderIndex);
 
   app.get('/api/places', placeController.searchGoogle);
