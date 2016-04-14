@@ -1,10 +1,16 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var urlParser = require('url');
-var morgan = require('morgan');
+import express from 'express'
+import React from 'react'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+// import counterApp from './reducers'
+// import App from './containers/App'
 
-var session = require('express-session');
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import urlParser from 'url'
+import morgan from 'morgan'
+import session from 'express-session'
+
 var app = express();
 require(__dirname + '/server/db/index.js')();
 
@@ -29,7 +35,7 @@ app.listen(port, function(err) {
   console.log('Holistic Parallelogram Listening on Port ' + port);
 });
 
-module.exports = app;
+// module.exports = app;
 
 
 // TODO: check if below are useful for this project

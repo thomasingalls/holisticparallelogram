@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 var path = require('path');
 var googleKeys = require(__dirname + '/../config/googleplus.js')
 
@@ -8,6 +9,19 @@ var User = require(__dirname + '/../users/userModel.js');
 
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+=======
+import path from 'path'
+import googleKeys from '../config/googleplus.js'
+import placeController from '../places/placeController.js'
+import userController from '../users/userController.js'
+import passport from 'passport'
+import GoogleStrategy from 'passport-google-oauth'
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import scenicApp from '../../client/reducers/index'
+import App from '../../client/components/App'
+>>>>>>> Stashed changes
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -26,13 +40,20 @@ var checkAuth = function (req, res, next) {
   }
 };
 
+var handleRender = function(req, res) {
+  
+}
+
+
 module.exports = function(app, express) {
+
+  app.use(handleRender);
 
   app.use(express.static(__dirname + '/../../client'));
   app.use(passport.initialize());
   app.use(passport.session());
 
-  passport.use(new GoogleStrategy({
+  passport.use(new GoogleStrategy.OAuth2Strategy({
     clientID: googleKeys.CLIENT_ID,
     clientSecret: googleKeys.CLIENT_SECRET,
     callbackURL: '/auth/google/callback'
