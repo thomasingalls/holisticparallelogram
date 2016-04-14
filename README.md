@@ -20,10 +20,15 @@
 
 ## Overview
 
-### Webpack
+### Tech Stack
+- [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/)
+- [Node](https://nodejs.org/en/) and [Express](http://expressjs.com/)
+- [Sequelize ORM](http://docs.sequelizejs.com/en/latest/) and [MySQL](https://www.mysql.com/)
+
+#### Webpack
 Webpack bundles dependencies into one file, so that all dependencies can be loaded into the DOM with a single `<script>` tag.  Webpack starts with an entry file (`App.js`) and traverses the project’s dependencies based on the `import` and `export` statements in the code. It uses a `webpack.config.js` file in the root directory to define which loaders are required for compilation and the destination of the output file.
 
-### Schema
+#### Schema
 ![Schema design]
 (http://i.imgur.com/lag3WRs.png)
 
