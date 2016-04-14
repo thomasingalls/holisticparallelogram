@@ -10,13 +10,19 @@ class Header extends Component {
   }
 
   render() {
-    // Create the navigation element here. If there is a user logged in, then display the
-    // logout and my saved places button. Otherwise, display a login button.
+
+    // Create the navigation element here. If there is no user logged in, then display a
+    // login button. Otherwise, display the logout and saved places buttons.
     var nav;
     if ($.isEmptyObject(this.props.user)) {
-      nav = <ul><li><a className='login' href='/auth/login'>Login</a></li></ul>;
+      nav =
+        <ul><li><a className='link' href='/auth/login'>Login</a></li></ul>;
     } else {
-      nav = <ul><li><a className='logout' href='/auth/logout'>Logout</a></li></ul>;
+      nav =
+        <ul>
+          <li><a className='link' href='/auth/logout'>Logout</a></li>
+          <li><a className='link'>My Saved Places</a></li>
+        </ul>;
     }
 
     return (
