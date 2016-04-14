@@ -33,7 +33,7 @@
 Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
 
 ```
-git remote add upstream https://github.com/hackreactor-labs/<NAME_OF_REPO>.git
+git remote add upstream https://github.com/holisticparallelogram/holisticparallelogram.git
 ```
 
 ### Cut a namespaced feature branch from master
@@ -147,7 +147,7 @@ Thanks for contributing!
 1. Run the [tests][] before submitting a pull request.
 1. Tests are very, very important. Submit tests if your pull request contains
    new, testable behavior.
-1. Your pull request is comprised of a single ([squashed][]) commit.
+1. Your pull request is comprised of a single ([squashed](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html) commit.
 
 ## Checklist:
 
