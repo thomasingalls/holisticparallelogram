@@ -5,11 +5,6 @@ module.exports = function() {
   Place.belongsToMany(User, {through: 'UserPlace'});
   User.belongsToMany(Place, {through: 'UserPlace'});
 
-  Place.sync({force: true}).then(function () {
-    // Table created
-  });
-
-  User.sync({force: true}).then(function () { //drops table if exists
-    // Table created
-  });
+  Place.sync(); //use {force: true} option to drop existing tables
+  User.sync();
 };
