@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-
-var placeEntryClasses = classNames('place-entry', 'animated', 'fadeInUp');
-
 
 class PlaceEntry extends Component {
   constructor(props) {
@@ -13,12 +8,12 @@ class PlaceEntry extends Component {
 
   handleClick(e) {
     e.preventDefault;
-    this.props.onClick(this.props.place);
+    this.props.onSaveClick(this.props.place);
   }
 
   render() {
-    return(
-      <div className={placeEntryClasses}>
+    return (
+      <div className='place-entry animated fadeInUp'>
         <div className='place-info' >
           <h4>{ this.props.place.name }</h4>
           <p>{ this.props.place.address }</p>
