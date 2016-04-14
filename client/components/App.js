@@ -33,28 +33,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFindClick: () => {
-      var results = [];
-      var nextPageToken;
       var minResultCount = 10;
       searchGooglePlaces(function(data) {
-        console.log(data);
+        dispatch(actions.updatePlaces(data.places));
       });
-      // var recursiveSearch = function(nextPageToken) {
-      //   console.log('searching');
-      //   searchGooglePlaces(function(data) {
-      //     console.log.call(console, 'inside search');
-      //     results.push(data.places);
-      //     nextPageToken = data['next_page_token'];
-      //     dispatch(actions.updatePlaces(data.places));
-      //     console.log('results length', results.length);
-      //     if (results.length < minResultCount) {
-      //       console.log(results);
-      //       recursiveSearch(nextPageToken);
-      //     }
-      //   }, nextPageToken);
-      // };
-      // recursiveSearch(nextPageToken);
-
     },
     onSaveClick: (place) => {
       $.ajax({
