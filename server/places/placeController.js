@@ -39,6 +39,10 @@ module.exports.saveOne = function(req, res) {
   // });
 };
 
+
+//Make a get call to Google Places radarsearch endpoint, get back 200 results;
+//Make a get call to Google Places details endpoint for each of the 200 results, match their reviews against regexes, send filtered and simplified results back to client;
+//Use a counter to make sure the results are only sent to client after all the initial results have been examined.
 module.exports.searchGoogle = function(req, res) {
 
   var searchString = urlParser.parse(req.url).search; //include leading question mark
@@ -88,7 +92,7 @@ module.exports.searchGoogle = function(req, res) {
                   }
                   counter++;
                   if (counter === places.length) {
-                    res.json(filteredBody); //also needs to pass page token back to client for further requests
+                    res.json(filteredBody);
                   }
                 }); //end of layer 4 on 'end'
               }) //end of layer 3 on 'response'
@@ -96,7 +100,7 @@ module.exports.searchGoogle = function(req, res) {
                 //TODO: handle error
                 counter++;
                 if (counter === places.length) {
-                  res.json(filteredBody); //also needs to pass page token back to client for further requests
+                  res.json(filteredBody);
                 } 
               }) //end of layer 3 on 'error'
           }

@@ -3,11 +3,10 @@ import $ from 'jquery';
 var searchGooglePlaces = function(callback, nextPageToken, radius, type, latitude, longitude) {
 
   radius = radius || 10000;
-  // type = type || 'restaurant';
 
   var data = {
     radius: radius,
-    type: 'park|restaurant',      //only 1 type can be passed in, default to restaurant for now
+    types: 'park|restaurant',      //"types" will be deprecated in 2017. "type" will have to be used instead, which only allows one type per search
     keyword: 'view',
     rankby: 'distance'
   };
