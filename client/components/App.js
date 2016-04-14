@@ -10,10 +10,12 @@ import $ from 'jquery';
 
 class App extends Component {
   render() {
-    const { places, savedPlaces, onFindClick, onSaveClick } = this.props;
+    const { places, savedPlaces, user, onFindClick, onSaveClick } = this.props;
     return (
       <div>
-        <Header onFindClick={ (loc) => onFindClick(loc) } />
+        <Header
+          user={user}
+          onFindClick={ (loc) => onFindClick(loc) } />
         <div className='grid'>
           <PlaceContainer onSaveClick={(place) => onSaveClick(place)} placeEntries={places}/>
           <SavedPlaceContainer savedPlaces={savedPlaces}/>
@@ -26,7 +28,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     places: state.places,
-    savedPlaces: state.savedPlaces
+    savedPlaces: state.savedPlaces,
+    user: state.user
   };
 };
 
