@@ -37,6 +37,7 @@ var renderIndex = function(req, res) {
 
   if (req.session.passport && req.session.passport.user) {
     user = {
+      googleId: req.session.passport.user.id,
       firstName: req.session.passport.user.name.givenName || null,
       lastName: req.session.passport.user.name.familyName || null,
       avatarUrl: req.session.passport.user.photos[0].value || null,
