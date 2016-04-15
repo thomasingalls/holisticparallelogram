@@ -4,15 +4,16 @@ var placeController = require(__dirname + '/../places/placeController');
 var userController = require(__dirname + '/../users/userController');
 var renderIndex = require(__dirname + '/indexHandler');
 
+
 module.exports = function(app, express) {
   app.use(express.static(__dirname + '/../../client'));
   app.get('/', renderIndex);
 
   app.get('/api/places', placeController.searchGoogle);
 
-  app.post('/api/places/saved', placeController.saveOne);
+  app.post('/api/places/saved', auth.checkAuth, placeController.saveOne);
   app.get('/api/places/saved', auth.checkAuth, placeController.getAllSaved);
-  app.get('/api/places/deleted', auth.checkAuth, placeController.deleteOnePlace);
+  app.delete('/api/places/saved', auth.checkAuth, placeController.deleteOne);
 
   app.post('/api/users', userController.saveOne);
 

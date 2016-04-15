@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 class PlaceEntry extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class PlaceEntry extends Component {
 
   handleClick(e) {
     e.preventDefault;
-    this.props.onSaveClick(this.props.place);
+    this.props.onSaveClick(this.props.place, this.props.user);
   }
 
   render() {
@@ -26,4 +27,8 @@ class PlaceEntry extends Component {
   }
 }
 
-export default PlaceEntry;
+const mapStateToProps = (state) => {
+  return {user: state.user}
+};
+
+export default connect(mapStateToProps)(PlaceEntry);
