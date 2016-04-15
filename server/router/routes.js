@@ -11,9 +11,9 @@ module.exports = function(app, express) {
 
   app.get('/api/places', placeController.searchGoogle);
 
-  app.post('/api/places/saved', checkAuth, placeController.saveOne);
-  app.get('/api/places/saved', checkAuth, placeController.getAllSaved);
-  app.delete('/api/places/saved', checkAuth, placeController.deleteOne);
+  app.post('/api/places/saved', auth.checkAuth, placeController.saveOne);
+  app.get('/api/places/saved', auth.checkAuth, placeController.getAllSaved);
+  app.delete('/api/places/saved', auth.checkAuth, placeController.deleteOne);
 
   app.post('/api/users', userController.saveOne);
 
