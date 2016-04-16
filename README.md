@@ -69,7 +69,7 @@ Visit `localhost:4568` in the browser.
 From within the root directory:
 
 ```
-npm install -g webpack-dev-server webpack
+npm install -g nodemon webpack
 ```
 
 ### Roadmap
