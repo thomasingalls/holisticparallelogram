@@ -21,8 +21,12 @@ header .description {
   max-width: 450px;
   color: rgba(255, 255, 255, 0.6);
 }
-header .black, .black {
+header .black, .black, .place-entry-link {
   color: rgba(0,0,0,0.8);
+}
+
+.place-entry-link:hover {
+  text-decoration: underline;
 }
 
 header .ninja {
@@ -32,6 +36,7 @@ header .ninja {
 
 a {
   padding: 8px 12px;
+  text-decoration: none;
 }
 
 nav {

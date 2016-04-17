@@ -16,8 +16,12 @@ class PlaceEntry extends Component {
     return (
       <div className='place-entry animated fadeInUp'>
         <div className='place-info' >
-          <h4>{ this.props.place.name }</h4>
-          <p>{ this.props.place.address }</p>
+          <a className='place-entry-link'
+            href={'https://www.google.com/#q=' + this.props.place.name + ' ' + this.props.place.address}
+            target='_blank'>
+            <h4>{ this.props.place.name }</h4>
+            <p>{ this.props.place.address }</p>
+          </a>
         </div>
         <div className='place-entry-favorite'>
           <span onClick={this.handleClick.bind(this)} className='icon-heart' aria-hidden='true'></span>
@@ -28,7 +32,7 @@ class PlaceEntry extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {user: state.user}
+  return {user: state.user};
 };
 
 export default connect(mapStateToProps)(PlaceEntry);
