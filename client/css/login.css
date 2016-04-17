@@ -22,6 +22,7 @@ div {
   background-repeat: no-repeat;
   max-width: 191px;
   padding-top: 46px;
+  margin-bottom: 12px;
 }
 
 #google-signin:hover {
