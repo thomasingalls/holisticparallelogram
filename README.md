@@ -2,7 +2,7 @@
 <img src="http://i.imgur.com/V8qVGvy.png" height="200px" width="200px"/>
 > Made by HolisticParallelogram
 
-ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of nearby parks and restaurants that are less than 10km away. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
+ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of parks and restaurants that are less than 10km away. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
 
 ## Team
 
@@ -31,8 +31,8 @@ ScenicNinja uses your current location to find great views nearby. It looks for 
 Webpack bundles dependencies into one file, so that all dependencies can be loaded into the DOM with a single `<script>` tag.  Webpack starts with an entry file (`App.js`) and traverses the project’s dependencies based on the `import` and `export` statements in the code. It uses a `webpack.config.js` file in the root directory to define which loaders are required for compilation and the destination of the output file.
 
 #### React and Redux
-On the client side, the state of the app is maintained in a Redux store. When a user interacts with the app (when the &hearts; is clicked, for example), an action is triggered, which tells the reducers how the app should change in response. For more information, review the [Redux documentation](http://redux.js.org/index.html).
-On the server side, we render the index, passing in the initial state of the app (including logged-in user data) to the client.
+On the client side, the state of the app is maintained in a Redux store. When a user interacts with the app (when the &hearts; is clicked, for example), an action is triggered, which tells the reducers how the app should change in response (add the place to the list of saved places). For more information, review the [Redux documentation](http://redux.js.org/index.html).
+On the server side, we render the index page, passing in the initial state of the app (including logged-in user data) to the client.
 
 #### Schema
 User data and saved places are managed in a MySQL database called `scenic`.
