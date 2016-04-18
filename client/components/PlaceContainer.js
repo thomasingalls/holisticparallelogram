@@ -1,18 +1,57 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import PlaceEntry from './PlaceEntry';
+import actions from '../actions/index.js';
+import $ from 'jquery';
 
-var PlaceContainer = (props) => (
-    <div>
-      <div className='col-2-12'></div>
-      <div id='target' className='col-6-12'>
-        { props.placeEntries.map((place) => (
-          <div>
-            <PlaceEntry onSaveClick={props.onSaveClick} place={ place }></PlaceEntry>
-          </div>
-        ))}
+class PlaceContainer extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <div className='col-2-12'></div>
+        <div id='target' className='col-6-12'>
+          { this.props.places.map((place) => (
+            <div>
+              <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place }></PlaceEntry>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
 
-export default PlaceContainer;
+const mapStateToProps = (state) => {
+  return {
+    places: state.places
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSaveClick: (place, user) => {
+      $.ajax({
+        url: '/api/places/saved',
+        method: 'POST',
+        data: {user: user, place: place}
+      });
+      console.log('dispatching successfully?');
+      dispatch(actions.savePlace(place));
+    }
+  };
+};
+
+PlaceContainer.propTypes = {
+  places: PropTypes.array.isRequired,
+  onSaveClick: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaceContainer);

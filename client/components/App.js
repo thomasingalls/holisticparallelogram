@@ -10,45 +10,16 @@ import $ from 'jquery';
 
 class App extends Component {
   render() {
-    const { places, onSaveClick } = this.props;
     return (
       <div>
         <Header/>
         <div className='grid'>
-          <PlaceContainer onSaveClick={(place, user) => onSaveClick(place, user)} placeEntries={places}/>
-          <SavedPlaceContainer />
+          <PlaceContainer/>
+          <SavedPlaceContainer/>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    places: state.places,
-    user: state.user
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSaveClick: (place, user) => {
-      $.ajax({
-        url: '/api/places/saved',
-        method: 'POST',
-        data: {user: user, place: place}
-      });
-      dispatch(actions.savePlace(place));
-    }
-  };
-};
-
-App.propTypes = {
-  places: PropTypes.array.isRequired,
-  onSaveClick: PropTypes.func.isRequired
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

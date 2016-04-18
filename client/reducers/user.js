@@ -4,7 +4,6 @@ const initialState = {
   googleUserId: null,
   firstName: null,
   lastName: null
-  // avatarUrl: null
 };
 
 export default function user (state = initialState, action) {
