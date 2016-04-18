@@ -1,5 +1,5 @@
 # ScenicNinja
-##### Created by HolisticParallelogram
+*Created by HolisticParallelogram*  
 
 ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of parks and restaurants within 10km of the user's location. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
 
