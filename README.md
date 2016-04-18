@@ -123,14 +123,12 @@ Visit `localhost:4568` in the browser.
    };
    ```
 
-- `vim googleplaces.js`
-- Insert the following:  
+- Update the file `googleplaces.js` to contain the following:  
    ```
    module.exports = 'your-googleplaces-api-key-goes-here';  
    ```
 
-- `vim mysqlsetup.js`
-- Insert the following:  
+- Update the file `mysqlsetup.js` to contain the following:  
    ```
    module.exports = 'your-serverside-mysql-password-goes-here';  
    ```
