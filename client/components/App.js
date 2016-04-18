@@ -36,7 +36,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFindClick: () => {
+      // Append the body with loading spinner and text
+      var ele = '<div id="spinner">Ninjas are scouting for your views...</div>';
+      var gif = '<img id="spin-gif" src="../assets/spiffygif_36x36.gif">';
+      $('#target').append(ele);
+      $('#target').append(gif);
       searchGooglePlaces(function(data) {
+        // Remove loading spinner and text now that places have been returned
+        $('#spinner').remove();
+        $('#spin-gif').remove();
         dispatch(actions.updatePlaces(data.places));
       });
     },
