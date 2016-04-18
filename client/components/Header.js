@@ -19,7 +19,7 @@ class Header extends Component {
     // Set the login and logout depending on whether the user is logged in.
     var logInOut;
     if (_.isEmpty(this.props.user)) {
-      logInOut = <a className='link' href='/auth/login'>Login</a>;
+      logInOut = <a className='link' href='/'>Login</a>;
     } else {
       logInOut = <a className='link' href='/auth/logout'>Logout</a>;
     }
