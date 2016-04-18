@@ -36,8 +36,6 @@ header .black, .black, .place-entry-link {
 
 .no-saved-places {
   font-size: .9em;
-  background-color: #ededed;
-  /*border: 1px solid #ededed;*/
   padding: 24px;
   text-align: center;
   color: rgba(0,0,0,0.30);
@@ -57,6 +55,16 @@ header .ninja {
 a {
   padding: 8px 12px;
   text-decoration: none;
+}
+
+a.card-link {
+  padding: 8px 0px;
+  color: #FF5A3B;
+  font-size: .8em;
+}
+
+a.card-link:hover {
+  color: #E55136;
 }
 
 nav {
@@ -105,7 +113,7 @@ button:focus {
 
 .place-entry {
   border: 1px solid rgba(0,0,0,0.06);
-  padding: 4px 12px 4px 20px;
+  padding: 4px 12px 24px 24px;
   margin: 20px 0px;
   max-width: 600px;
   position: relative;
