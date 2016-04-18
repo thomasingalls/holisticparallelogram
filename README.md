@@ -110,6 +110,7 @@ Visit `localhost:4568` in the browser.
    `cd config`  
 
 - See if the below files are already on the server (`ls`). If not, add them using the following commands:
+
    `touch googleplus.js`  
    `touch googleplaces.js`  
    `touch mysqlsetup.js`  
