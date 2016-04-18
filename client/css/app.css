@@ -88,6 +88,10 @@ nav ul li {
   color: rgba(255, 255, 255, 1);
 }
 
+.place-entry-link-divider {
+  padding: 0px 4px;
+}
+
 button {
   border: 1px solid white;
   background-color: transparent;

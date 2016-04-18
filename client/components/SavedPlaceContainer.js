@@ -9,6 +9,8 @@ class SavedPlaceContainer extends Component {
 
   render() {
     if (this.props.savedPlaces.length === 0) {
+
+      // there are no saved places, so show an empty state
       return (
         <div className='col-4-12 saved-places'>
           <h3>Your Saved Places</h3>
@@ -20,6 +22,8 @@ class SavedPlaceContainer extends Component {
         </div>
       );
     } else {
+
+      // there are saved places, so display them
       return (
         <div className='col-4-12 saved-places'>
           <h3>Your Saved Places</h3>
