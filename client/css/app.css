@@ -22,16 +22,12 @@ header .description {
   max-width: 450px;
   color: rgba(255, 255, 255, 0.6);
 }
-header .black, .black, .place-entry-link {
+header .black, .black {
   color: rgba(0,0,0,0.8);
 }
 
 .saved-places {
   color: rgba(0,0,0,0.6);
-}
-
-.place-entry-link:hover {
-  text-decoration: underline;
 }
 
 .no-saved-places {
@@ -57,13 +53,20 @@ a {
   text-decoration: none;
 }
 
-a.card-link {
+a.place-entry-link, a.saved-place-entry-link {
   padding: 8px 0px;
   color: #FF5A3B;
+}
+
+a.place-entry-link {
   font-size: .8em;
 }
 
-a.card-link:hover {
+a.saved-place-entry-link {
+  font-size: 1em;
+}
+
+a.place-entry-link:hover, a.saved-place-entry-link:hover {
   color: #E55136;
 }
 
@@ -138,6 +141,10 @@ button:focus {
 
 .saved-place-name {
   font-weight: 900;
+}
+
+.saved-place-entry p.saved-place-address {
+  margin-bottom: 4px;
 }
 
 .place-info {

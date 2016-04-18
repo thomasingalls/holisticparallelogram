@@ -19,12 +19,12 @@ class PlaceEntry extends Component {
             <h4>{ this.props.place.name }</h4>
             <p>{ this.props.place.address }</p>
             <div>
-              <a className='card-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
+              <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
               target='_blank'>View Images</a>
               &nbsp;
               &middot;
               &nbsp;
-              <a className='card-link' href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
+              <a className='place-entry-link' href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
               target='_blank'>Find on Google</a>
             </div>
         </div>
