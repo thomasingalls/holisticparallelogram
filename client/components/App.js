@@ -10,15 +10,13 @@ import $ from 'jquery';
 
 class App extends Component {
   render() {
-    const { places, savedPlaces, user, onFindClick, onSaveClick } = this.props;
+    const { places, onSaveClick } = this.props;
     return (
       <div>
-        <Header
-          user={user}
-          onFindClick={ (loc) => onFindClick(loc) } />
+        <Header/>
         <div className='grid'>
           <PlaceContainer onSaveClick={(place, user) => onSaveClick(place, user)} placeEntries={places}/>
-          <SavedPlaceContainer savedPlaces={savedPlaces}/>
+          <SavedPlaceContainer />
         </div>
       </div>
     );
@@ -28,26 +26,12 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     places: state.places,
-    savedPlaces: state.savedPlaces,
     user: state.user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFindClick: () => {
-      // Append the body with loading spinner and text
-      var ele = '<div id="spinner">Ninjas are scouting for your views...</div>';
-      var gif = '<img id="spin-gif" src="../assets/spiffygif_36x36.gif">';
-      $('#target').append(ele);
-      $('#target').append(gif);
-      searchGooglePlaces(function(data) {
-        // Remove loading spinner and text now that places have been returned
-        $('#spinner').remove();
-        $('#spin-gif').remove();
-        dispatch(actions.updatePlaces(data.places));
-      });
-    },
     onSaveClick: (place, user) => {
       $.ajax({
         url: '/api/places/saved',
@@ -61,8 +45,6 @@ const mapDispatchToProps = (dispatch) => {
 
 App.propTypes = {
   places: PropTypes.array.isRequired,
-  savedPlaces: PropTypes.array.isRequired,
-  onFindClick: PropTypes.func.isRequired,
   onSaveClick: PropTypes.func.isRequired
 };
 

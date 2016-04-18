@@ -1,7 +1,11 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import _ from 'underscore';
+import searchGooglePlaces from '../utils/searchGooglePlaces.js';
+import actions from '../actions/index.js';
 
 class Header extends Component {
 
@@ -45,8 +49,36 @@ class Header extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFindClick: () => {
+      // Append the body with loading spinner and text
+      var ele = '<div id="spinner">Ninjas are scouting for your views...</div>';
+      var gif = '<img id="spin-gif" src="../assets/spiffygif_36x36.gif">';
+      $('#target').append(ele);
+      $('#target').append(gif);
+      searchGooglePlaces(function(data) {
+        // Remove loading spinner and text now that places have been returned
+        $('#spinner').remove();
+        $('#spin-gif').remove();
+        dispatch(actions.updatePlaces(data.places));
+      });
+    }
+  };
+};
+
 Header.propTypes = {
+  user: PropTypes.object,
   onFindClick: PropTypes.func.isRequired
 };
 
-export default Header;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

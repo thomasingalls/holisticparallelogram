@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+
 import SavedPlaceEntry from './SavedPlaceEntry.js';
 
 class SavedPlaceContainer extends Component {
@@ -33,4 +35,16 @@ class SavedPlaceContainer extends Component {
   }
 }
 
-export default SavedPlaceContainer;
+const mapStateToProps = (state) => {
+  return {
+    savedPlaces: state.savedPlaces
+  };
+};
+
+SavedPlaceContainer.propTypes = {
+  savedPlaces: PropTypes.array,
+};
+
+export default connect(
+  mapStateToProps
+)(SavedPlaceContainer);
