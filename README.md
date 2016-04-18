@@ -114,8 +114,7 @@ Visit `localhost:4568` in the browser.
    `touch googleplaces.js`  
    `touch mysqlsetup.js`  
 
-- Open `googleplus.js` in a terminal editor of your choice
-- Insert the following:  
+- Update the file `googleplus.js` to contain the following:  
    ```
    module.exports = {  
      CLIENT_ID: 'enter-your-googleplus-api-key-here',  
