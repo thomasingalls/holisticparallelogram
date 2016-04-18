@@ -179,3 +179,27 @@ button:focus {
 .icon-heart:hover {
   color: #FF5A3B;
 }
+
+#spinner {
+  margin-left: 27%; 
+  font-family: 'Open Sans', sans-serif; 
+  color: #333333;
+}
+
+#spin-gif {
+  margin-top: 35px; 
+  margin-left: 36%;
+}
+
+@media handheld, only screen and (max-width: 767px) {
+  #spinner {
+    margin-left: 19%; 
+    font-family: 'Open Sans', sans-serif; 
+    color: #333333;
+  }
+
+  #spin-gif {
+    margin-top: 35px; 
+    margin-left: 44%;
+  }
+}
