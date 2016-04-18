@@ -17,7 +17,7 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Scenic.Ninja ##
-  > The easy way to find great scenic views.
+  > The easy way to find great scenic views near you.
 
 ## Find Scenic Views Near You ##
   > Locals and travellers alike will love being able to quickly find nearby restaurants and open spaces with scenic views.
@@ -31,14 +31,14 @@ Once the project moves into development, the press release can be used as a touc
 ## Solution ##
   > Scenic.Ninja gives instant access to places with great views. Users can save view lists for easy future reference.
 
-## Quote from You ##
-  > "Scenic.Ninja revolutionized our meal breaks. We hope it does the same for you."
+## Quote from The Team ##
+  > "Scenic.Ninja revolutionized our meal breaks. We hope it does the same for you." - Reina Mei
 
 ## How to Get Started ##
   > Getting started is easy. Just go to scenic.ninja and use your Google account to log in and start saving places you'd like to visit. Or, if you don't want to log in, just click Find Views to get a list based on where you are right now.
 
 ## Customer Quote ##
-  > "We love using scenic.ninja when we are travelling. We can quickly find get out of the crowds and see all the places we've been visiting from a fresh perspective."
+  > "We love using scenic.ninja when we are travelling. We can quickly find get out of the crowds and see all the places we've been visiting from a fresh perspective."  - Jane Smith
 
 ## Closing and Call to Action ##
   > Get some fresh perspective. Go to scenic.ninja and start discovering new vistas.
