@@ -2,7 +2,7 @@
 <img src="http://i.imgur.com/V8qVGvy.png" height="200px" width="200px"/>
 > Made by HolisticParallelogram
 
-ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of parks and restaurants that are less than 10km away. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
+ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of parks and restaurants within 10km of the user's location. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
 
 ## Team
 
@@ -31,8 +31,8 @@ ScenicNinja uses your current location to find great views nearby. It looks for 
 Webpack bundles dependencies into one file, so that all dependencies can be loaded into the DOM with a single `<script>` tag.  Webpack starts with an entry file (`App.js`) and traverses the project’s dependencies based on the `import` and `export` statements in the code. It uses a `webpack.config.js` file in the root directory to define which loaders are required for compilation and the destination of the output file.
 
 #### React and Redux
-On the client side, the state of the app is maintained in a Redux store. When a user interacts with the app (when the &hearts; is clicked, for example), an action is triggered, which tells the reducers how the app should change in response (add the place to the list of saved places). For more information, review the [Redux documentation](http://redux.js.org/index.html).
-On the server side, we render the index page, passing in the initial state of the app (including logged-in user data) to the client.
+On the client side, the state of the app is maintained in a Redux store. When a user interacts with the app (e.g. when the &hearts; is clicked, for example), an action is triggered, which tells the reducers how the state should update in response (e.g. add the place to the list of saved places). For more information, review the [Redux documentation](http://redux.js.org/index.html) and watch [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux).
+On the server side, we render the index page by initializing the Redux store (which determines the initial state of the app, including logged-in user data).
 
 #### Schema
 User data and saved places are managed in a MySQL database called `scenic`.
@@ -40,15 +40,15 @@ User data and saved places are managed in a MySQL database called `scenic`.
 (http://i.imgur.com/lag3WRs.png)
 
 ## Usage
-You'll need API keys for [Google Places](https://developers.google.com/places/web-service/get-api-key) and for [Google Plus](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key). Add these to the config files in `/server/config`, following the format of the example files, and remove `.example` from the filename.
-Make sure you have all [dependencies](#installing-dependencies) installed, and that a MySQL server is running. Then, from within the root directory:
+You'll need API keys for [Google Places](https://developers.google.com/places/web-service/get-api-key) and for [Google Plus](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key). Add these to the config files in `/server/config`, following the format of the example files. Remove `.example` from the filename.
+Ensure all [dependencies](#installing-dependencies) are installed. Start a MySQL server by running `mysql.server start`. Then, from within the root directory:
 ```
 npm install
 webpack
 npm start
 ```
 
-Visit `localhost:4568` in the browser. 
+Visit `localhost:4568` in the browser.
 
 ## Requirements
 
@@ -73,7 +73,7 @@ To compile client-side code, run:
 ```
 webpack --watch
 ```
-`webpack --watch` will recompile a `bundle.js` file when any client-side JS files have changed.
+`webpack --watch` will recompile a `bundle.js` file when any client-side JS files have changed, streamlining the development workflow.
 
 In a separate shell, start the server by running:
 ```
@@ -86,64 +86,59 @@ Visit `localhost:4568` in the browser.
 ## Deployment
 #### Initial Setup on Digital Ocean
 - Set up your droplet with raw Ubuntu
-- `apt` is the package manager on Ubuntu (think `brew`, but for Ubuntu)
+- `apt` is the package manager on Ubuntu (it's like `brew`, but for Ubuntu)
 - Do an apt update:  `sudo apt-get update`
 - Install MySql:  `sudo apt-get install mysql-server`
 - Enter a secure password when prompted and note it down as it will be added to `server/config/mysqlsetup.js` later
 - Follow the below instructions for deploying new changes manually
 - If you get `ERRCONN`, check `server/db/db.js` for correct credentials
-- Ensure that credentials in `db.js` match those exported in `server/config` files
+- Ensure that the credentials in `db.js` match those exported in `server/config` files
 
 #### Deploying New Changes
 - Merge the production branch of the repo with the master branch
 - Log in to the Digital Ocean droplet using: `ssh root@xxx.xxx.xxx.x` (get your droplet IP Address from Digital Ocean)
 - If the `ssh` fails three times, you'll be prompted for the password
-- Enter UNIX Password for your Digital Ocean droplet (go to the Access menu if you need to reset it)
-- Either clone down your production repo, or `cd` into the root directory
-- `git pull origin master`
-- `npm install`
-- `webpack`
-- `cd server`
-- `ls` to see if the `config` directory exists, if not, create it as below
-- `mkdir config`
-- `cd config`
-- `ls` and look to see if the below files are already on the server, if not, add them as below
-- `touch googleplus.js`
-- `touch googleplaces.js`
-- `touch mysqlsetup.js`
+- Enter UNIX Password for your Digital Ocean droplet (if you need to reset it, go to the Access menu)
+- Clone down your production repo, or `cd` into the root directory and run the following commands:
 
-- `vim googleplus.js` (or open in whatever terminal editor you prefer)
-- Insert the following:
-```
-module.exports = {
-  CLIENT_ID: 'enter-your-googleplus-api-key-here',
-  CLIENT_SECRET: 'enter-your-googleplus-api-key-here'
-};
-:wq
-```
+   `git pull origin master`  
+   `npm install`  
+   `webpack`  
+   `cd server`  
+   `ls` to see if the `config` directory exists, if not, create it as below  
+   `mkdir config`  
+   `cd config`  
+
+- See if the below files are already on the server (`ls`). If not, add them using the following commands:
+   `touch googleplus.js`  
+   `touch googleplaces.js`  
+   `touch mysqlsetup.js`  
+
+- Open `googleplus.js` in a terminal editor of your choice
+- Insert the following:  
+   ```
+   module.exports = {  
+     CLIENT_ID: 'enter-your-googleplus-api-key-here',  
+     CLIENT_SECRET: 'enter-your-googleplus-api-key-here'  
+   };
+   ```
 
 - `vim googleplaces.js`
-- Insert the following:
-```
-module.exports = 'your-googleplaces-api-key-goes-here';
-:wq
-```
+- Insert the following:  
+   ```
+   module.exports = 'your-googleplaces-api-key-goes-here';  
+   ```
 
 - `vim mysqlsetup.js`
-- Insert the following:
-```
-module.exports = 'your-serverside-mysql-password-goes-here';
-:wq
-```
+- Insert the following:  
+   ```
+   module.exports = 'your-serverside-mysql-password-goes-here';  
+   ```
 
 ==============================
 
 - `npm start`
 - Go to `xxx.xxx.xx.x:4568` to see your site live
-
-### Roadmap
-
-View the project roadmap [here](https://github.com/HolisticParallelogram/holisticparallelogram/issues).
 
 
 ## Contributing
