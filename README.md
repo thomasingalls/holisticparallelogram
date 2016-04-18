@@ -1,5 +1,5 @@
 # ScenicNinja
-
+<img src="http://i.imgur.com/V8qVGvy.png" height="200px" width="200px"/>
 > Made by HolisticParallelogram
 
 ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of nearby parks and restaurants that are less than 10km away. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
@@ -44,15 +44,26 @@ webpack
 npm start
 ```
 
-Visit `localhost:4568` in the browser.
+Visit `localhost:4568` in the browser. 
 
 ## Requirements
 
 - Node 0.10.x
+- MySQL 5.7.11
 - [Google Places API key](https://developers.google.com/places/web-service/get-api-key)
 - [Google Plus API key](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key)
 
 ## Development
+
+### Installing Dependencies
+
+From within the root directory:
+
+```
+npm install -g nodemon webpack
+```
+
+### Running Locally
 
 To compile client-side code, run:
 ```
@@ -68,13 +79,6 @@ npm run dev
 
 Visit `localhost:4568` in the browser.
 
-### Installing Dependencies
-
-From within the root directory:
-
-```
-npm install -g nodemon webpack
-```
 ## Deployment
 #### Initial Setup on Digital Ocean
 - Set up your droplet with raw Ubuntu
@@ -90,13 +94,13 @@ npm install -g nodemon webpack
 - Merge the production branch of the repo with the master branch
 - Log in to the Digital Ocean droplet using: `ssh root@xxx.xxx.xxx.x` (get your droplet IP Address from Digital Ocean)
 - If the `ssh` fails three times, you'll be prompted for the password
-- Enter UNIX Password for your Digital Ocean droplet (go to Access menu if you need to reset)
+- Enter UNIX Password for your Digital Ocean droplet (go to the Access menu if you need to reset it)
 - Either clone down your production repo, or `cd` into the root directory
 - `git pull origin master`
 - `npm install`
 - `webpack`
 - `cd server`
-- `ls` to see if config exists, if not, create it as below
+- `ls` to see if the `config` directory exists, if not, create it as below
 - `mkdir config`
 - `cd config`
 - `ls` and look to see if the below files are already on the server, if not, add them as below
