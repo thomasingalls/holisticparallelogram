@@ -41,7 +41,6 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     onSaveClick: (place, user) => {
-      console.log(user);
       $.ajax({
         url: '/api/places/saved',
         method: 'POST',

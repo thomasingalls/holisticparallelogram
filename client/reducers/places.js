@@ -23,7 +23,7 @@ const initialState = [];
 export default function places (state = initialState, action) {
   switch (action.type) {
   case types.UPDATE_PLACES:
-    return state.concat(action.places);
+    return action.places;
   default:
     return state;
   }
