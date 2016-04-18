@@ -14,7 +14,7 @@ class SavedPlaceContainer extends Component {
           <h3>Your Saved Places</h3>
           <div className='no-saved-places'>
             <p>
-              When you like a place, click the &hearts; to save it for later.
+              If you like a place, click the &hearts; to save it for later.
             </p>
           </div>
         </div>
