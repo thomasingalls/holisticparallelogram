@@ -21,8 +21,12 @@ header .description {
   max-width: 450px;
   color: rgba(255, 255, 255, 0.6);
 }
-header .black, .black {
+header .black, .black, .place-entry-link {
   color: rgba(0,0,0,0.8);
+}
+
+.place-entry-link:hover {
+  text-decoration: underline;
 }
 
 header .ninja {
@@ -32,6 +36,7 @@ header .ninja {
 
 a {
   padding: 8px 12px;
+  text-decoration: none;
 }
 
 nav {
@@ -47,13 +52,18 @@ nav ul li {
   display: inline;
 }
 
-header .link {
+.link {
   color: rgba(255, 255, 255, 0.6);
   padding-right: 0px;
 }
 
-header .link:hover {
+.link:hover {
   color: rgba(255, 255, 255, 1);
+}
+
+.tiny-link {
+  font-size: .7em;
+  padding: 0px;
 }
 
 button {
