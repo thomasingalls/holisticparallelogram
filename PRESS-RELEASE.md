@@ -1,4 +1,4 @@
-# Project Name #
+# Hollistic Parallelogram Media #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,29 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Scenic.Ninja ##
+  > The easy way to find great scenic views.
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Find Scenic Views Near You ##
+  > Locals and travellers alike will love being able to quickly find nearby restaurants and open spaces with scenic views.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Scenic.Ninja detects your location and gives you a list of scenic views nearby. If you want to save great spots for future reference, just log in using your google account and add the views to your list.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > To find scenic views, you often have to read through dozens of reviews that may not be relevant.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Scenic.Ninja gives instant access to places with great views. Users can save view lists for easy future reference.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Scenic.Ninja revolutionized our meal breaks. We hope it does the same for you."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Getting started is easy. Just go to scenic.ninja and use your Google account to log in and start saving places you'd like to visit. Or, if you don't want to log in, just click Find Views to get a list based on where you are right now.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "We love using scenic.ninja when we are travelling. We can quickly find get out of the crowds and see all the places we've been visiting from a fresh perspective."
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Get some fresh perspective. Go to scenic.ninja and start discovering new vistas.
