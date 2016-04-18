@@ -40,7 +40,6 @@ const mapDispatchToProps = (dispatch) => {
         method: 'POST',
         data: {user: user, place: place}
       });
-      console.log('dispatching successfully?');
       dispatch(actions.savePlace(place));
     }
   };
