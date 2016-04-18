@@ -32,15 +32,11 @@ header .black, .black {
 
 .no-saved-places {
   font-size: .9em;
-  padding: 24px;
-  text-align: center;
-  color: rgba(0,0,0,0.30);
+  color: rgba(0,0,0,0.4);
 }
 
 .no-saved-places p {
-  max-width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 220px;
 }
 
 header .ninja {
@@ -90,6 +86,10 @@ nav ul li {
 
 .link:hover {
   color: rgba(255, 255, 255, 1);
+}
+
+.place-entry-link-divider {
+  padding: 0px 4px;
 }
 
 button {
@@ -181,26 +181,29 @@ button:focus {
 }
 
 #spinner {
-  margin-top: 24px; 
+  margin-top: 24px;
   text-align: center;
-  font-family: 'Open Sans', sans-serif; 
-  color: #333333;
+  color: rgba(0,0,0,0.4);
+  font-size: 1em;
 }
 
 #spin-gif {
   margin-left: 44%;
-  margin-top: 42px;
+  margin-top: 20px;
+  opacity: .5;
+
 }
 
 @media handheld, only screen and (max-width: 767px) {
   #spinner {
     text-align: center;
-    font-family: 'Open Sans', sans-serif; 
-    color: #333333;
+    color: rgba(0,0,0,0.4);
+    font-size: 1em;
   }
 
   #spin-gif {
-    margin-top: 35px; 
+    margin-top: 20px;
     margin-left: 44%;
+    opacity: .5;
   }
 }

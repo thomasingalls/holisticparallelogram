@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import SavedPlaceEntry from './SavedPlaceEntry.js';
 
 class SavedPlaceContainer extends Component {
@@ -8,17 +9,21 @@ class SavedPlaceContainer extends Component {
 
   render() {
     if (this.props.savedPlaces.length === 0) {
+
+      // there are no saved places, so show an empty state
       return (
         <div className='col-4-12 saved-places'>
           <h3>Your Saved Places</h3>
           <div className='no-saved-places'>
             <p>
-              When you like a place, click the &hearts; to save it for later.
+              If you like a place, click the &hearts; to save it for later.
             </p>
           </div>
         </div>
       );
     } else {
+
+      // there are saved places, so display them
       return (
         <div className='col-4-12 saved-places'>
           <h3>Your Saved Places</h3>
@@ -33,4 +38,16 @@ class SavedPlaceContainer extends Component {
   }
 }
 
-export default SavedPlaceContainer;
+const mapStateToProps = (state) => {
+  return {
+    savedPlaces: state.savedPlaces
+  };
+};
+
+SavedPlaceContainer.propTypes = {
+  savedPlaces: PropTypes.array,
+};
+
+export default connect(
+  mapStateToProps
+)(SavedPlaceContainer);

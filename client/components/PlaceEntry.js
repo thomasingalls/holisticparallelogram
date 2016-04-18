@@ -21,9 +21,7 @@ class PlaceEntry extends Component {
             <div>
               <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
               target='_blank'>View Images</a>
-              &nbsp;
-              &middot;
-              &nbsp;
+              <span className='place-entry-link-divider'>&middot;</span>
               <a className='place-entry-link' href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
               target='_blank'>Find on Google</a>
             </div>

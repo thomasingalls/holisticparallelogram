@@ -7,9 +7,7 @@ var SavedPlaceEntry = (props) => (
     <div>
       <a className='saved-place-entry-link' href={'//www.images.google.com/search?q=' + props.savedPlace.name + ' ' + props.savedPlace.address + '&tbm=isch'}
       target='_blank'>View Images</a>
-      &nbsp;
-      &middot;
-      &nbsp;
+      <span className='place-entry-link-divider'>&middot;</span>
       <a className='saved-place-entry-link' href={'//www.google.com/search?q=' + props.savedPlace.name + ' ' + props.savedPlace.address}
       target='_blank'>Find on Google</a>
     </div>

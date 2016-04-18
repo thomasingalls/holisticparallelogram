@@ -28,4 +28,3 @@ var render = function() {
 };
 
 render();
-store.subscribe(render);
