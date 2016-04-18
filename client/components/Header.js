@@ -60,13 +60,13 @@ const mapDispatchToProps = (dispatch) => {
     onFindClick: () => {
       // Append the body with loading spinner and text
       var ele = '<div id="spinner">Ninjas are scouting for your views...</div>';
-      var gif = '<img id="spin-gif" src="../assets/spiffygif_36x36.gif">';
-      $('#loading-container').append(ele);
-      $('#loading-container').append(gif);
+      var gif = '<img id="spin-gif" src="../assets/poi.gif">';
+      $('#loading-container').prepend(ele);
+      $('#loading-container').prepend(gif);
       searchGooglePlaces(function(data) {
         // Remove loading spinner and text now that places have been returned
-        $('#spinner').remove();
-        $('#spin-gif').remove();
+        $('#spinner').fadeOut();
+        $('#spin-gif').fadeOut();
         dispatch(actions.updatePlaces(data.places));
       });
     }
