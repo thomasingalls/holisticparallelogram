@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Signika', sans-serif;
 }
 
+
 header {
   background-color: #FF5A3B;
   padding: 40px;
@@ -25,8 +26,27 @@ header .black, .black, .place-entry-link {
   color: rgba(0,0,0,0.8);
 }
 
+.saved-places {
+  color: rgba(0,0,0,0.6);
+}
+
 .place-entry-link:hover {
   text-decoration: underline;
+}
+
+.no-saved-places {
+  font-size: .9em;
+  background-color: #ededed;
+  /*border: 1px solid #ededed;*/
+  padding: 24px;
+  text-align: center;
+  color: rgba(0,0,0,0.30);
+}
+
+.no-saved-places p {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header .ninja {
@@ -70,6 +90,7 @@ button {
   padding: 8px 12px;
   margin-right: 8px;
   font-size: 1em;
+  font-weight: 700;
 }
 
 button:hover {
@@ -99,7 +120,7 @@ button:focus {
 .saved-place-entry {
   margin: 0px;
   font-size: .8em;
-  border-top: 1px solid rgba(0,0,0,0.12);
+  border-top: 1px solid #ededed;
   padding: 12px 8px;
 }
 
