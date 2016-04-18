@@ -65,8 +65,8 @@ const mapDispatchToProps = (dispatch) => {
       $('#loading-container').prepend(gif);
       searchGooglePlaces(function(data) {
         // Remove loading spinner and text now that places have been returned
-        $('#spinner').remove();
-        $('#spin-gif').remove();
+        $('#spinner').fadeOut();
+        $('#spin-gif').fadeOut();
         dispatch(actions.updatePlaces(data.places));
       });
     }
