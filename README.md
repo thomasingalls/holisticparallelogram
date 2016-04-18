@@ -96,7 +96,6 @@ npm install -g nodemon webpack
 - ls to see if config exists, if not, create it as below
 - mkdir config
 - cd config
-=============================
 - ls and look to see if the below files are already on the server, if not, add them as below
 - touch googleplus.js
 - touch googleplaces.js
