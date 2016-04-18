@@ -16,12 +16,18 @@ div {
   text-align: center;
 }
 
+p#tagline {
+  color: rgba(255,255,255,.6);
+  margin: 12px 0px 0px 0px;
+}
+
 #google-signin {
   background-image: url('./../assets/btn_google_signin_light_normal_web@2x.png');
   background-size: contain;
   background-repeat: no-repeat;
   max-width: 191px;
   padding-top: 46px;
+  margin-top: 12px;
   margin-bottom: 12px;
 }
 
@@ -35,12 +41,17 @@ div {
   max-height: 100px;
 }
 
+.tiny-link {
+  font-size: .7em;
+  padding: 0px 12px 0px 0px;
+}
+
 h1, p {
-  margin: 4px 0px;
+  margin: 0px 0px;
 }
 
 #footer {
-  font-size: .5em;
+  font-size: .6em;
   color: rgba(255, 255, 255, 0.6);
   position: fixed;
   bottom: 0;

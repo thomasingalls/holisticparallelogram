@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Signika', sans-serif;
 }
 
+
 header {
   background-color: #FF5A3B;
   padding: 40px;
@@ -21,12 +22,25 @@ header .description {
   max-width: 450px;
   color: rgba(255, 255, 255, 0.6);
 }
-header .black, .black, .place-entry-link {
+header .black, .black {
   color: rgba(0,0,0,0.8);
 }
 
-.place-entry-link:hover {
-  text-decoration: underline;
+.saved-places {
+  color: rgba(0,0,0,0.6);
+}
+
+.no-saved-places {
+  font-size: .9em;
+  padding: 24px;
+  text-align: center;
+  color: rgba(0,0,0,0.30);
+}
+
+.no-saved-places p {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header .ninja {
@@ -37,6 +51,23 @@ header .ninja {
 a {
   padding: 8px 12px;
   text-decoration: none;
+}
+
+a.place-entry-link, a.saved-place-entry-link {
+  padding: 8px 0px;
+  color: #FF5A3B;
+}
+
+a.place-entry-link {
+  font-size: .8em;
+}
+
+a.saved-place-entry-link {
+  font-size: 1em;
+}
+
+a.place-entry-link:hover, a.saved-place-entry-link:hover {
+  color: #E55136;
 }
 
 nav {
@@ -61,11 +92,6 @@ nav ul li {
   color: rgba(255, 255, 255, 1);
 }
 
-.tiny-link {
-  font-size: .7em;
-  padding: 0px;
-}
-
 button {
   border: 1px solid white;
   background-color: transparent;
@@ -75,6 +101,7 @@ button {
   padding: 8px 12px;
   margin-right: 8px;
   font-size: 1em;
+  font-weight: 700;
 }
 
 button:hover {
@@ -89,7 +116,7 @@ button:focus {
 
 .place-entry {
   border: 1px solid rgba(0,0,0,0.06);
-  padding: 4px 12px 4px 20px;
+  padding: 4px 12px 24px 24px;
   margin: 20px 0px;
   max-width: 600px;
   position: relative;
@@ -104,7 +131,7 @@ button:focus {
 .saved-place-entry {
   margin: 0px;
   font-size: .8em;
-  border-top: 1px solid rgba(0,0,0,0.12);
+  border-top: 1px solid #ededed;
   padding: 12px 8px;
 }
 
@@ -114,6 +141,10 @@ button:focus {
 
 .saved-place-name {
   font-weight: 900;
+}
+
+.saved-place-entry p.saved-place-address {
+  margin-bottom: 4px;
 }
 
 .place-info {
