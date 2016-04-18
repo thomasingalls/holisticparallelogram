@@ -2,6 +2,8 @@
 
 > Made by HolisticParallelogram
 
+ScenicNinja uses your current location to find great views nearby. It looks for the keyword 'view' in the reviews of nearby parks and restaurants that are less than 10km away. Anyone can use the service, but you'll need to sign-in with a Google account to save your favorite locations.
+
 ## Team
 
   - __Product Owner__: Joel Aguero
@@ -29,12 +31,13 @@
 Webpack bundles dependencies into one file, so that all dependencies can be loaded into the DOM with a single `<script>` tag.  Webpack starts with an entry file (`App.js`) and traverses the project’s dependencies based on the `import` and `export` statements in the code. It uses a `webpack.config.js` file in the root directory to define which loaders are required for compilation and the destination of the output file.
 
 #### Schema
+User data and saved places are managed in a MySQL database called `scenic`.
 ![Schema design]
 (http://i.imgur.com/lag3WRs.png)
 
 ## Usage
-You'll need API keys for [Google Places](https://developers.google.com/places/web-service/get-api-key) and for [Google Plus](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key). Add these to the config files in /server/config, following the format of the example files, and remove `.example` from the filename.
-Make sure you have all [dependencies](#installing-dependencies) installed. Then, from within the root directory:
+You'll need API keys for [Google Places](https://developers.google.com/places/web-service/get-api-key) and for [Google Plus](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key). Add these to the config files in `/server/config`, following the format of the example files, and remove `.example` from the filename.
+Make sure you have all [dependencies](#installing-dependencies) installed, and that a MySQL server is running. Then, from within the root directory:
 ```
 npm install
 webpack
@@ -46,7 +49,8 @@ Visit `localhost:4568` in the browser.
 ## Requirements
 
 - Node 0.10.x
-- Webpack 1.12.14
+- [Google Places API key](https://developers.google.com/places/web-service/get-api-key)
+- [Google Plus API key](https://developers.google.com/+/web/api/rest/oauth#acquiring-and-using-an-api-key)
 
 ## Development
 
@@ -74,34 +78,33 @@ npm install -g nodemon webpack
 ## Deployment
 #### Initial Setup on Digital Ocean
 - Set up your droplet with raw Ubuntu
-- Apt is the package manager on Ubuntu (think brew but for Ubuntu)
-- Do an apt update:  sudo apt-get update
-- Install MySql:  sudo apt-get install mysql-server
-- Enter a secure password when prompted and note it down as it will be added to server/config/mysqlsetup.js later
+- `apt` is the package manager on Ubuntu (think `brew`, but for Ubuntu)
+- Do an apt update:  `sudo apt-get update`
+- Install MySql:  `sudo apt-get install mysql-server`
+- Enter a secure password when prompted and note it down as it will be added to `server/config/mysqlsetup.js` later
 - Follow the below instructions for deploying new changes manually
-- If you get ERRCONN, check server/db/db.js for correct credentials
-- Ensure that credentials in db.js match those exported in server/config files
+- If you get `ERRCONN`, check `server/db/db.js` for correct credentials
+- Ensure that credentials in `db.js` match those exported in `server/config` files
 
 #### Deploying New Changes
 - Merge the production branch of the repo with the master branch
-- Log in to the digital ocean droplet using:
-- ssh root@xxx.xxx.xxx.x (get your droplet IP Address from digital ocean)
-- If the ssh fails 3x, you'll be prompted for the password.
-- Enter UNIX Password for your Digital Ocean droplet (Go to Access menu if you need to reset)
-- Either clone down your production repo, or cd into the root directory
-- git pull origin master
-- npm install
-- webpack
-- cd server
-- ls to see if config exists, if not, create it as below
-- mkdir config
-- cd config
-- ls and look to see if the below files are already on the server, if not, add them as below
-- touch googleplus.js
-- touch googleplaces.js
-- touch mysqlsetup.js
+- Log in to the Digital Ocean droplet using: `ssh root@xxx.xxx.xxx.x` (get your droplet IP Address from Digital Ocean)
+- If the `ssh` fails three times, you'll be prompted for the password
+- Enter UNIX Password for your Digital Ocean droplet (go to Access menu if you need to reset)
+- Either clone down your production repo, or `cd` into the root directory
+- `git pull origin master`
+- `npm install`
+- `webpack`
+- `cd server`
+- `ls` to see if config exists, if not, create it as below
+- `mkdir config`
+- `cd config`
+- `ls` and look to see if the below files are already on the server, if not, add them as below
+- `touch googleplus.js`
+- `touch googleplaces.js`
+- `touch mysqlsetup.js`
 
-- vim googleplus.js (or open in whatever terminal editor you prefer)
+- `vim googleplus.js` (or open in whatever terminal editor you prefer)
 - Insert the following:
 ```
 module.exports = {
@@ -111,14 +114,14 @@ module.exports = {
 :wq
 ```
 
-- vim googleplaces.js
+- `vim googleplaces.js`
 - Insert the following:
 ```
 module.exports = 'your-googleplaces-api-key-goes-here';
 :wq
 ```
 
-- vim mysqlsetup.js
+- `vim mysqlsetup.js`
 - Insert the following:
 ```
 module.exports = 'your-serverside-mysql-password-goes-here';
@@ -127,8 +130,9 @@ module.exports = 'your-serverside-mysql-password-goes-here';
 
 ==============================
 
-- npm start
-- Go to xxx.xxx.xx.x:4568 to see your site live
+- `npm start`
+- Go to `xxx.xxx.xx.x:4568` to see your site live
+
 ### Roadmap
 
 View the project roadmap [here](https://github.com/HolisticParallelogram/holisticparallelogram/issues).
