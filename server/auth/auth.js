@@ -9,7 +9,7 @@ module.exports.checkAuth = function (req, res, next) {
     next();
   } else {
     req.session.error = 'Bad credentials.';
-    res.redirect('/auth/login');
+    res.redirect('/');
   }
 };
 
@@ -18,7 +18,7 @@ module.exports.handleGoogleLogin = passport.authenticate('google', {
 });
 
 module.exports.authenticateGoogleLogin = passport.authenticate('google', {
-  failureRedirect: '/auth/login'
+  failureRedirect: '/'
 });
 
 /*

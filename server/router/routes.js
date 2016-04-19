@@ -7,7 +7,7 @@ var renderIndex = require(__dirname + '/indexHandler');
 
 module.exports = function(app, express) {
   app.use(express.static(__dirname + '/../../client'));
-  app.get('/', renderIndex);
+  app.get('/home', renderIndex);
 
   app.get('/api/places', placeController.searchGoogle);
 
@@ -17,7 +17,7 @@ module.exports = function(app, express) {
 
   app.post('/api/users', userController.saveOne);
 
-  app.get('/auth/login', function(req, res) {
+  app.get('/', function(req, res) {
     res.sendFile(path.resolve(__dirname + '/../../client/login.html'));
   });
 
@@ -25,13 +25,13 @@ module.exports = function(app, express) {
 
   app.get('/auth/google/callback', auth.authenticateGoogleLogin,
     function(req, res) {
-      res.redirect('/');
+      res.redirect('/home');
     }
   );
 
   app.get('/auth/logout', function(req, res) {
     req.session.destroy(function() {
-      res.redirect('/auth/login');
+      res.redirect('/');
     });
   });
 };
