@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/holisticparallelogram/holisticparallelogram.git"
+    "url": "git+https://github.com/3vnt/holisticparallelogram.git"
   },
   "author": "See Contributors",
   "private": true,
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/holisticparallelogram/holisticparallelogram/issues"
+    "url": "https://github.com/3vnt/holisticparallelogram/issues"
   },
-  "homepage": "https://github.com/holisticparallelogram/holisticparallelogram#readme",
+  "homepage": "https://github.com/3vnt/holisticparallelogram#readme",
   "dependencies": {
     "babel-register": "^6.7.2",
     "bluebird": "1.0.8",
