@@ -54,7 +54,7 @@ const renderFullPage = function(html, initialState) {
         <script src="bundle.js"></script>
       </body>
     </html>
-    `
+    `;
 };
 
 export default renderFullPage;
