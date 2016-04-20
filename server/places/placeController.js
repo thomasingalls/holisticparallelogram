@@ -69,13 +69,13 @@ module.exports.deleteOne = function(req, res) {
   //   });
   // });
 
-  // Place.findOne({ 
-  //   where: {googlePlaceId: place.googlePlaceId} 
+  // Place.findOne({
+  //   where: {googlePlaceId: place.googlePlaceId}
   // })
   // .then(function(place) {
   //   // remove the association between the user and the place
   //   user.removePlace(place);
-  //     // TODO: For future, do a check: 
+  //     // TODO: For future, do a check:
   //     // if no users have a place with the same id as this one,
   //     // delete that place from the places table so that you don't end
   //     // up with lots of places that aren't associated with any users.
@@ -148,10 +148,10 @@ module.exports.searchGoogle = function(req, res) {
                 counter++;
                 if (counter === places.length) {
                   res.json(filteredBody);
-                } 
+                }
               }) //end of layer 3 on 'error'
           }
-          
+
         } else {
           res.json(filteredBody);
         }
@@ -161,5 +161,6 @@ module.exports.searchGoogle = function(req, res) {
       //TODO: handle error
     }); //end of layer 1 on 'error'
 };
+
 
 
