@@ -23,10 +23,10 @@ var Place = db.define('Place',
       type: Sequelize.STRING
     },
     longitude: {
-      type: Sequelize.INTEGER
+      type: Sequelize.FLOAT
     },
     latitude: {
-      type: Sequelize.INTEGER
+      type: Sequelize.FLOAT
     }
   },
   {
