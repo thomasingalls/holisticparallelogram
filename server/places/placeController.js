@@ -130,8 +130,8 @@ module.exports.searchGoogle = function(req, res) {
                           address: placeDetails['formatted_address'],
                           googlePlaceId: placeDetails['place_id'],
                           //include long/lat for flickr API
-                          longitude: //testing
-                          latitude: //testing
+                          latitude: placeDetails['geometry']['location']['lat'],
+                          longitude: placeDetails['geometry']['location']['lng']
                         });
                         break;
                       }
