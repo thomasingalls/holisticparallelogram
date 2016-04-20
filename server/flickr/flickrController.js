@@ -10,7 +10,7 @@ module.exports.searchFlickr = function(req, res) {
   var queryString = urlParser.parse(req.url).search;
   var queryCoord = urlParser.parse(req.url).coord;
   var method ='flickr.photos.search';
-  // https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e473927df4ee4e286fe09119cadfd471
+  // https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key
 
   request.get('https://api.flickr.com/services/rest/?method=' + method +'&text=' + queryString +  '&api_key=' + FLICKR_API_KEY.KEY)
 }
