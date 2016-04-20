@@ -128,7 +128,10 @@ module.exports.searchGoogle = function(req, res) {
                         filteredBody.places.push({
                           name: placeDetails.name,
                           address: placeDetails['formatted_address'],
-                          googlePlaceId: placeDetails['place_id']
+                          googlePlaceId: placeDetails['place_id'],
+                          //include long/lat for flickr API
+                          longitude: //testing
+                          latitude: //testing
                         });
                         break;
                       }
