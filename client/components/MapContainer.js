@@ -1,56 +1,47 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import PlaceEntry from './PlaceEntry';
+// import PlaceEntry from './PlaceEntry';
 import actions from '../actions/index.js';
 import $ from 'jquery';
 
-class PlaceContainer extends Component {
+class MapContainer extends Component {
   constructor(props) {
     super(props);
   }
 
+  initMap() {
+    var myLatLng = {lat: -25.363, lng: 131.044};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
+  }
+
+  test(){
+    console.log('1');
+  }
+
   render() {
     return (
-      <div>
-        <div className='col-2-12'></div>
-        <div id='loading-container' className='col-6-12'>
-          { this.props.places.map((place, i) => (
-            <div>
-              <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place } key={i}></PlaceEntry>
-            </div>
-          ))}
-        </div>
+      <div id="map">
+        1234
+        { this.test() }
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3MVzYGCrJC4D3-s0MO-fo761Q8Qj949k&callback=initMap">
+        </script>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    places: state.places
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSaveClick: (place, user) => {
-      $.ajax({
-        url: '/api/places/saved',
-        method: 'POST',
-        data: {user: user, place: place}
-      });
-      dispatch(actions.savePlace(place));
-    }
-  };
-};
-
-PlaceContainer.propTypes = {
-  places: PropTypes.array.isRequired,
-  onSaveClick: PropTypes.func.isRequired
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PlaceContainer);
+  // mapStateToProps,
+  // mapDispatchToProps
+)(MapContainer);
