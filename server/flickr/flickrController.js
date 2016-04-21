@@ -5,69 +5,46 @@ var FLICKR_API_KEY = require(__dirname + '/../config/flickr.js');
 var request = require('request');
 var urlParser = require('url');
 var Flickr = require('flickrapi');
+var rp = require('request-promise');
 
 //Flickr.authenticate(FLICKR_API_KEY,function(error, ))
 
-module.exports.searchFlickr = function(text, lon, lat, variable) {
-  console.log('search firing on -->', text);
-  //search coordinates or string
-  var queryString = text;
-  var lon = lon;
-  var lat = lat;
-  var radius = 1;
-  var accuracy = 11;
-  var method ='flickr.photos.search';
-  var sort = 'relevance';
-  //The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
-  return request.get('https://api.flickr.com/services/rest/?method=' + method +'&text=' + queryString + '&accuracy=' + accuracy +'&lat=' + lat + '&lon=' + lon + '&radius=' + radius + '&sort=' + sort + '&api_key=' + FLICKR_API_KEY.api_key +'&format=json&nojsoncallback=1')
-    .on('response', function(response) {
-      var body = [];
-      response.on('data', function(chunk){
-        body.push(chunk);
-      }).on('end', function() {
-        body = JSON.parse(Buffer.concat(body).toString());
-        return body.photos.photo;
-      });
-    });
-};
-
-module.exports.getPhotoUrl = function(photoID, size) {  //return image source
-  request.get('https;//api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=' + photoID + '&api_key=' + FLICKR_API_KEY.api_key)
-          .on('response', function(response) {
-            var body = [];
-            response.on('data', function(chunk) {
-              body.push(chunk);
-            }).on ('end', function() { //select the right image and return the data
-              //go through the entire list
-              //select the right size
-              return body.something[index].source;
-            })
-          })
-};
-
-module.exports.search = function(text, long, lat) {
-  console.log('firing');
-  Flickr.authenticate(FLICKR_API_KEY, function(error, flickr) {
-    if (error) {
-      console.log('authentication problem', err);
-      return;
-    }
-    console.log('authenticated yaya');
-    flickr.photos.search({
-      api_key: FLICKR_API_KEY.key,
-      text: text,
-      lon: long,
-      lat: lat,
-      accuracy: 11,
-      radius: 1,
-      sort: 'relevance',
-    }, function(err, data) {
-      if(err) {
-        console.log('query error', err);
-        return;
+var getPhotoUrl = function(photoID, size, storage, googlePlacesObj, res) {  //return image source
+  return rp.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=' + photoID
+      + '&api_key=' + FLICKR_API_KEY.api_key
+      + '&format=json&nojsoncallback=1'
+    )
+    .then(function(data){
+      var photoSizes = JSON.parse(data).sizes.size;
+      for (var i = 0; i < photoSizes.length; i++) {
+        if(photoSizes[i].label === size) {
+          googlePlacesObj.url = photoSizes[i].source;
+          storage.places.push(googlePlacesObj);
+          return true;
+        }
       }
-      console.log("THE BOOM BOOM DATA", data);
-      return data;
+    })
+};
+
+module.exports.search = function(googlePlacesObj, storage, res) {
+  //The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
+  return rp.get('https://api.flickr.com/services/rest/?method='+ 'flickr.photos.search'
+      + '&text=' + googlePlacesObj.name     //Flickr Search String
+      + '&accuracy=' + 11                   //Within City Area
+      + '&lat=' + googlePlacesObj.latitude  //Latitude
+      + '&lon=' + googlePlacesObj.longitude //Longtitude
+      + '&radius=' + 1                      //1km Range
+      + '&sort='+ 'relevance'               //Sorting by keywords, other choices (interesting)
+      + '&api_key=' + FLICKR_API_KEY.api_key //API KEY
+      + '&format=json&nojsoncallback=1'      //JSON SORTING
+    )
+    .then(function(data){
+      var photos = JSON.parse(data).photos.photo;
+      for (var i = 0; i < photos.length; i++) {
+        if(photos[i].id) {
+          return getPhotoUrl(photos[i].id, "Medium", storage, googlePlacesObj, res);
+        }
+      }
+      return false;
     });
-  });
 };
