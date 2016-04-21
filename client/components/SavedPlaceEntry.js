@@ -27,6 +27,7 @@ class SavedPlaceEntry extends Component {
   }
 
   handleDelete() {
+    console.log('hello');
     // this.props.actions.deleteTodo(this.props.todo.id)
   }
 
@@ -44,6 +45,8 @@ class SavedPlaceEntry extends Component {
           target='_blank'>Find on Google</a>
 
           <span className='place-entry-link-divider'>&middot;</span>
+          <a className='saved-place-entry-link' onClick={this.handleDelete.bind(this)}>Remove Saved Place</a>
+
         </div>
       </div>
     )
