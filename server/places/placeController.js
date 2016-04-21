@@ -108,10 +108,12 @@ module.exports.searchGoogle = function(req, res) {
 
   var responseBody = {};
   responseBody.places = [];
+  var cap = 15;
+  var entered = 0;
 
-  var counter = 0;
-
-  rp.get('https://maps.googleapis.com/maps/api/place/radarsearch/json' + searchString + '&key=' + GOOGLE_PLACES_API_KEY)
+  rp.get('https://maps.googleapis.com/maps/api/place/radarsearch/json' + searchString
+      + '&key=' + GOOGLE_PLACES_API_KEY
+    )
     .then(function(body){
       var data = JSON.parse(body);                   //parse the data
       if (data.results && data.results.length > 0) { //check that there is data
@@ -123,7 +125,10 @@ module.exports.searchGoogle = function(req, res) {
     })
     .then(function(places){
       for (var i = 0; i < places.length; i++) {
-        rp.get('https://maps.googleapis.com/maps/api/place/details/json?' + 'key=' + GOOGLE_PLACES_API_KEY + '&placeid=' + places[i].place_id)
+        rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
+            + 'key=' + GOOGLE_PLACES_API_KEY
+            + '&placeid=' + places[i].place_id
+          )
           .then(function(locationData){
             var formattedLocation = JSON.parse(locationData).result;
             var reviews = formattedLocation.reviews;
@@ -131,17 +136,19 @@ module.exports.searchGoogle = function(req, res) {
               for (var j = 0; j< reviews.length; j++) {
                 if (reviews[j].text.match(regex1) || reviews[j].text.match(regex2)) {
                   var placesObj = PlacesObj(formattedLocation);
-                  flickr.search(placesObj, responseBody, res);
+                  flickr.search(placesObj, responseBody, res)
+                    .then(function(data){
+                     if(data){
+                      entered++;
+                     }
+                     if (entered === cap) {
+                      res.json(responseBody);
+                     }
+                    });
                   break; //once review matches then end the full call
                 };
               };
             };
-            //counter++
-            // console.log(counter,'->',places.length);
-            // if (counter === places.length) {
-            //   console.log("the final res send", responseBody.places);
-            //   res.json(responseBody);
-            // };
           })
           .catch(function(err){
             console.log('google places review regexxing error', err);
