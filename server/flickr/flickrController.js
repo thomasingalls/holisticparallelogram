@@ -48,31 +48,3 @@ module.exports.search = function(googlePlacesObj, storage, res) {
       return false;
     });
 };
-
-
-module.exports.searchFail = function(text, long, lat) {
-  console.log('firing');
-  Flickr.authenticate(FLICKR_API_KEY, function(error, flickr) {
-    if (error) {
-      console.log('authentication problem', err);
-      return;
-    }
-    console.log('authenticated yaya');
-    flickr.photos.search({
-      api_key: FLICKR_API_KEY.key,
-      text: text,
-      lon: long,
-      lat: lat,
-      accuracy: 11,
-      radius: 1,
-      sort: 'relevance',
-    }, function(err, data) {
-      if(err) {
-        console.log('query error', err);
-        return;
-      }
-      console.log("THE BOOM BOOM DATA", data);
-      return data;
-    });
-  });
-};
