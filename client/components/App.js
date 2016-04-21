@@ -17,7 +17,7 @@ class App extends Component {
         <div className='grid'>
           <MapContainer/>
           <PlaceContainer/>
-          <SavedPlaceContainer actions={this.props.actions}/>
+          <SavedPlaceContainer actions={actions}/>
         </div>
       </div>
     );
