@@ -8,7 +8,7 @@ var Flickr = require('flickrapi');
 
 //Flickr.authenticate(FLICKR_API_KEY,function(error, ))
 
-module.exports.searchFlickr = function(text, lon, lat) {
+module.exports.searchFlickr = function(text, lon, lat, variable) {
   console.log('search firing on -->', text);
   //search coordinates or string
   var queryString = text;
@@ -19,14 +19,14 @@ module.exports.searchFlickr = function(text, lon, lat) {
   var method ='flickr.photos.search';
   var sort = 'relevance';
   //The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
-  return request.get('https://api.flickr.com/services/rest/?method=' + method +'&text=' + queryString + '&accuracy=' + accuracy +'&lat=' + lat + '&lon=' + lon + '&radius=' + radius + '&sort=' + sort + '&api_key=' + FLICKR_API_KEY.api_key)
+  return request.get('https://api.flickr.com/services/rest/?method=' + method +'&text=' + queryString + '&accuracy=' + accuracy +'&lat=' + lat + '&lon=' + lon + '&radius=' + radius + '&sort=' + sort + '&api_key=' + FLICKR_API_KEY.api_key +'&format=json&nojsoncallback=1')
     .on('response', function(response) {
       var body = [];
       response.on('data', function(chunk){
         body.push(chunk);
       }).on('end', function() {
-        body = Buffer.concat(body).toString();
-        console.log(body);
+        body = JSON.parse(Buffer.concat(body).toString());
+        return body.photos.photo;
       });
     });
 };

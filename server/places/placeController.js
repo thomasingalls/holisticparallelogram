@@ -126,7 +126,9 @@ module.exports.searchGoogle = function(req, res) {
                     for (var j = 0; j < reviews.length; j++) {
                       var review = reviews[j];
                       if (review.text.match(regex1) || review.text.match(regex2)) { //TODO: improve regex matching
+                          var photos;
                           flickr.searchFlickr(placeDetails.name, placeDetails['geometry']['location']['lng'], placeDetails['geometry']['location']['lat']);
+                          console.log('the photos', photos);
                         //   .then(function(photoID){
                         //     console.log("THIS IS THE ID OF THE PHOTO", photoID);
                         //     return flickr.getPhotoUrl(photoID);
