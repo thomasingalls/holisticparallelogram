@@ -11,6 +11,12 @@ export default function places (state = initialState, action) {
       }
     }
     return state.concat(action.place);
+  case types.DELETE_PLACE:
+    return Object.assign({}, state, {
+      places: state.filter((place) => { //not sure if this works
+        return place.googlePlaceId !== action.place.googlePlaceId;
+      })
+    })
   default:
     return state;
   }
