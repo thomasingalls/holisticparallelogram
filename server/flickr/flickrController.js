@@ -5,65 +5,52 @@ var FLICKR_API_KEY = require(__dirname + '/../config/flickr.js');
 var request = require('request');
 var urlParser = require('url');
 var Flickr = require('flickrapi');
+var rp = require('request-promise');
 
 //Flickr.authenticate(FLICKR_API_KEY,function(error, ))
 
-var getPhotoUrl = function(photoID, size, storage) {  //return image source
-  request.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=' + photoID + '&api_key=' + FLICKR_API_KEY.api_key + '&format=json&nojsoncallback=1')
-    .on('response', function(response) {
-      var body = [];
-      response.on('data', function(chunk) {
-        body.push(chunk);
-      })
-      .on ('end', function() { //select the right image and return the data
-        body = JSON.parse(Buffer.concat(body).toString());
-        var sizes = body.sizes.size;
-        for (var i = 0; i < sizes.length; i++) {
-          if(sizes[i].label === size) {
-            console.log(sizes[i].source);
-            break;
-          };
+var getPhotoUrl = function(photoID, size, storage, googlePlacesObj, res) {  //return image source
+  return rp.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=' + photoID
+      + '&api_key=' + FLICKR_API_KEY.api_key
+      + '&format=json&nojsoncallback=1'
+    )
+    .then(function(data){
+      var photoSizes = JSON.parse(data).sizes.size;
+      for (var i = 0; i < photoSizes.length; i++) {
+        if(photoSizes[i].label === size) {
+          googlePlacesObj.url = photoSizes[i].source;
+          storage.places.push(googlePlacesObj);
+          return true;
         }
-      });
+      }
     })
 };
 
-module.exports.searchFlickr = function(text, lon, lat, variable, storage) {
-  console.log('search firing on -->', text);
-  //search coordinates or string
-  var queryString = text;
-  var lon = lon;
-  var lat = lat;
-  var radius = 1;
-  var accuracy = 11;
-  var method ='flickr.photos.search';
-  var sort = 'relevance';
+module.exports.search = function(googlePlacesObj, storage, res) {
   //The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
-  request.get('https://api.flickr.com/services/rest/?method='
-    + method +'&text=' + queryString + '&accuracy=' + accuracy
-    +'&lat=' + lat + '&lon=' + lon + '&radius=' + radius + '&sort='
-    + sort + '&api_key=' + FLICKR_API_KEY.api_key
-    +'&format=json&nojsoncallback=1')
-    .on('response', function(response) {
-      var body = [];
-      response.on('data', function(chunk){
-        body.push(chunk);
-      })
-      .on('end', function() {
-        body = JSON.parse(Buffer.concat(body).toString());
-        var photos = body.photos.photo;
-        for (var i = 0; i < photos.length; i++) {
-          if (photos[i].id) {
-            getPhotoUrl(photos[i].id, "Medium", storage);
-            break;
-          }
+  return rp.get('https://api.flickr.com/services/rest/?method='+ 'flickr.photos.search'
+      + '&text=' + googlePlacesObj.name     //Flickr Search String
+      + '&accuracy=' + 11                   //Within City Area
+      + '&lat=' + googlePlacesObj.latitude  //Latitude
+      + '&lon=' + googlePlacesObj.longitude //Longtitude
+      + '&radius=' + 1                      //1km Range
+      + '&sort='+ 'relevance'               //Sorting by keywords, other choices (interesting)
+      + '&api_key=' + FLICKR_API_KEY.api_key //API KEY
+      + '&format=json&nojsoncallback=1'      //JSON SORTING
+    )
+    .then(function(data){
+      var photos = JSON.parse(data).photos.photo;
+      for (var i = 0; i < photos.length; i++) {
+        if(photos[i].id) {
+          return getPhotoUrl(photos[i].id, "Medium", storage, googlePlacesObj, res);
         }
-      });
+      }
+      return false;
     });
 };
 
 
-module.exports.search = function(text, long, lat) {
+module.exports.searchFail = function(text, long, lat) {
   console.log('firing');
   Flickr.authenticate(FLICKR_API_KEY, function(error, flickr) {
     if (error) {
