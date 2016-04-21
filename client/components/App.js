@@ -14,6 +14,7 @@ class App extends Component {
       <div>
         <Header/>
         <div className='grid'>
+          <MapContainer/>
           <PlaceContainer/>
           <SavedPlaceContainer/>
         </div>
