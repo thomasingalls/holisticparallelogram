@@ -8,7 +8,27 @@ var Flickr = require('flickrapi');
 
 //Flickr.authenticate(FLICKR_API_KEY,function(error, ))
 
-module.exports.searchFlickr = function(text, lon, lat, variable) {
+var getPhotoUrl = function(photoID, size, storage) {  //return image source
+  request.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=' + photoID + '&api_key=' + FLICKR_API_KEY.api_key + '&format=json&nojsoncallback=1')
+    .on('response', function(response) {
+      var body = [];
+      response.on('data', function(chunk) {
+        body.push(chunk);
+      })
+      .on ('end', function() { //select the right image and return the data
+        body = JSON.parse(Buffer.concat(body).toString());
+        var sizes = body.sizes.size;
+        for (var i = 0; i < sizes.length; i++) {
+          if(sizes[i].label === size) {
+            console.log(sizes[i].source);
+            break;
+          };
+        }
+      });
+    })
+};
+
+module.exports.searchFlickr = function(text, lon, lat, variable, storage) {
   console.log('search firing on -->', text);
   //search coordinates or string
   var queryString = text;
@@ -19,31 +39,29 @@ module.exports.searchFlickr = function(text, lon, lat, variable) {
   var method ='flickr.photos.search';
   var sort = 'relevance';
   //The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
-  return request.get('https://api.flickr.com/services/rest/?method=' + method +'&text=' + queryString + '&accuracy=' + accuracy +'&lat=' + lat + '&lon=' + lon + '&radius=' + radius + '&sort=' + sort + '&api_key=' + FLICKR_API_KEY.api_key +'&format=json&nojsoncallback=1')
+  request.get('https://api.flickr.com/services/rest/?method='
+    + method +'&text=' + queryString + '&accuracy=' + accuracy
+    +'&lat=' + lat + '&lon=' + lon + '&radius=' + radius + '&sort='
+    + sort + '&api_key=' + FLICKR_API_KEY.api_key
+    +'&format=json&nojsoncallback=1')
     .on('response', function(response) {
       var body = [];
       response.on('data', function(chunk){
         body.push(chunk);
-      }).on('end', function() {
+      })
+      .on('end', function() {
         body = JSON.parse(Buffer.concat(body).toString());
-        return body.photos.photo;
+        var photos = body.photos.photo;
+        for (var i = 0; i < photos.length; i++) {
+          if (photos[i].id) {
+            getPhotoUrl(photos[i].id, "Medium", storage);
+            break;
+          }
+        }
       });
     });
 };
 
-module.exports.getPhotoUrl = function(photoID, size) {  //return image source
-  request.get('https;//api.flickr.com/services/rest/?method=flickr.photos.getSizes&photo_id=' + photoID + '&api_key=' + FLICKR_API_KEY.api_key)
-          .on('response', function(response) {
-            var body = [];
-            response.on('data', function(chunk) {
-              body.push(chunk);
-            }).on ('end', function() { //select the right image and return the data
-              //go through the entire list
-              //select the right size
-              return body.something[index].source;
-            })
-          })
-};
 
 module.exports.search = function(text, long, lat) {
   console.log('firing');
