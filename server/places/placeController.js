@@ -133,7 +133,7 @@ module.exports.searchGoogle = function(req, res) {
             var formattedLocation = JSON.parse(locationData).result;
             var reviews = formattedLocation.reviews;
             if (reviews) {
-              for (var j = 0; j< reviews.length; j++) {
+              for (var j = 0; j < reviews.length; j++) {
                 if (reviews[j].text.match(regex1) || reviews[j].text.match(regex2)) {
                   var placesObj = PlacesObj(formattedLocation);
                   flickr.search(placesObj, responseBody, res)
