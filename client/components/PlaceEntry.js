@@ -14,12 +14,13 @@ class PlaceEntry extends Component {
     this.setState({class: 'permahover'});
   }
 
-  handlePassCoordinateToMap() {
-    console.log(this.props);
+  handleSaveCoordinate() {
+    // console.log(this.props);
     var coord = {
       lat: this.props.place.latitude,
       lng: this.props.place.longitude
-    }
+    };
+    this.props.dispatch(this.props.actions.saveCoordinate(coord));
   }
 
   render() {
@@ -38,7 +39,7 @@ class PlaceEntry extends Component {
               target='_blank'>Find on Google</a>
               <span className='place-entry-link-divider'>&middot;</span>
 
-              <a className='place-entry-link' onClick={this.handlePassCoordinateToMap.bind(this)}>Show on Map</a>
+              <a className='place-entry-link' onClick={this.handleSaveCoordinate.bind(this)}>Show on Map</a>
             </div>
         </div>
         <div className='place-entry-favorite'>

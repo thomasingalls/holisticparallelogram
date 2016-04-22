@@ -12,6 +12,10 @@ module.exports = {
 
   deletePlace: function(placeId) {
     return { type: types.DELETE_PLACE, placeId };
+  },
+
+  saveCoordinate: function(coord) {
+    return { type: types.SAVE_COORDINATE, coord};
   }
 
 };

@@ -17,7 +17,7 @@ class PlaceContainer extends Component {
         <div id='loading-container' className='col-6-12'>
           { this.props.places.map((place, i) => (
             <div>
-              <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place } key={i}></PlaceEntry>
+              <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place } key={i} actions={actions}></PlaceEntry>
             </div>
           ))}
         </div>
