@@ -35,14 +35,19 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSaveClick: (place, user) => {
-      // console.log('Place', place);
-      // console.log('User' ,user);
       $.ajax({
         url: '/api/places/saved',
         method: 'POST',
         data: {user: user, place: place}
       });
-      dispatch(actions.savePlace(place));
+
+      var packaged = place;
+      packaged['UserPlace'] = {
+        PlaceId: place.googlePlaceId,
+        UserId: user.googleUserId,
+      }
+      dispatch(actions.savePlace(packaged));
+
     }
   };
 };

@@ -34,7 +34,9 @@ module.exports = function(req, res) {
     const initialState = store.getState();
 
     // Send the rendered page back to the client as a String
+    console.log('the data getting sent back')
     res.send(renderFullPage(html, initialState));
+
 
   };
 
@@ -53,6 +55,7 @@ module.exports = function(req, res) {
         return foundUser.getPlaces();
       })
       .then(function(foundPlaces) {
+        console.log('FOUND IT BRAH', foundPlaces);
         savedPlaces = foundPlaces;
         sendInitialState();
       });

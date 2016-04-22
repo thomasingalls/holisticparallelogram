@@ -33,6 +33,7 @@ var PlacesObj = function(googlePlacesData) {
 //   });
 // };
 
+
 module.exports.saveOne = function(req, res) {
   var user = req.body.user;
   var place = req.body.place;
@@ -42,12 +43,20 @@ module.exports.saveOne = function(req, res) {
   })
   .then(function(foundUser) {
     Place.findOrCreate({where: place})
-    .spread(function(foundOrCreatedPlace) {
-      foundUser.addPlace(foundOrCreatedPlace)
-      .then(function() {
-        res.json(foundOrCreatedPlace);
-      });
-    });
+      .spread(function(foundOrCreatedPlace) {
+         foundUser.addPlace(foundOrCreatedPlace)
+          .then(function(){
+            return foundUser.getPlaces();
+          })
+          .then(function(foundPlace){
+            console.log('foundplace', foundPlace);
+            res.json(foundPlace);
+          })
+      // .then(function() {a
+      //   console.log('this is running', foundOrCreatedPlace);
+      //   res.json(foundOrCreatedPlace);
+      // });
+     });
   });
 };
 
