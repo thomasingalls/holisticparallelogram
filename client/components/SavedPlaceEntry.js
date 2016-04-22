@@ -42,4 +42,5 @@ class SavedPlaceEntry extends Component {
 
 }
 
+
 export default SavedPlaceEntry;
