@@ -19,15 +19,18 @@ var PlacesObj = function(googlePlacesData) {
 }
 
 module.exports.getAllSaved = function(req, res) {
+  console.log('getAllSaved')
   var user = req.body.user;
 
   User.findOne({
     where: user
   })
   .then(function(foundUser) {
+    console.log('really not working?');
     return foundUser.getPlaces();
   })
   .then(function(foundPlaces) {
+    console.log('getALL SAVED CALL ___', foundPlaces);
     res.json(foundPlaces);
   });
 };
@@ -41,12 +44,20 @@ module.exports.saveOne = function(req, res) {
   })
   .then(function(foundUser) {
     Place.findOrCreate({where: place})
-    .spread(function(foundOrCreatedPlace) {
-      foundUser.addPlace(foundOrCreatedPlace)
-      .then(function() {
-        res.json(foundOrCreatedPlace);
-      });
-    });
+      .spread(function(foundOrCreatedPlace) {
+         foundUser.addPlace(foundOrCreatedPlace)
+          .then(function(){
+            return foundUser.getPlaces();
+          })
+          .then(function(foundPlace){
+            console.log('foundplace', foundPlace);
+            res.json(foundPlace);
+          })
+      // .then(function() {a
+      //   console.log('this is running', foundOrCreatedPlace);
+      //   res.json(foundOrCreatedPlace);
+      // });
+     });
   });
 };
 
