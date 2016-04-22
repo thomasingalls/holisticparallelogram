@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import actions from '../actions/index.js';
 
 import Header from './Header';
-import MapContainer from './MapContainer';
 import PlaceContainer from './PlaceContainer';
 import SavedPlaceContainer from './SavedPlaceContainer';
 import searchGooglePlaces from '../utils/searchGooglePlaces.js';
@@ -15,7 +14,6 @@ class App extends Component {
       <div>
         <Header/>
         <div className='grid'>
-          <MapContainer/>
           <PlaceContainer/>
           <SavedPlaceContainer actions={actions} dispatch={this.props.dispatch}/>
         </div>
