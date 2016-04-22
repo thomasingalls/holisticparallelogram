@@ -17,11 +17,15 @@ class App extends Component {
         <div className='grid'>
           <MapContainer/>
           <PlaceContainer/>
-          <SavedPlaceContainer actions={actions} />
+          <SavedPlaceContainer actions={actions} dispatch={this.props.dispatch}/>
         </div>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps)(App);
