@@ -30,8 +30,8 @@ class SavedPlaceEntry extends Component {
     var clickedId = this.props.savedPlace.googlePlaceId;
     // console.log(clickedId);
     // console.log('Props in handleDelete: ', this.props);
-    this.props.actions.deletePlace(clickedId);
-    
+    // this.props.actions.deletePlace(clickedId);
+    this.props.dispatch(this.props.actions.deletePlace(clickedId));
   }
 
   render() {
