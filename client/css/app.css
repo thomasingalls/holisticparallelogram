@@ -194,15 +194,43 @@ button:focus {
   justify-content: center;
 }
 
-.icon-heart {
+/*.icon-heart {
   align-self: center;
-  color: black;
-  font-size: 1.8em;
-  color: rgba(0,0,0,0.45);
+  width: 20px;
+  height:20px;
+  background-image: url('http://www.psdgraphics.com/file/heart-shape-icon.jpg');
 }
 
 .icon-heart:hover {
-  color: #FF5A3B;
+  width:20px;
+  height:20px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Disc_Plain_red.svg/2000px-Disc_Plain_red.svg.png');
+}
+*/
+svg#heart {
+  align-self:center;
+  height: 50px;
+  width: 50px;
+}
+
+#heart-path {
+  fill: pink;
+  stroke: black;
+  stroke-width: 1px;
+  stroke-dasharray: 125;
+  stroke-dashoffset: -125;
+  stroke-linecap: butt;
+  -webkit-transition: all 2s ease-out;
+  -moz-transition: all 2s ease-out;
+  -ms-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+}
+
+#heart-path:hover {
+  fill: red;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 125;
 }
 
 #spinner {
