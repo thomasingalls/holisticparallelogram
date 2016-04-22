@@ -4,11 +4,8 @@ import $ from 'jquery';
 class SavedPlaceEntry extends Component {
 
   handleDelete() {
-    console.log(this.props.savedPlace.UserPlace);
     var clickedId = this.props.savedPlace.googlePlaceId;
-    console.log('savedPlace: ', this.props.savedPlace);
     var userId = this.props.savedPlace.UserPlace.UserId;
-    console.log('userId: ', userId);
     var placeId = this.props.savedPlace.UserPlace.PlaceId;
 
     // console.log(clickedId);

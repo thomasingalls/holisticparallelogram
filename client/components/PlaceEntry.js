@@ -14,6 +14,14 @@ class PlaceEntry extends Component {
     this.setState({class: 'permahover'});
   }
 
+  handlePassCoordinateToMap() {
+    console.log(this.props);
+    var coord = {
+      lat: this.props.place.latitude,
+      lng: this.props.place.longitude
+    }
+  }
+
   render() {
     return (
       <div className='place-entry animated fadeInUp'>
@@ -25,8 +33,12 @@ class PlaceEntry extends Component {
               <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
               target='_blank'>More Views</a>
               <span className='place-entry-link-divider'>&middot;</span>
+
               <a className='place-entry-link' href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
               target='_blank'>Find on Google</a>
+              <span className='place-entry-link-divider'>&middot;</span>
+
+              <a className='place-entry-link' onClick={this.handlePassCoordinateToMap.bind(this)}>Show on Map</a>
             </div>
         </div>
         <div className='place-entry-favorite'>
