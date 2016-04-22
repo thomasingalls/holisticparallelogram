@@ -12,7 +12,6 @@ class PlaceEntry extends Component {
     e.preventDefault;
     this.props.onSaveClick(this.props.place, this.props.user);
     this.setState({class: 'permahover'});
-    console.log(this.state.class);
   }
 
   render() {
