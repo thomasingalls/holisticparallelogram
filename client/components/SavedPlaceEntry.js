@@ -9,7 +9,7 @@ class SavedPlaceEntry extends Component {
     var placeId = this.props.savedPlace.UserPlace.PlaceId;
 
     // console.log(clickedId);
-    // console.log('Props in handleDelete: ', this.props);
+    console.log('Props in handleDelete: ', this.props);
     this.props.dispatch(this.props.actions.deletePlace(clickedId));
     $.ajax({
       url: '/api/places/saved',

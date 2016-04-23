@@ -7,18 +7,32 @@ class MapContainer extends Component {
   }
 
   handleFetchCoordinate() {
-    console.log(this.props);
+    // console.log('Map props: ', this.props);
     this.props.dispatch(this.props.actions.fetchCoordinate());
+    var coord = this.props.coordinate[0];
+    console.log('COORD: ', coord);
   }
 
   render() {
     return (
       <div>
-        {this.handleFetchCoordinate.bind(this)}
+        { this.handleFetchCoordinate() }
         MapContainer
       </div>
     );
   }
 }
 
-export default MapContainer;
+const mapStateToProps = (state) => {
+  return {
+    coordinate: state.coordinate
+  };
+};
+
+MapContainer.propTypes = {
+  coordinate: PropTypes.array,
+};
+
+export default connect(
+  mapStateToProps
+)(MapContainer);

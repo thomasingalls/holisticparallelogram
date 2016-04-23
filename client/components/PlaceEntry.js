@@ -54,7 +54,10 @@ class PlaceEntry extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {user: state.user};
+  return {
+    user: state.user,
+    coordinate: state.coordinate
+  };
 };
 
 export default connect(mapStateToProps)(PlaceEntry);
