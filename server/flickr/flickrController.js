@@ -40,7 +40,7 @@ module.exports.search = function(googlePlacesObj, storage, res) {
       + '&sort='+ 'relevance'               //Sorting by keywords, other choices (interesting)
       + '&geo_context' + 2
       + '&api_key=' + FLICKR_API_KEY.api_key //API KEY
-      + '&per_page=' + 5
+      + '&per_page=' + 1
       + '&format=json&nojsoncallback=1'      //JSON SORTING
     )
     .then(function(data){

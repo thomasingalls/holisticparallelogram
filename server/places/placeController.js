@@ -4,6 +4,7 @@ var User = require(__dirname + '/../users/userModel.js');
 var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
 var request = require('request');
 var urlParser = require('url');
+var async = require('async');
 var flickr = require(__dirname +'/../flickr/flickrController.js');
 var rp = require('request-promise'); //refactor into promise
 
@@ -39,10 +40,7 @@ module.exports.saveOne = function(req, res) {
             console.log('foundplace', foundPlace);
             res.json(foundPlace);
           })
-      // .then(function() {a
-      //   console.log('this is running', foundOrCreatedPlace);
-      //   res.json(foundOrCreatedPlace);
-      // });
+
      });
   });
 };
@@ -63,47 +61,6 @@ module.exports.deleteOne = function(req, res) {
       }
     })
   });
-  // User.findOne({
-  //   where: userId
-  // })
-  // .then(function(foundUserId) {
-  //   console.log(foundUserId);
-  //   res.json(foundUserId);
-  //   // Place.findOne({
-  //   //   where: place
-  //   // })
-  //   // .then(function(foundPlace) {
-  //   //   res.json(foundPlace);
-  //   // });
-  //   // res.json(user);
-
-  // });
-
-  // User.findOne({
-  //   where: user
-  // })
-  // .then(function(foundUser) {
-  //   Place.findOne({where: place})
-  //   .then(function(foundPlace) {
-  //     // foundUser.removePlace(foundPlace)
-  //     // .then(function() {
-  //       res.json(foundPlace);
-  //     // });
-  //   });
-  // });
-
-  // Place.findOne({
-  //   where: {googlePlaceId: place.googlePlaceId}
-  // })
-  // .then(function(place) {
-  //   // remove the association between the user and the place
-  //   user.removePlace(place);
-  //     // TODO: For future, do a check:
-  //     // if no users have a place with the same id as this one,
-  //     // delete that place from the places table so that you don't end
-  //     // up with lots of places that aren't associated with any users.
-  //     // This will only matter if this app goes global!
-  // });
 };
 
 
@@ -114,19 +71,22 @@ module.exports.deleteOne = function(req, res) {
 module.exports.searchGoogle = function(req, res) {
 
   var searchString = urlParser.parse(req.url).search; //include leading question mark
-  var regex1 = new RegExp(/(good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking|scenic|panoramic|stunning) view/);
-  var regex2 = new RegExp(/view (is|was) (good|great|awesome|fantastic|terrific|nice|cool|wonderful|dope|beautiful|amazing|gorgeous|breathtaking|scenic|panoramic|stunning)/);
 
   var responseBody = {};
   responseBody.places = [];
   var cap = 15;
   var entered = 0;
 
-  rp.get('https://maps.googleapis.com/maps/api/place/radarsearch/json' + searchString
+  rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+      + '&location=' + '37.7836970,-122.4089660'
+      + '&radius=' +  10000
+      + '&keyword=' +'scenery'
       + '&key=' + GOOGLE_PLACES_API_KEY
+      + '&types=' + 'park|bar|restaurant'
     )
     .then(function(body){
       var data = JSON.parse(body);                   //parse the data
+      console.log('this is the refined data', data.results.length);
       if (data.results && data.results.length > 0) { //check that there is data
         return data.results;
       }
@@ -135,39 +95,53 @@ module.exports.searchGoogle = function(req, res) {
       console.log('google places API call failure', err);
     })
     .then(function(places){
-      for (var i = 0; i < places.length; i++) {
+      async.map(places, function(place) {
         rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
-            + 'key=' + GOOGLE_PLACES_API_KEY
-            + '&placeid=' + places[i].place_id
-          )
-          .then(function(locationData){
-            var formattedLocation = JSON.parse(locationData).result;
-            var reviews = formattedLocation.reviews;
-            console.log(formattedLocation.rating, 'this is formattedLocation.rating----------------');
-            if (reviews) {
-              for (var j = 0; j < reviews.length; j++) {
-                if (reviews[j].text.match(regex1) || reviews[j].text.match(regex2)) {
-                  //console.log(reviews[j], 'this is a matching review-----------------');
-                  var placesObj = PlacesObj(formattedLocation);
-                  flickr.search(placesObj, responseBody, res)
-                    .then(function(data){
-                     if(data){
-                      entered++;
-                     }
-                     if (entered === cap) {
-                      res.json(responseBody);
-                     }
-                    });
-                  break; //once review matches then end the full call
-                };
-              };
-            };
-          })
-          .catch(function(err){
-            console.log('google places review regexxing error', err);
-          });
-        //} end of API call
-      }
+                + 'key=' + GOOGLE_PLACES_API_KEY
+                + '&placeid=' + place.place_id
+              )
+              .then(function(locationData){
+                var formattedLocation = JSON.parse(locationData).result;
+                var placesObj = PlacesObj(formattedLocation);
+                flickr.search(placesObj, responseBody, res)
+                  .then(function(data){
+                   if(data){
+                    entered++;
+                   }
+                   if (entered === cap) {
+                    res.json(responseBody);
+                   } else if (entered === places.length) {
+                    res.json(responseBody);
+                   }
+                  });
+              })
+        })
+      // for (var i = 0; i < places.length; i++) {
+      //   rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
+      //       + 'key=' + GOOGLE_PLACES_API_KEY
+      //       + '&placeid=' + places[i].place_id
+      //     )
+      //     .then(function(locationData){
+      //       var formattedLocation = JSON.parse(locationData).result;
+      //       var placesObj = PlacesObj(formattedLocation);
+      //       flickr.search(placesObj, responseBody, res)
+      //         .then(function(data){
+      //          if(data){
+      //           entered++;
+      //          }
+      //          if (entered === cap) {
+      //           res.json(responseBody);
+      //          } else if (entered === places.length) {
+      //           res.json(responseBody);
+      //          }
+      //         });
+
+      //     })
+      //     .catch(function(err){
+      //       console.log('google places review regexxing error', err);
+      //     });
+      //   //} end of API call
+      // }
     });
 };
 
