@@ -18,21 +18,6 @@ var PlacesObj = function(googlePlacesData) {
   }
 }
 
-/* Unused right now: see indexHandler.js for getting all saved places */
-// module.exports.getAllSaved = function(req, res) {
-//   var user = req.body.user;
-
-//   User.findOne({
-//     where: user
-//   })
-//   .then(function(foundUser) {
-//     return foundUser.getPlaces();
-//   })
-//   .then(function(foundPlaces) {
-//     res.json(foundPlaces);
-//   });
-// };
-
 
 module.exports.saveOne = function(req, res) {
   var user = req.body.user;

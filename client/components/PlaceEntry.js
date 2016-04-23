@@ -11,7 +11,7 @@ class PlaceEntry extends Component {
   handleClick(e) {
     e.preventDefault;
     this.props.onSaveClick(this.props.place, this.props.user);
-    this.setState({class: 'permahover'});
+    this.setState({class: 'heart-clicked'});
   }
 
   handleSaveCoordinate() {
@@ -21,12 +21,13 @@ class PlaceEntry extends Component {
       lng: this.props.place.longitude
     };
     this.props.dispatch(this.props.actions.saveCoordinate(coord));
+
   }
 
   render() {
     return (
       <div className='place-entry animated fadeInUp'>
-        <img className='place-entry-image' src={this.props.place.url} alt="Smiley face" />
+        <img className='place-entry-image' src={this.props.place.url} />
         <div className='place-info' >
             <h4>{ this.props.place.name }</h4>
             <p>{ this.props.place.address }</p>

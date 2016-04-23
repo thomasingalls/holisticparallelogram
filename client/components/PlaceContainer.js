@@ -8,7 +8,26 @@ import $ from 'jquery';
 class PlaceContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {id:'loading-container'};
   }
+
+  // componentDidMount() {
+  //   window.addEventListener('scroll', this.handleScroll.bind(this));
+  // }
+
+  // componentWillUnmount() {
+  //   window.removeEventListener('scroll', this.handleScroll.bind(this));
+  // }
+
+  // handleScroll(event) {
+  //   let scrollTop = event.srcElement.body.scrollTop;
+  //   if (scrollTop > 280) {
+  //     event.preventDefault();
+  //     this.setState({id: 'loading-container'});
+  //   } else {
+  //     this.setState({id: 'loading-container'});
+  //   }
+  // }
 
   render() {
     return (
@@ -24,6 +43,7 @@ class PlaceContainer extends Component {
       </div>
     );
   }
+
 }
 
 const mapStateToProps = (state) => {

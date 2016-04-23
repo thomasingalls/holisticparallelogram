@@ -21,6 +21,7 @@ class SavedPlaceEntry extends Component {
   render() {
     return (
       <div className='saved-place-entry animated fadeIn'>
+      <img className='saved-place-image' src={this.props.savedPlace.url} />
         <p className='saved-place-name'>{ this.props.savedPlace.name }</p>
         <p className='saved-place-address'>{ this.props.savedPlace.address }</p>
         <div>
@@ -32,7 +33,7 @@ class SavedPlaceEntry extends Component {
           target='_blank'>Find on Google</a>
 
           <span className='place-entry-link-divider'>&middot;</span>
-          <a className='saved-place-entry-link' onClick={this.handleDelete.bind(this)}>Remove Saved Place</a>
+          <a className='saved-place-entry-link' onClick={this.handleDelete.bind(this)}>Remove</a>
 
         </div>
       </div>
