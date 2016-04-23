@@ -53,20 +53,20 @@ class PlaceContainer extends Component {
   //      ];
   // }
 
-  getCurrCoord() {
-    var currCoord = {
+  getUserCoord() {
+    var userCoord = {
       latitude: 60,
       longitude: -122.409039
     };
 
     navigator.geolocation.getCurrentPosition(
       function(position) {
-        currCoord = {
+        userCoord = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         };
-        console.log('Curr coord in callback: ', currCoord);
-        return currCoord;
+        console.log('User coord in callback: ', userCoord);
+        return userCoord;
       }, 
       function(error) {
         console.error(error);
@@ -74,25 +74,24 @@ class PlaceContainer extends Component {
       }, 
       {timeout:10000}
     );
-    console.log('Curr coord in getCurrCoord: ', currCoord);
-    // return currCoord;
+    console.log('User coord in getUserCoord: ', userCoord);
+    // return userCoord;
 
   }
 
   sortPlacesBy(attribute) {
-
     if (attribute === 'rating') {
       this.props.places.sort(function(a, b) {
         return b[attribute] - a[attribute];
       });
     } else if (attribute === 'distance') {
       // Add a new distance property to the places array and sort by distance
-      var currCoord = this.getCurrCoord();
-      console.log('Curr coord in sortPlacesBy: ', currCoord);
+      var userCoord = this.getUserCoord();
+      console.log('User coord in sortPlacesBy: ', userCoord);
 
       this.props.places.forEach(function(value) {
-        var deltaLongitude = value.longitude - currCoord.longitude;
-        var deltaLatitute = value.latitude - currCoord.latitude;
+        var deltaLongitude = value.longitude - userCoord.longitude;
+        var deltaLatitute = value.latitude - userCoord.latitude;
 
         value.distance = Math.sqrt( Math.pow(deltaLongitude, 2) + Math.pow(deltaLatitute, 2) );
       });
