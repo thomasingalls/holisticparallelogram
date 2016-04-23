@@ -67,6 +67,7 @@ const mapDispatchToProps = (dispatch) => {
         // Remove loading spinner and text now that places have been returned
         $('#spinner').fadeOut();
         $('#spin-gif').fadeOut();
+        console.log('SGP DATA: ', data);
         dispatch(actions.updatePlaces(data.places));
       });
     }
