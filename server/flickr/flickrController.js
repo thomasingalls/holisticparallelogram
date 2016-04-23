@@ -31,13 +31,16 @@ var getPhotoUrl = function(photoID, size, storage, googlePlacesObj, res) {  //re
 module.exports.search = function(googlePlacesObj, storage, res) {
   //The possible values are: date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance.
   return rp.get('https://api.flickr.com/services/rest/?method='+ 'flickr.photos.search'
-      + '&text=' + googlePlacesObj.name     //Flickr Search String
+      + '&text=' + googlePlacesObj.name +' view' + ' -blackandwhite'    //Flickr Search String
       + '&accuracy=' + 11                   //Within City Area
       + '&lat=' + googlePlacesObj.latitude  //Latitude
       + '&lon=' + googlePlacesObj.longitude //Longtitude
+      + '&tags=' + '-food,-blackandwhite,cityscape,skyline,shore,water,view,views,sunset,seaside'
       + '&radius=' + 1                      //1km Range
       + '&sort='+ 'relevance'               //Sorting by keywords, other choices (interesting)
+      + '&geo_context' + 2
       + '&api_key=' + FLICKR_API_KEY.api_key //API KEY
+      + '&per_page=' + 5
       + '&format=json&nojsoncallback=1'      //JSON SORTING
     )
     .then(function(data){
