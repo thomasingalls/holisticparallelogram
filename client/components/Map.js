@@ -42,8 +42,8 @@ class Map extends Component {
               return (
                 <Marker
                     position= {{
-                      lat: marker.lat,
-                      lng: marker.lng
+                      lat: marker.latitude,
+                      lng: marker.longitude
                     }}
                     key={marker.name}
                     defaultAnimation={2}
