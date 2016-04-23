@@ -6,9 +6,17 @@ class MapContainer extends Component {
     super(props);
   }
 
+  handleFetchCoordinate() {
+    console.log(this.props);
+    this.props.dispatch(this.props.actions.fetchCoordinate());
+  }
+
   render() {
     return (
-      <div>MapContainer</div>
+      <div>
+        {this.handleFetchCoordinate.bind(this)}
+        MapContainer
+      </div>
     );
   }
 }

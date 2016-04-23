@@ -16,7 +16,7 @@ class App extends Component {
         <Header/>
         <div className='grid'>
           <PlaceContainer actions={actions}/>
-          <MapContainer/>
+          <MapContainer actions={actions} dispatch={this.props.dispatch}/>
           <SavedPlaceContainer actions={actions} dispatch={this.props.dispatch}/>
         </div>
       </div>

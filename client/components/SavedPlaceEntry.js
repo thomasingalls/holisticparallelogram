@@ -19,7 +19,6 @@ class SavedPlaceEntry extends Component {
   }
 
   render() {
-    console.log('firing on', this.props.savedPlace.name);
     return (
       <div className='saved-place-entry animated fadeIn'>
         <p className='saved-place-name'>{ this.props.savedPlace.name }</p>
