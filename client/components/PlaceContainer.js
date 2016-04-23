@@ -62,16 +62,15 @@ class PlaceContainer extends Component {
     } else if (attribute === 'distance') {
       // Add a new distance property to the places array and sort by distance
       var currCoord = {
-        lat: 37.783753,
-        lng: -122.409039
+        latitude: 37.783753,
+        longitude: -122.409039
       };
 
       this.props.places.forEach(function(value) {
-        var deltaLng = value.lng - currCoord.lng;
-        var deltaLat = value.lat - currCoord.lat;
+        var deltaLongitude = value.longitude - currCoord.longitude;
+        var deltaLatitute = value.latitude - currCoord.latitude;
 
-        value.distance = Math.sqrt( Math.pow(deltaLng, 2) + Math.pow(deltaLat, 2) );
-        console.log('Value: ', value);
+        value.distance = Math.sqrt( Math.pow(deltaLongitude, 2) + Math.pow(deltaLatitute, 2) );
       });
 
       this.props.places.sort(function(a, b) {
@@ -83,7 +82,7 @@ class PlaceContainer extends Component {
         return a[attribute].charCodeAt(0) - b[attribute].charCodeAt(0);
       });
     }
-    console.log('Sorted places: ', this.props.places);
+    // console.log('Sorted places: ', this.props.places);
 
     this.forceUpdate(); //force component to re-render
   }
