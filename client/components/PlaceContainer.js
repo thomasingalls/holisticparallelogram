@@ -11,83 +11,33 @@ class PlaceContainer extends Component {
     this.state = {id:'loading-container'};
   }
 
-  // componentDidMount() {
-  //   window.addEventListener('scroll', this.handleScroll.bind(this));
-  // }
-
-  // componentWillUnmount() {
-  //   window.removeEventListener('scroll', this.handleScroll.bind(this));
-  // }
-
-  // handleScroll(event) {
-  //   let scrollTop = event.srcElement.body.scrollTop;
-  //   if (scrollTop > 280) {
-  //     event.preventDefault();
-  //     this.setState({id: 'loading-container'});
-  //   } else {
-  //     this.setState({id: 'loading-container'});
-  //   }
-  // }
-
-  /* Uncomment this to test code as necessary */
-  // setDummyPlaces() {
-  //   this.props.places = 
-  //      [ { name: 'Louis\' Restaurant',
-  //          address: '902 Point Lobos Ave, San Francisco, CA 94121, United States',
-  //          googlePlaceId: 'ChIJtd6mCbWHhYARIo8wsDGnrYs',
-  //          lat: 37.7792657,
-  //          lng: -122.512765,
-  //          url: 'https://farm8.staticflickr.com/7072/7294435744_a50f8efaeb.jpg' },
-  //        { name: 'Hana Zen',
-  //          address: 'PIER 39, M209, San Francisco, CA 94133, United States',
-  //          googlePlaceId: 'ChIJHSGzi_yAhYAR9JTvMsplz0Q',
-  //          lat: 37.8111411,
-  //          lng: -122.410579,
-  //          url: 'https://farm9.staticflickr.com/8371/8501523416_1d51b23d04.jpg' },
-  //        { name: 'Sutro’s',
-  //          address: '1090 Point Lobos Ave, San Francisco, CA 94121, United States',
-  //          googlePlaceId: 'ChIJ7dtznbWHhYARpQcOH3G6-xA',
-  //          lat: 37.77843129999999,
-  //          lng: -122.513982,
-  //          url: 'https://farm5.staticflickr.com/4085/5001992834_892b6f3150.jpg' } 
-  //      ];
-  // }
-
-  getUserCoord() {
-    var userCoord = {
-      latitude: 60,
-      longitude: -122.409039
-    };
-
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        userCoord = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
-        console.log('User coord in callback: ', userCoord);
-        return userCoord;
-      }, 
-      function(error) {
-        console.error(error);
-        return error; 
-      }, 
-      {timeout:10000}
-    );
-    console.log('User coord in getUserCoord: ', userCoord);
-    // return userCoord;
-
-  }
-
   sortPlacesBy(attribute) {
+
     if (attribute === 'rating') {
       this.props.places.sort(function(a, b) {
         return b[attribute] - a[attribute];
       });
     } else if (attribute === 'distance') {
       // Add a new distance property to the places array and sort by distance
-      var userCoord = this.getUserCoord();
-      console.log('User coord in sortPlacesBy: ', userCoord);
+      var userCoord = {
+        latitude: 60,
+        longitude: -122.409039
+      };
+
+      // navigator.geolocation.getCurrentPosition(
+      //   function(position) {
+      //     userCoord = {
+      //       latitude: position.coords.latitude,
+      //       longitude: position.coords.longitude
+      //     };
+      //     console.log('User coord inside callback: ', userCoord);
+
+      //   }, 
+      //   function(error) {
+      //     console.error(error); 
+      //   },{timeout:10000});
+
+      // console.log('User coord outside callback: ', userCoord);
 
       this.props.places.forEach(function(value) {
         var deltaLongitude = value.longitude - userCoord.longitude;
@@ -114,6 +64,7 @@ class PlaceContainer extends Component {
     return (
       <div>
         <div className='col-2-12'></div>
+
         <div className='sortPlacesBy'>
           <a className='sort-by-text'>Sort by:    </a>
           <a className='sort-by-link' onClick={this.sortPlacesBy.bind(this, 'rating')}>rating</a>
