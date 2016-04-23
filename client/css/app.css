@@ -126,9 +126,21 @@ button:focus {
 }
 
 .place-entry-image {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
   float:left;
+  width:100px;
+  height:100px;
   padding-top: 10px;
   padding-right: 10px;
+}
+
+.place-entry-image:hover {
+  width:500px;
+  height:281px;
 }
 
 .saved-place-image {
@@ -182,15 +194,32 @@ button:focus {
   justify-content: center;
 }
 
-.icon-heart {
-  align-self: center;
-  color: black;
-  font-size: 1.8em;
-  color: rgba(0,0,0,0.45);
+svg#heart {
+  color:red;
+  align-self:center;
+  height: 50px;
+  width: 50px;
 }
 
-.icon-heart:hover {
-  color: #FF5A3B;
+#heart-path {
+  fill: #ffe6e6;
+  stroke: black;
+  stroke-width: 2px;
+  stroke-dasharray: 125;
+  stroke-dashoffset: -125;
+  stroke-linecap: butt;
+  -webkit-transition: all 2s ease-out;
+  -moz-transition: all 2s ease-out;
+  -ms-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+}
+
+#heart-path:hover,
+.permahover {
+  fill: #ff3333;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 125;
 }
 
 #spinner {

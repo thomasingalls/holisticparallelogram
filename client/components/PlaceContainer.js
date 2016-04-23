@@ -40,7 +40,14 @@ const mapDispatchToProps = (dispatch) => {
         method: 'POST',
         data: {user: user, place: place}
       });
-      dispatch(actions.savePlace(place));
+
+      var packaged = place;
+      packaged['UserPlace'] = {
+        PlaceId: place.googlePlaceId,
+        UserId: user.googleUserId,
+      }
+      dispatch(actions.savePlace(packaged));
+
     }
   };
 };

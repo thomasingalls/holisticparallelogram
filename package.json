@@ -1,12 +1,12 @@
 {
-  "name": "holisticparallelogram",
-  "version": "1.0.0",
+  "name": "3vnt",
+  "version": "2.0.0",
   "description": "Get a list of local view spots near you",
   "contributors": [
-    "Andrew Ho",
-    "Joel Aguero",
-    "Laura Curley",
-    "Reina Mei"
+    "Jonathen Chen",
+    "Hao Huang",
+    "Thomas Ingalls",
+    "Genevieve Sublette"
   ],
   "main": "server.js",
   "scripts": {
