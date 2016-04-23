@@ -66,6 +66,19 @@ class PlaceContainer extends Component {
         longitude: -122.409039
       };
 
+      // navigator.geolocation.getCurrentPosition(function(position) {
+      //   console.log('Position: ', position);
+      // })
+
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          console.log('Position: ', position);
+        }, 
+        function(error) {
+          console.log(error); 
+        },{timeout:10000});
+
+
       this.props.places.forEach(function(value) {
         var deltaLongitude = value.longitude - currCoord.longitude;
         var deltaLatitute = value.latitude - currCoord.latitude;
