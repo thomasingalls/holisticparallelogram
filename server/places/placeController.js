@@ -63,47 +63,28 @@ module.exports.deleteOne = function(req, res) {
       }
     })
   });
-  // User.findOne({
-  //   where: userId
-  // })
-  // .then(function(foundUserId) {
-  //   console.log(foundUserId);
-  //   res.json(foundUserId);
-  //   // Place.findOne({
-  //   //   where: place
-  //   // })
-  //   // .then(function(foundPlace) {
-  //   //   res.json(foundPlace);
-  //   // });
-  //   // res.json(user);
+  
+//   Reimplement with this methodology if there's time:
+//   var userFound;
+//   User.findOne({
+//     where: user
+//   })
+//   .then(function(foundUser) {
+//     // console.log(JSON.stringify(foundUser) + ' < --------- FOUNDUSER');
+//     userFound = foundUser;
+//   });
+// ​
+//   Place.findOne({ 
+//     where: {googlePlaceId: place.googlePlaceId} 
+//   })
+//   .then(function(place) {
+//     // remove the association between the user and the place
+//     userFound.removePlace(place).then(function() {
+//       console.log('REMOVED');
+//       console.log(JSON.stringify(place) + '  <-------------- PLACEFOUND');
+//       res.json(place);
+//     });
 
-  // });
-
-  // User.findOne({
-  //   where: user
-  // })
-  // .then(function(foundUser) {
-  //   Place.findOne({where: place})
-  //   .then(function(foundPlace) {
-  //     // foundUser.removePlace(foundPlace)
-  //     // .then(function() {
-  //       res.json(foundPlace);
-  //     // });
-  //   });
-  // });
-
-  // Place.findOne({
-  //   where: {googlePlaceId: place.googlePlaceId}
-  // })
-  // .then(function(place) {
-  //   // remove the association between the user and the place
-  //   user.removePlace(place);
-  //     // TODO: For future, do a check:
-  //     // if no users have a place with the same id as this one,
-  //     // delete that place from the places table so that you don't end
-  //     // up with lots of places that aren't associated with any users.
-  //     // This will only matter if this app goes global!
-  // });
 };
 
 
