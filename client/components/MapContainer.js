@@ -44,14 +44,10 @@ class MapContainer extends Component {
             }}
           >
             {this.props.markers.map((marker, index) => {
-              {console.log('Marker: ', marker)}
-              {console.log('Index: ', index)}
+              //{console.log('Marker: ', marker)}
+              //{console.log('Index: ', index)}
               return (
                 <Marker
-                    // position= {{
-                    //   lat: 37.78,
-                    //   lng: -122.512
-                    // }}
                     position={this.clickedCoord}
                     key={marker.name}
                     defaultAnimation={2}
