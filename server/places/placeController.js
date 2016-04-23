@@ -62,7 +62,6 @@ module.exports.deleteOne = function(req, res) {
     })
   });
 
-  
 //   Reimplement with this methodology if there's time:
 //   var userFound;
 //   User.findOne({
