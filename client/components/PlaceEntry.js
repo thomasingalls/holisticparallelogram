@@ -40,7 +40,7 @@ class PlaceEntry extends Component {
             <h4>{ this.props.place.name }</h4>
             <p>{ this.props.place.address }</p>
             <p>rating: {stars} </p>
-            <p>{ this.props.place.reviews.text }</p>
+            <p>{ this.props.place.reviews.text.slice(0, 55) + '...' }</p>
             <div>
               <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
               target='_blank'>More Views</a>
