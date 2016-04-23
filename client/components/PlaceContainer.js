@@ -125,17 +125,21 @@ class PlaceContainer extends Component {
   }
 
   sortPlacesBy(attribute) {
-    console.log('Sort by this attribute: ', attribute);
 
-    // this.props.places.sort(function(a, b) {
-    //   return a.name.charCodeAt(0) - b.name.charCodeAt(0);
-    // });
-    this.props.places.sort(function(a, b) {
-      return b[attribute] - a[attribute];
-    });
+    if (attribute === 'rating') {
+      this.props.places.sort(function(a, b) {
+        return b[attribute] - a[attribute];
+      });
+    } else if (attribute === 'distance') {
+
+    } else if (attribute === 'name') {
+      this.props.places.sort(function(a, b) {
+        return a[attribute].charCodeAt(0) - b[attribute].charCodeAt(0);
+      });
+    }
     console.log('Sorted places: ', this.props.places);
 
-    this.forceUpdate();
+    this.forceUpdate(); //force component to re-render
   }
 
   render() {
@@ -146,9 +150,14 @@ class PlaceContainer extends Component {
         <div className='col-2-12'></div>
 
         <div className='sortPlacesBy'>
-          <p className='saved-place-entry-link'>Sort by: rating</p>
-          <a className='saved-place-entry-link' onClick={this.sortPlacesBy.bind(this, 'rating')}>desc</a>
+          <a className='sort-by-text'>Sort by:    </a>
+          <a className='sort-by-link' onClick={this.sortPlacesBy.bind(this, 'rating')}>rating</a>
           <span className='place-entry-link-divider'>&middot;</span>
+
+          <a className='sort-by-link' onClick={this.sortPlacesBy.bind(this, 'distance')}>distance</a>
+          <span className='place-entry-link-divider'>&middot;</span>
+
+          <a className='sort-by-link' onClick={this.sortPlacesBy.bind(this, 'name')}>name</a>
         </div>
 
         <div id='loading-container' className='col-6-12'>

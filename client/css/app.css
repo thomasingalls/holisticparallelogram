@@ -80,6 +80,29 @@ a.place-entry-link:hover, a.saved-place-entry-link:hover {
   color: #E55136;
 }
 
+a.sort-by-text {
+  padding: 8px 0px;
+  color: #FF5A3B;
+  font-size: .8em;
+  margin-right: 10px;  
+  font-weight: 700;
+}
+
+a.sort-by-link {
+  padding: 8px 0px;
+  color: #FF5A3B;
+  font-size: .8em;
+}
+
+a.sort-by-link:hover {
+  color: #E55136;
+}
+
+.sortPlacesBy {
+  position: absolute;
+  top: 300px;
+}
+
 nav {
   width: 100%;
 }
@@ -155,11 +178,6 @@ button:focus {
 .place-entry-image:hover {
   width:500px;
   height:281px;
-}
-
-.sortPlacesBy {
-  position: absolute;
-  top: 285px;
 }
 
 .saved-place-image {
@@ -274,7 +292,7 @@ svg#heart {
 
 #loading-container {
   position: absolute;
-  top: 330px;
+  top: 340px;
 }
 
 /*#loading-container-fixed {
