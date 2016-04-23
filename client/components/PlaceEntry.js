@@ -29,7 +29,7 @@ class PlaceEntry extends Component {
       temp.push(i);
     }
     var stars = temp.map(function(star) {
-      return (<span className='icon-star' color='yellow'></span>);
+      return (<span className='icon-star'></span>);
     });
 
     return (
