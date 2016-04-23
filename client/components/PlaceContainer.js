@@ -29,11 +29,20 @@ class PlaceContainer extends Component {
   //   }
   // }
 
+  sortPlacesBy(attribute) {
+    console.log('Sort by this attribute: ', attribute);
+  }
+
   render() {
     return (
       <div>
+      { console.log('PLACES: ', this.props.places)}
         <div className='col-2-12'></div>
         <div id='loading-container' className='col-6-12'>
+          Sort by: 
+          <span className='place-entry-link-divider'>&middot;</span>
+          <a className='saved-place-entry-link' onClick={this.sortPlacesBy.bind(this, 'name')}>name</a>
+
           { this.props.places.map((place, i) => (
             <div>
               <PlaceEntry onSaveClick={this.props.onSaveClick} place={ place } key={i} actions={actions}></PlaceEntry>
