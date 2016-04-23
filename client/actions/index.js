@@ -15,6 +15,7 @@ module.exports = {
   },
 
   saveCoordinate: function(coord) {
+    console.log(coord);
     return { type: types.SAVE_COORDINATE, coord};
   }
 
