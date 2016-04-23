@@ -17,7 +17,7 @@ class PlaceEntry extends Component {
   render() {
     return (
       <div className='place-entry animated fadeInUp'>
-        <img className='place-entry-image' src={this.props.place.url} alt="Smiley face" />
+        <img className='place-entry-image' src={this.props.place.url} />
         <div className='place-info' >
             <h4>{ this.props.place.name }</h4>
             <p>{ this.props.place.address }</p>
