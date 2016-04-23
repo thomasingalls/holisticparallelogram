@@ -31,7 +31,7 @@ class MapContainer extends Component {
         }
         googleMapElement={
           <GoogleMap
-            ref={(map) => (this._googleMapComponent = map) && console.log(map.getZoom())}
+            ref={(map) => (this._googleMapComponent = map)}
             defaultZoom={10}
             defaultCenter={ { lat: 37.80898699999999, lng: -122.41026} }
             onClick={this.handleMapClick}
