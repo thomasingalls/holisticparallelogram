@@ -19,7 +19,6 @@ var PlacesObj = function(googlePlacesData) {
 }
 
 module.exports.getAllSaved = function(req, res) {
-  console.log('getAllSaved')
   var user = req.body.user;
 
   User.findOne({
@@ -75,9 +74,6 @@ module.exports.deleteOne = function(req, res) {
       where: {
         id: placeId
       }
-    })
-    .then(function(place) {
-      console.log(place);
     })
   });
   // User.findOne({
