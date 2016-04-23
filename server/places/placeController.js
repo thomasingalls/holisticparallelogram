@@ -96,7 +96,7 @@ module.exports.searchGoogle = function(req, res) {
 
   var responseBody = {};
   responseBody.places = [];
-  var cap = 15;
+  var cap = 10;
   var entered = 0;
 
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
