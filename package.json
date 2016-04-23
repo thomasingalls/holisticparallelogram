@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/3vnt/holisticparallelogram/blob/master/README.md",
   "dependencies": {
+    "async": "^2.0.0-rc.3",
     "babel-register": "^6.7.2",
     "bluebird": "1.0.8",
     "body-parser": "^1.4.3",
