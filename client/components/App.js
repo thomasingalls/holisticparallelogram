@@ -4,6 +4,7 @@ import actions from '../actions/index.js';
 
 import Header from './Header';
 import PlaceContainer from './PlaceContainer';
+import MapContainer from './MapContainer';
 import SavedPlaceContainer from './SavedPlaceContainer';
 import searchGooglePlaces from '../utils/searchGooglePlaces.js';
 import $ from 'jquery';
@@ -14,7 +15,8 @@ class App extends Component {
       <div>
         <Header/>
         <div className='grid'>
-          <PlaceContainer/>
+          <PlaceContainer actions={actions}/>
+          <MapContainer actions={actions} dispatch={this.props.dispatch} coordinate={this.props.coordinate}/>
           <SavedPlaceContainer actions={actions} dispatch={this.props.dispatch}/>
         </div>
       </div>

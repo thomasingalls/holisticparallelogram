@@ -12,7 +12,7 @@ module.exports = function(app, express) {
   app.get('/api/places', placeController.searchGoogle);
 
   app.post('/api/places/saved', auth.checkAuth, placeController.saveOne);
-  app.get('/api/places/saved', auth.checkAuth, placeController.getAllSaved);
+  // app.get('/api/places/saved', auth.checkAuth, placeController.getAllSaved); //Unused right now: see indexHandler.js for getting all saved places
   app.delete('/api/places/saved', auth.checkAuth, placeController.deleteOne);
 
   app.post('/api/users', userController.saveOne);

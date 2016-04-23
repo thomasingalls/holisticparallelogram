@@ -12,10 +12,15 @@ class PlaceEntry extends Component {
     e.preventDefault;
     this.props.onSaveClick(this.props.place, this.props.user);
     this.setState({class: 'permahover'});
-<<<<<<< HEAD
-=======
-    console.log(this.state.class);
->>>>>>> 992ca35c21c7d9876646c4c2a6bc9b155cc404a2
+  }
+
+  handleSaveCoordinate() {
+    // console.log(this.props);
+    var coord = {
+      lat: this.props.place.latitude,
+      lng: this.props.place.longitude
+    };
+    this.props.dispatch(this.props.actions.saveCoordinate(coord));
   }
 
   render() {
@@ -29,8 +34,12 @@ class PlaceEntry extends Component {
               <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
               target='_blank'>More Views</a>
               <span className='place-entry-link-divider'>&middot;</span>
+
               <a className='place-entry-link' href={'//www.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address}
               target='_blank'>Find on Google</a>
+              <span className='place-entry-link-divider'>&middot;</span>
+
+              <a className='place-entry-link' onClick={this.handleSaveCoordinate.bind(this)}>Show on Map</a>
             </div>
         </div>
         <div className='place-entry-favorite'>
@@ -45,7 +54,10 @@ class PlaceEntry extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {user: state.user};
+  return {
+    user: state.user,
+    coordinate: state.coordinate
+  };
 };
 
 export default connect(mapStateToProps)(PlaceEntry);
