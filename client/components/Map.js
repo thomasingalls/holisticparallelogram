@@ -18,18 +18,17 @@ class Map extends Component {
           <div
             {...this.props}
             style={{
-              backgroundColor: 'blue',
               height: '400px',
-              position: 'absolute'
             }}
-            className='col-1-3'
+            className='col-4-12 saved-places'
+
           />
         }
         googleMapElement={
           <GoogleMap
             ref={(map) => (this._googleMapComponent = map) && console.log(map.getZoom())}
-            defaultZoom={3}
-            defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+            defaultZoom={10}
+            defaultCenter={ { lat: 37.80898699999999, lng: -122.41026} }
             onClick={this.handleMapClick}
             style={{
               height: '400px',
@@ -39,12 +38,15 @@ class Map extends Component {
               left: '0'
             }}
           >
-            {console.log('yep', this.props)}
             {this.props.markers.map((marker, index) => {
               return (
                 <Marker
-                  {...marker}
-                  onRightclick={this.handleMarkerRightclick.bind(this, index)}
+                    position= {{
+                      lat: marker.lat,
+                      lng: marker.lng
+                    }}
+                    key={marker.name}
+                    defaultAnimation={2}
                 />
               );
             })}
@@ -70,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 Map.propTypes = {
-
+  markers: PropTypes.array.isRequired
 };
 
 export default connect(
