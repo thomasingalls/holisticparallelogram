@@ -25,12 +25,22 @@ class PlaceEntry extends Component {
   }
 
   render() {
+    var temp = [];
+    for (var i = 0; i < this.props.place.rating; i++) {
+      temp.push(i);
+    }
+    var stars = temp.map(function(star) {
+      return (<span className='icon-star'></span>);
+    });
+
     return (
       <div className='place-entry animated fadeInUp'>
         <img className='place-entry-image' src={this.props.place.url} />
         <div className='place-info' >
             <h4>{ this.props.place.name }</h4>
             <p>{ this.props.place.address }</p>
+            <p>rating: {stars} </p>
+            <p>{ this.props.place.reviews.text }</p>
             <div>
               <a className='place-entry-link' href={'//www.images.google.com/search?q=' + this.props.place.name + ' ' + this.props.place.address + '&tbm=isch'}
               target='_blank'>More Views</a>

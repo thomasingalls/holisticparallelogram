@@ -15,6 +15,8 @@ var PlacesObj = function(googlePlacesData) {
     latitude: googlePlacesData['geometry']['location']['lat'],
     longitude: googlePlacesData['geometry']['location']['lng'],
     url: '',
+    reviews: googlePlacesData.reviews[0],
+    rating: Math.round(googlePlacesData.rating)
   }
 }
 
@@ -141,9 +143,11 @@ module.exports.searchGoogle = function(req, res) {
           .then(function(locationData){
             var formattedLocation = JSON.parse(locationData).result;
             var reviews = formattedLocation.reviews;
+            console.log(formattedLocation.rating, 'this is formattedLocation.rating----------------');
             if (reviews) {
               for (var j = 0; j < reviews.length; j++) {
                 if (reviews[j].text.match(regex1) || reviews[j].text.match(regex2)) {
+                  //console.log(reviews[j], 'this is a matching review-----------------');
                   var placesObj = PlacesObj(formattedLocation);
                   flickr.search(placesObj, responseBody, res)
                     .then(function(data){
