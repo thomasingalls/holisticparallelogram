@@ -11,6 +11,9 @@ h1, h2, h3, h4, h5, h6 {
 
 
 header {
+  position:absolute;
+  overflow:scroll;
+  top:0;
   background-color: #FF5A3B;
   padding: 20px;
   margin-bottom: 10px;
@@ -28,10 +31,16 @@ header .black, .black {
 }
 
 .saved-places {
-/*  position: fixed;
+  position: absolute;
   right: 0;
-  top: -10;*/
+  top: 280px;
   color: rgba(0,0,0,0.6);
+}
+
+.saved-places-fixed {
+  position:fixed;
+  right: 0;
+  top: 0px;
 }
 
 .no-saved-places {
@@ -257,3 +266,14 @@ svg#heart {
     opacity: .5;
   }
 }
+
+#loading-container {
+  position: absolute;
+  top:280px;
+}
+
+/*#loading-container-fixed {
+  position: absolute;
+  top:280px;
+}*/
+
