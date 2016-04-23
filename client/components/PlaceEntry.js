@@ -11,11 +11,7 @@ class PlaceEntry extends Component {
   handleClick(e) {
     e.preventDefault;
     this.props.onSaveClick(this.props.place, this.props.user);
-    this.setState({class: 'permahover'});
-<<<<<<< HEAD
-=======
-    console.log(this.state.class);
->>>>>>> 992ca35c21c7d9876646c4c2a6bc9b155cc404a2
+    this.setState({class: 'heart-clicked'});
   }
 
   render() {

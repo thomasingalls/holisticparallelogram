@@ -12,8 +12,8 @@ h1, h2, h3, h4, h5, h6 {
 
 header {
   background-color: #FF5A3B;
-  padding: 40px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 10px;
   width: 100%;
   border-bottom: 20px solid #E55136;
   color: white;
@@ -28,6 +28,9 @@ header .black, .black {
 }
 
 .saved-places {
+/*  position: fixed;
+  right: 0;
+  top: -10;*/
   color: rgba(0,0,0,0.6);
 }
 
@@ -56,6 +59,7 @@ a.place-entry-link, a.saved-place-entry-link {
 }
 
 a.place-entry-link {
+  position:relative;
   font-size: .8em;
 }
 
@@ -81,6 +85,7 @@ nav ul li {
 }
 
 .link {
+  position:right;
   color: rgba(255, 255, 255, 0.6);
   padding-right: 0px;
 }
@@ -195,7 +200,6 @@ button:focus {
 }
 
 svg#heart {
-  color:red;
   align-self:center;
   height: 50px;
   width: 50px;
@@ -215,11 +219,14 @@ svg#heart {
   transition: all 2s ease-out;
 }
 
-#heart-path:hover,
-.permahover {
+#heart-path:hover {
   fill: #ff3333;
   stroke-dashoffset: 0;
   stroke-dasharray: 125;
+}
+
+#heart-clicked {
+  fill: #ff3333;
 }
 
 #spinner {
