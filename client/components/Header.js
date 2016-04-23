@@ -47,6 +47,18 @@ class Header extends Component {
       </header>
     );
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll(event) {
+    console.log('scrolling');
+  }
 }
 
 const mapStateToProps = (state) => {
