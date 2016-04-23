@@ -20,12 +20,12 @@ class SavedPlaceContainer extends Component {
 
   handleScroll(event) {
     let scrollTop = window.document.body.scrollTop;
-    console.log('current position', scrollTop);
+    // console.log('current position', scrollTop);
     if (scrollTop > 280) {
-      console.log('switch to fixed');
+      // console.log('switch to fixed');
       this.setState({class:'saved-places-fixed'});
     } else {
-      console.log('switch back');
+      // console.log('switch back');
       this.setState({class:'saved-places'});
     }
   }
