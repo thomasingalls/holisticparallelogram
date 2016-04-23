@@ -8,12 +8,13 @@ export default function coordinate (state = initialState, action) {
 
   switch (action.type) {
   case types.SAVE_COORDINATE:
-    var newState = state.slice();
+    // var newState = state.slice();
+    var newState = [];
     newState.push(action.coord);
-    console.log('save coordinate: ', newState);
+    // console.log('save coordinate: ', newState);
     return newState;
   case types.FETCH_COORDINATE:
-    console.log('fetch coordinate: ', state);
+    // console.log('fetch coordinate: ', state);
     return state;
   default:
     return state;

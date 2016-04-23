@@ -9,8 +9,8 @@ class MapContainer extends Component {
   handleFetchCoordinate() {
     // console.log('Map props: ', this.props);
     this.props.dispatch(this.props.actions.fetchCoordinate());
-    var coord = this.props.coordinate[0];
-    console.log('COORD: ', coord);
+
+    this.clickedCoord = this.props.coordinate[0];
   }
 
   render() {
