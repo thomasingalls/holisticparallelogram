@@ -61,6 +61,29 @@ module.exports.deleteOne = function(req, res) {
       }
     })
   });
+
+  
+//   Reimplement with this methodology if there's time:
+//   var userFound;
+//   User.findOne({
+//     where: user
+//   })
+//   .then(function(foundUser) {
+//     // console.log(JSON.stringify(foundUser) + ' < --------- FOUNDUSER');
+//     userFound = foundUser;
+//   });
+// ​
+//   Place.findOne({ 
+//     where: {googlePlaceId: place.googlePlaceId} 
+//   })
+//   .then(function(place) {
+//     // remove the association between the user and the place
+//     userFound.removePlace(place).then(function() {
+//       console.log('REMOVED');
+//       console.log(JSON.stringify(place) + '  <-------------- PLACEFOUND');
+//       res.json(place);
+//     });
+
 };
 
 
