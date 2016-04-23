@@ -31,6 +31,16 @@ class PlaceContainer extends Component {
 
   sortPlacesBy(attribute) {
     console.log('Sort by this attribute: ', attribute);
+
+    // this.props.places.sort(function(a, b) {
+    //   return a.name.charCodeAt(0) - b.name.charCodeAt(0);
+    // });
+    this.props.places.sort(function(a, b) {
+      return b[attribute] - a[attribute];
+    });
+    console.log('Sorted places: ', this.props.places);
+
+    this.forceUpdate();
   }
 
   render() {
@@ -41,7 +51,7 @@ class PlaceContainer extends Component {
         <div id='loading-container' className='col-6-12'>
           Sort by: 
           <span className='place-entry-link-divider'>&middot;</span>
-          <a className='saved-place-entry-link' onClick={this.sortPlacesBy.bind(this, 'name')}>name</a>
+          <a className='saved-place-entry-link' onClick={this.sortPlacesBy.bind(this, 'rating')}>rating</a>
 
           { this.props.places.map((place, i) => (
             <div>

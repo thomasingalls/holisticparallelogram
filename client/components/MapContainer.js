@@ -12,7 +12,7 @@ class MapContainer extends Component {
     this.props.dispatch(this.props.actions.fetchCoordinate());
 
     this.clickedCoord = this.props.coordinate[0];
-    console.log('Clicked coordinate: ', this.clickedCoord);
+    // console.log('Clicked coordinate: ', this.clickedCoord);
   }
 
   render() {
