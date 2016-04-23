@@ -53,6 +53,32 @@ class PlaceContainer extends Component {
   //      ];
   // }
 
+  getCurrCoord() {
+    var currCoord = {
+      latitude: 60,
+      longitude: -122.409039
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        currCoord = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+        console.log('Curr coord in callback: ', currCoord);
+        return currCoord;
+      }, 
+      function(error) {
+        console.error(error);
+        return error; 
+      }, 
+      {timeout:10000}
+    );
+    console.log('Curr coord in getCurrCoord: ', currCoord);
+    // return currCoord;
+
+  }
+
   sortPlacesBy(attribute) {
 
     if (attribute === 'rating') {
@@ -61,23 +87,8 @@ class PlaceContainer extends Component {
       });
     } else if (attribute === 'distance') {
       // Add a new distance property to the places array and sort by distance
-      var currCoord = {
-        latitude: 37.783753,
-        longitude: -122.409039
-      };
-
-      // navigator.geolocation.getCurrentPosition(function(position) {
-      //   console.log('Position: ', position);
-      // })
-
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-          console.log('Position: ', position);
-        }, 
-        function(error) {
-          console.log(error); 
-        },{timeout:10000});
-
+      var currCoord = this.getCurrCoord();
+      console.log('Curr coord in sortPlacesBy: ', currCoord);
 
       this.props.places.forEach(function(value) {
         var deltaLongitude = value.longitude - currCoord.longitude;
@@ -104,7 +115,6 @@ class PlaceContainer extends Component {
     return (
       <div>
         <div className='col-2-12'></div>
-
         <div className='sortPlacesBy'>
           <a className='sort-by-text'>Sort by:    </a>
           <a className='sort-by-link' onClick={this.sortPlacesBy.bind(this, 'rating')}>rating</a>
