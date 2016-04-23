@@ -9,6 +9,25 @@ class PlaceContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {id:'loading-container'};
+    this.getUserCoord(); //get the user coordinate immediately
+  }
+
+  getUserCoord() {
+    // console.log('Made it to getUserCoord function');
+    // navigator.geolocation.getCurrentPosition(
+    //   function(position) {
+    //     this.props.userCoord = {
+    //       latitude: position.coords.latitude,
+    //       longitude: position.coords.longitude
+          
+    //     };
+    //     console.log('this.props.userCoord: ', this.props.userCoord);
+    //   }, 
+    //   function(error) {
+    //     console.error(error); 
+    //   },
+    //   {timeout:10000}
+    // );
   }
 
   sortPlacesBy(attribute) {
@@ -20,7 +39,7 @@ class PlaceContainer extends Component {
     } else if (attribute === 'distance') {
       // Add a new distance property to the places array and sort by distance
       var userCoord = {
-        latitude: 60,
+        latitude: 37.783768,
         longitude: -122.409039
       };
 
@@ -64,7 +83,6 @@ class PlaceContainer extends Component {
     return (
       <div>
         <div className='col-2-12'></div>
-
         <div className='sortPlacesBy'>
           <a className='sort-by-text'>Sort by:    </a>
           <a className='sort-by-link' onClick={this.sortPlacesBy.bind(this, 'rating')}>rating</a>
