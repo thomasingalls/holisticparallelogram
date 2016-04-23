@@ -21,6 +21,7 @@ class PlaceEntry extends Component {
       lng: this.props.place.longitude
     };
     this.props.dispatch(this.props.actions.saveCoordinate(coord));
+
   }
 
   render() {
